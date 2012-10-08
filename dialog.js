@@ -60,6 +60,7 @@ g.dialog = {
 		g.frozen = true;
 		g.dialog.boxcur = 650;
 		g.dialog.boxgoal = {left: 88, right: 25, center: 57}[g.dialog.data[num][0].side];
+		g.query.show(['Close conversation'],300,100,function() { g.dialog.active = false; });
 		g.timeouts.addtimeout(10, g.dialog.drawbox, true);
 		g.timeouts.addtimeout (10, function(timer) {
 			g.dialog.active = true;
@@ -104,6 +105,7 @@ g.dialog = {
 						if (timer == 0)
 						{
 							g.frozen = false;
+							g.query.active = false;
 							if (typeof g.dialog.callback == 'function') {g.dialog.callback();}
 						}
 					}, true);
@@ -128,16 +130,16 @@ g.dialog = {
 				{
 					g.dialog.spriteframe = line.frames.length-1;
 				}
-			}
-			function temp(x,y,z) {
-				return function() {g.dialog.drawtext(x,y,z);};
-			}
-			g.gfx.drawfunc(temp(g.dialog.data[g.dialog.num][g.dialog.part].char.toUpperCase() + ': ' + line.line.substr(0,g.dialog.char), g.dialog.data[g.dialog.num][g.dialog.part].color,g.dialog.data[g.dialog.num][g.dialog.part]), g.gfx.layers.dialog);
+			}													//don't we all hate it when this happens
+			/*var temptext = 
+			eval('var tempfunc = function() { g.dialog.drawtext("'++'", "'++'", ' + +'); }');*/
+			
 			if (g.dialog.char != line.line.length)
 				g.dialog.char++;
 			g.dialog.drawsprite(g.dialog.data[g.dialog.num][g.dialog.part].spritesheet, line.frames[g.dialog.spriteframe], g.dialog.data[g.dialog.num][g.dialog.part].side);
 			if (g.k.frame.space || (g.m.click && g.dialog.boxcur<g.m.x&&g.m.x<(g.dialog.boxcur+537) && 170<g.m.y && g.m.y<440)) // advance text!
 			{
+				g.k.frame.space = false;
 				if (line.line.length == g.dialog.char)
 				{	//if at end of line go to next line
 					g.dialog.char = 0;
@@ -164,6 +166,8 @@ g.dialog = {
 					g.dialog.char = line.line.length;
 				}
 			}
+			if (g.dialog.state != 'swap')
+				g.gfx.drawfunc(g.dialog.drawtext, g.gfx.layers.dialog);
 		}
 	},
 	drawsprite: function(recid, frame, side, timer)
@@ -177,12 +181,17 @@ g.dialog = {
 			flip.x = true;
 		var rec = g.resources[recid];
 		var y = 450 - rec.framey;
-		var x = -(timer*(rec.framex-80)/5)-80;
+		var x = -(timer*(rec.framex-80)/5);
 		if (flip.x)
 			x = 650 - x - rec.framex;
 		g.gfx.draw(recid, x, y, frame, g.gfx.layers.dialog, flip);
 	},
-	drawtext: function(text, color, part) {
+	drawtext: function() {
+		var part = g.dialog.data[g.dialog.num][g.dialog.part];
+		if (typeof part == 'undefined')
+			return;
+		var text = part.char.toUpperCase() + ': ' + part.lines[g.dialog.line].line.substr(0,g.dialog.char);
+		var color = part.color;
 		var left = g.dialog.boxcur + 20;
 		if (part.side == 'left')
 			left = g.dialog.boxcur + 150;
@@ -244,6 +253,8 @@ g.query = {
 		g.query.x = x;
 		g.query.y = y;
 		g.query.options = options;
+		g.m.click = false;
+		g.k.frame.space = false;	//prevent false triggering
 	},
 	process: function()
 	{
@@ -261,6 +272,7 @@ g.query = {
 		{
 			g.query.active = false;
 			g.frozen = false;
+			g.k.frame.space = false;
 			if (typeof g.query.callback == 'function')
 				g.query.callback(g.query.curr);
 		}
@@ -272,8 +284,9 @@ g.query = {
 				{
 					g.query.active = false;
 					g.frozen = false;
+					g.m.click = false;
 					if (typeof g.query.callback == 'function')
-						g.query.callback(i);
+						g.query.callback(parseInt(i));	//sometimes gives output as string...?
 				}
 			}
 		}

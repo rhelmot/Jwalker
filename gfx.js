@@ -24,7 +24,7 @@ g.gfx = {
 			frame = {left:0, top:0, width:rec.data.width, height:rec.data.height};
 		if (x >= 650 || y >= 450 || x + frame.width <= 0 || y + frame.height <= 0)			//do not draw offscreen
 			return;
-		if (typeof g.gfx.queue[layer] =='undefined')
+		if (g.gfx.queue[layer] == null)
 			g.gfx.queue[layer] = [];
 		frame.x = x;
 		frame.y = y;

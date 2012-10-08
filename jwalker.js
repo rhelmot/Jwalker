@@ -81,7 +81,7 @@ var g = {
 		mouse.click = false;
 		if (mouse.down)
 			mouse.click = !g.m.down;
-		var k = {left: keys[37] || keys[65], right: keys[39] || keys[68], up: keys[38] || keys[87], down: keys[40] || keys[83], space: keys[32], jump: keys[90], accl: keys[88]};
+		var k = {left: keys[37] || keys[65], right: keys[39] || keys[68], up: keys[38] || keys[87], down: keys[40] || keys[83], space: keys[32], jump: keys[90] || keys[76], accl: keys[88] || keys[186]};
 		var f = {};
 		for (var i in k)
 		{
@@ -94,13 +94,13 @@ var g = {
 		g.m = {x:mouse.x,y:mouse.y,down:mouse.down,click:mouse.click};
 		g.c = context;
 		g.c.clearRect(0,0,650,450);
-		g.area.process();
-		if (!g.loading.active)
-			g.ui.process();
 		if (g.dialog.active)
 			g.dialog.process();
 		if (g.query.active)
 			g.query.process();
+		g.area.process();
+		if (!g.loading.active)
+			g.ui.process();
 		g.timeouts.process();
 		g.gfx.paint();
 		if (g.debugEnabled)

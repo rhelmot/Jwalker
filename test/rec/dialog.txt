@@ -1,13 +1,12 @@
 !Conversation 0 - Controls
-_!_: Arrow keys/WASD to move, Z to jump, X to speed up.
+_!_: Arrow keys/WASD to move, look up, and duck, Z/L to jump, X/Colon to speed up. Spacebar to interact with things.
 _!_: Just a little demo of my Jwalker engine! Not sure how much I'll end up doing with this, but it's pretty cool, amirite???
 !Conversation 1
-talk!Brad: Well, this sucks.
-shrug!Brad: But I guess it could be worse.
-mad!Dadsprite: This conversation is over.
+sad!Brad: Well, this sucks.
+neutral!Brad: But I guess it could be worse.
+neutral!Dadsprite: This conversation is over.
 !Conversation 2
 talk!Brad: Look at all the words I can say, Dad! It's like I'm being controlled by some sort of sentient entity who enters my dialog through a keyboard! How awesome is that!
 neutral!Dadsprite: Not all that awesome.
-_!_: lol 4th wall breaks
-neutral!Dadsprite: You have much to learn, son.
-talk!Brad: Aw...
+eyebrows!Dadsprite: You have much to learn, son.
+sad!Brad: Aw...

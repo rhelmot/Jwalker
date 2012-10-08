@@ -12,7 +12,7 @@ g.ui = {
 					g.ui.vollvl = 0;
 				g.audio.setvol(g.ui.vollvl/3);
 			}
-			else if (530<g.m.x&&g.m.x<561 && 10<g.m.y&&g.m.y<50)
+			else if (530<g.m.x&&g.m.x<561 && 10<g.m.y&&g.m.y<50 && !g.frozen)
 			{
 				//save???
 				//console.log('saving game');
@@ -43,7 +43,7 @@ g.ui = {
 						g.ui.deserialize(num-1);
 				});
 			}
-			else if (580<g.m.x&&g.m.x<630 && 10<g.m.y&&g.m.y<50)
+			else if (580<g.m.x&&g.m.x<630 && 10<g.m.y&&g.m.y<50 && !g.frozen)
 			{
 				g.ui.showncontrols = true;
 				g.ui.controlsframe = 0;
