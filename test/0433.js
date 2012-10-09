@@ -7,22 +7,22 @@ function loadSpecs() {
 		filename: 'bradsprite.png',
 		type: 'image',
 		use: 'spritesheet',
-		size: 5,
+		size: 2.8,
 		framex: 70,
 		framey: 120,
-		framewidth: 5,
+		framewidth: 6,
 		frameheight: 1
 	},{	//1
-		filename: 'BrodyQuest',
+		filename: 'TribalEbonpyre',
 		extensions: ['mp3','ogg'],
 		type: 'music',
 		use: 'bgm',
 		size: 5340
 	},{	//2
-		filename: 'SugarCubeCornerHitbox.png',
+		filename: 'area1bg.png',
 		type: 'image',
 		use: 'background',
-		size: 626
+		size: 11
 	},{	//3
 		filename: 'dialog.txt',
 		type: 'text',
@@ -52,10 +52,10 @@ function loadSpecs() {
 		framewidth: 3,
 		frameheight: 1
 	},{	//7
-		filename: 'SugarCubeCornerHitbox.png',
+		filename: 'area1hitbox.png',
 		type: 'image',
 		use: 'hitbox',
-		size: 31.3,
+		size: 4.5,
 		scale: 1
 	},{	//8
 		filename: 'volume.png',
@@ -124,8 +124,8 @@ function loadSpecs() {
 			background: 2,
 			hitbox: 7,
 			player: 0,
-			x: 200,
-			y: 500,
+			x: 700,
+			y: 0,
 			reclist: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
 			onLoad: function(entrance) {
 				g.audio.play(1);
@@ -162,8 +162,8 @@ function loadSpecs() {
 				{
 					index: 0,			//necissary when only the instance is passed to a function
 					name: 'brad',
-					x: 500,
-					y: 629,
+					x: 850,
+					y: 300,
 					xspd: 0,
 					yspd: 0,
 					xsub: 0,
@@ -177,18 +177,19 @@ function loadSpecs() {
 				{
 					index: 1,
 					name: 'dadsprite',
-					x: 1000,
-					y: 1400,
+					x: 1050,
+					y: 250,
 					xsub: 0,
 					ysub: 0,
 					xspd: 0,
 					yspd: 0,
-					basey: 1400,
+					basey: 250,
 					yoffset: 0,
 					yospd: 0,
 					yaccl: 1,
 					spdtimer: 0,
 					follow: false,
+					faceleft: false,
 					dim: {left:0, width:44, top:0, height:128}
 				}
 			],
@@ -310,10 +311,11 @@ function loadSpecs() {
 				inst.basey = inst.y;
 				if (g.k.frame.space && g.sprites.func.hitsprite(inst, g.area.areas[g.area.currentarea].player))
 				{
-					g.query.show(['Talk to Dadsprite','Attempt to break 4th wall','Cancel'], inst.x-30-g.area.areas[g.area.currentarea].x, inst.y-100-g.area.areas[g.area.currentarea].y, function(num) {
+					var dstemp = inst.index;
+					g.query.show(['Talk to Dadsprite','Ask Dadsprite to join','Cancel'], inst.x-30-g.area.areas[g.area.currentarea].x, inst.y-100-g.area.areas[g.area.currentarea].y, function(num) {
 						if (num == 2)
 							return;
-						g.dialog.show(num + 1);
+						g.dialog.show(num + 1, (num!=1?function() {}:function() { g.area.areas[g.area.currentarea].sprites[dstemp].follow = true; }));
 					});
 				}
 				inst.y += inst.yoffset;
@@ -325,8 +327,29 @@ function loadSpecs() {
 					if (Math.abs(inst.yospd) >= 3)
 						inst.yaccl *= -1;
 				}
+				var player = g.area.areas[g.area.currentarea].sprites[g.area.areas[g.area.currentarea].player];
+				inst.faceleft = (player.x < inst.x);
+				if (inst.follow)
+				{
+					var accl = 0;
+					if (player.x > inst.x - 100 && player.x < inst.x + 100)
+					{
+						if (inst.xspd != 0)
+						{
+							if (inst.xspd > -2 && inst.xspd < 2)
+								inst.xspd = 0;
+							else
+								accl = -2*inst.xspd/Math.abs(inst.xspd);
+						}
+					}
+					else if (Math.abs(inst.xspd) < 50)
+					{
+						accl = inst.faceleft?-1:1;
+					}
+					inst.xspd += accl;
+				}
 			}
-			g.sprites.func.render(inst);
+			g.sprites.func.render(inst, {x:inst.faceleft, y:false});
 		}
 	};
 }
