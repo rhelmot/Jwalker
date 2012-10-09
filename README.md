@@ -7,8 +7,8 @@ Use instructions
 ----------------
 
 * In an HTML file, have the following: 
-    * A canvas: `&lt;canvas id="drawCanvas" width="650" height="450" tab`index="1" style="outline:none" onselectstart="return false;">`
-    * A preloading image with `style="display:none;"` and `id="loadimg"
+    * A canvas: `<canvas id="drawCanvas" width="650" height="450" tabindex="1" style="outline:none" onselectstart="return false;">`
+    * A preloading image with `style="display:none;"` and `id="loadimg`
     * A bit of inline JS setting the following paths, relative to the HTML file:
         * `jwRoot`, to the directory the Jwalker sources are kept in
         * `recRoot`, to the directory the game assets are kept in

@@ -38,6 +38,8 @@ g.sprites.func = {
 	{
 		if (inst.yspd > 500)	//terminal velocity
 			return;
+		if (typeof inst.climbing != 'undefined' && inst.climbing != 0)	//climbing or weightless
+			return;
 		if (g.area.areas[g.area.currentarea].player == inst.index && g.k.jump)
 			inst.yspd += 6;		//player accelerates slower if holding jump
 		else
@@ -53,6 +55,8 @@ g.sprites.func = {
 		offset.x += inst.x + inst.dim.left;
 		offset.y += inst.y + inst.dim.top;
 		switch(point) {
+			case 'center':
+				offset.y += inst.dim.height/2;
 			case 'top':
 				offset.x += inst.dim.width/2;
 				break;
@@ -96,6 +100,10 @@ g.sprites.func = {
 		var d1 = {x1: inst1.x+inst1.dim.left, x2: inst1.x+inst1.dim.left+inst1.dim.width, y1: inst1.y+inst1.dim.top, y2: inst1.y+inst1.dim.top+inst1.dim.height};
 		var d2 = {x1: inst2.x+inst2.dim.left, x2: inst2.x+inst2.dim.left+inst2.dim.width, y1: inst2.y+inst2.dim.top, y2: inst2.y+inst2.dim.top+inst2.dim.height};
 		return ((((d1.x1 <= d2.x1)&&(d1.x2 >= d2.x1))||((d1.x1 <= d2.x2)&&(d1.x2 >= d2.x2)))&&(((d1.y1 <= d2.y1)&&(d1.y2 >= d2.y1))||((d1.y1 <= d2.y2)&&(d1.y2 >= d2.y2))));
+	},
+	hitgen: function(inst, points, callback) {
+		for (var i in points)
+			callback(g.sprites.func.hit(inst, points[i]), i, points[i]);
 	},
 	hitbg: function(inst) {
 		inst.hit = {up:false,down:false,left:false,right:false};

@@ -170,6 +170,8 @@ function loadSpecs() {
 					ysub: 0,
 					frame: 0,
 					faceleft: false,
+					climbing: 0,
+					climbtimer: 0,
 					frametimer: 0,
 					fauxframe: 0,
 					dim: {left:20, width:26, top:0, height:114}
@@ -198,6 +200,7 @@ function loadSpecs() {
 			]
 		}
 	];
+	//pixels: black-0 white-1 red-2 green-3 blue-4 cyan-5
 	g.sprites.brad =  {
 		spritesheet: 0,
 		playerprocess: function(inst) {
@@ -205,7 +208,69 @@ function loadSpecs() {
 			{
 				g.sprites.func.addGravity(inst);
 				g.sprites.func.updPosBySpd(inst);
-				g.sprites.func.hitbg(inst);
+				//g.sprites.func.hitbg(inst);
+				inst.hit = {up:false,down:false,left:false,right:false};
+				inst.climbing &= 1;			//0		1			2			3		4			5				6			7
+				g.sprites.func.hitgen(inst, ['top','lefttop','righttop','center','leftbottom','rightbottom','bottomleft','bottomright'], function(px, i, point) {
+					//console.log(i);
+					var horzsign = 0;	//other points = 0;
+					if (i==1||i==4)
+						horzsign = 1;	//left side = 1
+					else if (i==2||i==5)
+						horzsign = -1;	//right side = -1
+					if (inst.climbing != 0)	// -----vhc Vertical top, Horizontal edge (no vertical motion), Climbing
+					{
+						if ((i==4||i==5) && px != 3 && px != 5)	//if left or right point
+							inst.climbing |= 2;
+						else if (i==0 && px != 3 && px != 5)
+							inst.climbing |= 4;
+						else if (i==3 && px != 3 && px != 5)
+							inst.climbing = 0;
+						else if ((i==6 || i==7) && (px==0||px==4))
+							inst.climbing = 0;
+					}
+					if (inst.climbing == 0)
+					{
+						if ((i==6||i==7)&&(px==0||px==4||px==5)&&inst.yspd>=0)
+						{
+							inst.hit.down = true;
+							inst.yspd = 70;
+							for (var i = 0; i <= 25; i++)
+							{
+								if (g.sprites.func.hit(inst, point, {x:0, y:-i-1}) != px)
+								{
+									inst.y -= i;
+									break;
+								}
+							}
+						}
+						else if ((i==1||i==4||i==2||i==5)&&px==0&&((inst.xspd<=0&&horzsign==1)||(inst.xspd>=0&&horzsign==-1)))
+						{
+							if (horzsign == 1)
+								inst.hit.left = true;
+							else if (horzsign == -1)
+								inst.hit.right = true;
+							inst.xspd = 0;
+							for (var i = 0; i <= 25; i++)
+							{
+								if (g.sprites.func.hit(inst, point, {x:i*horzsign, y:0}) != px)
+								{
+									inst.x += i*horzsign;
+									break;
+								}
+							}
+						}
+						else if (i==0&&px==0&&inst.xspd<=0)
+						{
+							inst.hit.top = true;
+							inst.yspd = 20;
+						}
+						else if (i==3&&(px==3||px==5)&&(g.k.up||g.k.down))
+						{
+							inst.climbing = 1;
+						}
+					}
+				});
 				/*if (--inst.frametimer == 0)
 				{
 					inst.frametimer = 19;
@@ -214,73 +279,104 @@ function loadSpecs() {
 				inst.frame = [0,1,0,2][inst.fauxframe];
 				if (inst.faceright)
 					inst.frame += 3;*/
-				var maxx = (g.k.accl?200:100);
-				if (g.k.left && inst.xspd > -maxx)
+				if (inst.climbing == 0)
 				{
-					inst.xspd -= 5;
-					inst.faceleft = true;
-				}
-				else if (g.k.right && inst.xspd < maxx)
-				{
-					inst.xspd += 5;
-					inst.faceleft = false;
-				}
-				if (inst.hit.down)
-				{
-					if (inst.xspd > 0)
+					var maxx = (g.k.accl?200:100);
+					if (g.k.left && inst.xspd > -maxx)
 					{
-						if (inst.xspd > maxx)
-							inst.xspd -= 5;
-						else if (!g.k.right && inst.xspd > 5)
-							inst.xspd -= 5;
-						else if (!g.k.right)
-							inst.xspd = 0;
+						inst.xspd -= 5;
+						inst.faceleft = true;
 					}
-					else if (inst.xspd < 0)
+					else if (g.k.right && inst.xspd < maxx)
 					{
-						if (inst.xspd < -maxx)
-							inst.xspd += 5;
-						else if (!g.k.left && inst.xspd < -5)
-							inst.xspd += 5;
-						else if (!g.k.left)
-							inst.xspd = 0;
+						inst.xspd += 5;
+						inst.faceleft = false;
+					}
+					if (inst.hit.down)
+					{
+						if (inst.xspd > 0)
+						{
+							if (inst.xspd > maxx)
+								inst.xspd -= 5;
+							else if (!g.k.right && inst.xspd > 5)
+								inst.xspd -= 5;
+							else if (!g.k.right)
+								inst.xspd = 0;
+						}
+						else if (inst.xspd < 0)
+						{
+							if (inst.xspd < -maxx)
+								inst.xspd += 5;
+							else if (!g.k.left && inst.xspd < -5)
+								inst.xspd += 5;
+							else if (!g.k.left)
+								inst.xspd = 0;
+						}
+					}
+				} else {
+					inst.xspd = 0;
+					inst.yspd = 0;
+					var didclimb = false;
+					if (g.k.up && inst.climbing == 1)
+						{inst.y -= 3; didclimb = true;}
+					else if (g.k.down && (inst.climbing&2)==0)
+						{inst.y += 3; didclimb = true;}
+					if (g.k.left)
+						{inst.x -= 3; didclimb = true;}
+					else if (g.k.right)
+						{inst.x += 3; didclimb = true;}
+					if (didclimb)
+					{
+						if (--inst.climbtimer < 0)
+						{
+							inst.faceleft = !inst.faceleft;
+							inst.climbtimer = 10;
+						}
 					}
 				}
 				/*if (g.k.up)
 					inst.y -= 5;
 				else if (g.k.down)
 					inst.y += 5;*/
-				if (g.k.frame.jump && inst.hit.down)
+				if (g.k.frame.jump && (inst.hit.down||inst.climbing!=0))
+				{
 					inst.yspd = -200;
+					inst.climbing = 0;
+				}
 				if (inst.frametimer != 0)
 					inst.frametimer--;
-				if (!inst.hit.down)
-				{
-					if (inst.yspd < 0)
-						inst.frame = 3;
-					else
-						inst.frame = 4;
-				}
+				if (inst.climbing != 0)
+					inst.frame = 5;
 				else
 				{
-					if (inst.xspd == 0)
-						inst.frame = 0;
+					if (!inst.hit.down)
+					{
+						if (inst.yspd < 0)
+							inst.frame = 3;
+						else
+							inst.frame = 4;
+					}
 					else
 					{
-						if (inst.frametimer == 0)
+						if (inst.xspd == 0)
+							inst.frame = 0;
+						else
 						{
-							inst.frametimer = [10,9,8,7,6,5,4,3,2][Math.floor(Math.abs(inst.xspd)/25)];
-							if (++inst.fauxframe == 4)
+							if (inst.frametimer == 0)
 							{
-								inst.fauxframe = 0;
+								inst.frametimer = [10,9,8,7,6,5,4,3,2][Math.floor(Math.abs(inst.xspd)/25)];
+								if (++inst.fauxframe == 4)
+								{
+									inst.fauxframe = 0;
+								}
 							}
+							else if (inst.frame != 0 && inst.frame != 1 && inst.frame != 2)
+							{
+								inst.fauxframe = 1;
+								inst.frametimer = [10,9,8,7,6,5,4,3,2][Math.floor(Math.abs(inst.xspd)/25)];
+							}
+							inst.frame = [0,1,0,2][inst.fauxframe];
 						}
-						else if (inst.frame != 0 && inst.frame != 1 && inst.frame != 2)
-						{
-							inst.fauxframe = 1;
-							inst.frametimer = [10,9,8,7,6,5,4,3,2][Math.floor(Math.abs(inst.xspd)/25)];
-						}
-						inst.frame = [0,1,0,2][inst.fauxframe];
 					}
 				}
 			}

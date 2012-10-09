@@ -114,7 +114,7 @@ g.loading = {
 						pdata[rndex] = tarr[tmp];
 						rndex++;
 					}
-					eval('g.resources[i].getData = function(x,y) { return g.resources['+i+'].data[x + y*'+rec.data.width+']; }');	//whyyyyy
+					eval('g.resources[i].getData = function(x,y) { if (x < 0 || x > '+rec.data.width+' || y < 0 || y > '+rec.data.height+') {return 1;} return g.resources['+i+'].data[x + y*'+rec.data.width+']; }');	//whyyyyy
 					g.resources[i].data = pdata;
 					
 				}
