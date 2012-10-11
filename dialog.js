@@ -3,7 +3,7 @@ if (typeof g.dialog.prefs != 'undefined')
 	prf = g.dialog.prefs;
 g.dialog = {
 	prefs: prf,
-	data: [],
+	data: {},
 	active: false,
 	spriteframe: 0,
 	spriteframetimer: 0,
@@ -13,8 +13,10 @@ g.dialog = {
 	char: 0,
 	state: '',
 	init: function(rec) {
-		var data = rec.data.split('\n');
-		var num = g.dialog.data.length - 1;
+		var data = rec.data.split('\r\n');
+		if (data.length == 0)
+			data = rec.data.split('\n');
+		var num;
 		var part = 0;
 		var line = 0;
 		var side = 'right';
@@ -22,7 +24,7 @@ g.dialog = {
 		{
 			if (data[l].substr(0,1) == '!')
 			{
-				num++;
+				num = data[l].substr(1);
 				part = -1;
 				line = 0;
 				g.dialog.data[num] = [];
@@ -60,7 +62,8 @@ g.dialog = {
 		g.frozen = true;
 		g.dialog.boxcur = 650;
 		g.dialog.boxgoal = {left: 88, right: 25, center: 57}[g.dialog.data[num][0].side];
-		g.query.show(['Close conversation'],300,100,function() { g.dialog.active = false; });
+		if (g.dialog.data[num][0].char != '_')
+			g.query.show(['Close conversation'],300,100,function() { g.dialog.active = false; });
 		g.timeouts.addtimeout(10, g.dialog.drawbox, true);
 		g.timeouts.addtimeout (10, function(timer) {
 			g.dialog.active = true;

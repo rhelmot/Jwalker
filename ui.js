@@ -47,7 +47,7 @@ g.ui = {
 			{
 				g.ui.showncontrols = true;
 				g.ui.controlsframe = 0;
-				g.dialog.show(0);
+				g.dialog.show('controls');
 			}
 			
 		}
