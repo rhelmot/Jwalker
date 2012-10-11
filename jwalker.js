@@ -2,6 +2,12 @@
 //coded by Andrew Dutcher (http://andrewdutcher.com) for Thoughstuck (http://andrewdutcher.com/MSPA/)
 //reuse is allowed and encouraged, but give credit.
 
+//note that the above isn't actually a real liscence, so I don't really care at the moment about all those
+//liscence-y things. Yeah, you can metaphorically run around nude shouting "WHEEEEE LOOK AT ME NO LICENCES 
+//TO RESTRAIN THIS ONE!" but at the end of the day stealing code makes you a douche, and that's that.
+
+//yes there will be a liscense some time in the future when I actually care.
+
 var tkeys;
 var tmouse;
 var killcode;
