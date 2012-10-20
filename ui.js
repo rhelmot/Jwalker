@@ -2,6 +2,7 @@ g.ui = {
 	vollvl: 3,
 	showncontrols: false,
 	controlsframe: 0,
+	
 	process: function()
 	{
 		if (g.m.click)
@@ -16,31 +17,44 @@ g.ui = {
 			{
 				//save???
 				//console.log('saving game');
-				var o = ['Save Game'];
-				var s = JSON.parse(localStorage.getItem('saves'));
-				for (var i in s)
-				{
-					var k = s[i].split('-');
-					if (k[0] != g.num)
-						continue;
-					var d = new Date() - k[1];
-					if (d > 86400000*4)
-						o[o.length] = "Load Game: " + Math.floor(d/86400000) + " days ago";
-					else if (d > 3600000)
-						o[o.length] = "Load Game: " + Math.floor(d/3600000) + " hour"+((d>3600000*2)?"s":"")+" ago";
-					else if (d > 60000)
-						o[o.length] = "Load Game: " + Math.floor(d/60000) + " minute"+((d>60000*2)?"s":"")+" ago";
-					else
-						o[o.length] = "Load Game: " + Math.floor(d/1000) + " second"+((d>2000)?"s":"")+" ago";
-				}
-				o[o.length] = 'Cancel';
-				g.query.show(o, 400, 65, function(num) {
-					if (num == 0)
-						g.ui.serialize();
-					else if (g.query.options[num] == 'Cancel')
-						return;
-					else
-						g.ui.deserialize(num-1);
+				g.query.show(['Save/Load Game...','Control Settings','About','Cancel'], 450, 65, function(num) {
+					if (num == 2)
+						g.dialog.show('about');
+					else if (num == 1)
+					{
+						g.query.show(['Arrow keys/Z/X','WASD/L/;','Touch input'], 450, 65, function(num) {
+							g.controls.keyset = num;
+						});
+					}
+					else if (num == 0)
+					{
+						var o = ['Save Game'];
+						var s = JSON.parse(localStorage.getItem('saves'));
+						for (var i in s)
+						{
+							var k = s[i].split('-');
+							if (k[0] != g.num)
+								continue;
+							var d = new Date() - k[1];
+							if (d > 86400000*4)
+								o[o.length] = "Load Game: " + Math.floor(d/86400000) + " days ago";
+							else if (d > 3600000)
+								o[o.length] = "Load Game: " + Math.floor(d/3600000) + " hour"+((d>3600000*2)?"s":"")+" ago";
+							else if (d > 60000)
+								o[o.length] = "Load Game: " + Math.floor(d/60000) + " minute"+((d>60000*2)?"s":"")+" ago";
+							else
+								o[o.length] = "Load Game: " + Math.floor(d/1000) + " second"+((d>2000)?"s":"")+" ago";
+						}
+						o[o.length] = 'Cancel';
+						g.query.show(o, 400, 65, function(num) {
+							if (num == 0)
+								g.ui.serialize();
+							else if (g.query.options[num] == 'Cancel')
+								return;
+							else
+								g.ui.deserialize(num-1);
+						});
+					}
 				});
 			}
 			else if (580<g.m.x&&g.m.x<630 && 10<g.m.y&&g.m.y<50 && !g.frozen)

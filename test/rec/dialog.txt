@@ -1,11 +1,153 @@
 !controls
 _!_: Arrow keys/WASD to move, look up, and duck, Z/L to jump, X/Semicolon to speed up. Spacebar to interact with things.
 _!_: Just a little demo of my Jwalker engine! Not sure how much I'll end up doing with this, but it's pretty cool, amirite???
+
+!cantenter
+_!_: What do you think you're doing? Can you not read the title up there? You clearly have to accept Dadsprite's quest before doing anything else in this walkaround!
+
+!examinecacti
+_!_: It's been a while since you actually thoroughly examined your cacti. It's been what, an hour and a half? Two hours? It's difficult to keep track of time now, since all your clocks are malfunctioning for some reason.
+_!_: In any case, your cacti are still looking pretty good, albeit a bit bloody. In hindsight, it was both a really great idea and a really terrible idea to have taken the super-sharp cactus earlier. On the plus side, you wouldn't have incredibly deadly enemies to fight, but on the other hand, your dad would have died a much more painful death.
+
+!examinehole
+_!_: So your dad had gone to fix the hole in the roof you (Bach) made after you beat him unconcious with a hat.
+_!_: You think you have the best dad ever.
+eyebrows!Dadsprite: Braaaaaad! You do know that between your jeans and your hair, you really look like a girl from down here, right?
+_!_: ...okay, maybe not. Still somewhere in the top five, though.
+
+!examinechimney
+_!_: You fail to find anything inside the chimney, nor any hidden buttons or secret compartments. Darn.
+_!_: Come to think of it, you don't think you've ever used the fireplace in your house in your entire life. That's a good question; why do you have a fireplace in a house that's in the tropics?
+
+!examinetv
+_!_: It's a television. It is currently turned off. That's pretty much all there is to it.
+
+!examinefloorhole
+_!_: Oh, right. You'd almost forgotten about this thing. It seems like it was forever ago that you almost died via falling object for what, the fourth time? Come to think of it, your dad probably doesn't know anything about that hole. He's probably so confused!
+talk!Brad: ...by any chance would you like an explanation for why this hole is here?
+shine!Dadsprite: Nope! It is perfectly obvious that your client player dropped a totem lathe here, only for the floor to break and it falling into the bathroom. What else would I think after looking into a hole in the floor and seeing the landing below cracked and a totem lathe lying askew beneath? Honestly, Brad. Who do you take me for, someone who doesn't have a good sense of intuition?
+disgust!Brad: ...
+_!_: ...never mind.
+
+!examinecouch
+question!Brad: Wait a moment, weren't there debris here from the couch crashing through the roof?
+neutral!Dadsprite: Yes, there were. I cleaned them up and put the couch back in its place before going to try to fix the room.
+talk!Brad: Have I ever told you what an awesome dad you are?
+eyebrows!Dadsprite: Indeed, on a number of occasions not unlike this one!
+neutral!Brad: :)
+
+!examinebananas
+_!_: Still fresh... the killer is still on the loose!
+_!_: ...that was a really poor attempt at a really terrible joke. You feel ashamed at yourself for even trying that. Of course you know who the "killers" are, and you fully intend to kick their rears, preferably with a hat or two.
+
+!examinefreezer
+question!Brad: Uh, hey, by any chance would you know why I found a pair of scissors in the freezer?
+neutral!Dadsprite: Oh, so THAT'S where I put them!
+disgust!Brad: ...that explains that. You're welcome, I think?
+
+!startrophy
+_!_: This is the trophy you previously mentioned, earned by winning a beauty contest when you were a baby.
+_!_: You pretend not to be looking at it. The last thing you need is for your dad to launch into another tale of your childhood.
+
+!enterbedroom
+argh!Brad: WILL NOT GET DISTRACTED WILL NOT GET DISTRACTED WILL NOT GET DISTRACTED
+
+!redmedal
+_!_: Actually, you never won this one. You were on a trip to the mainland with your dad when you happened to pass an awards shop and asked if you could just have one.
+_!_: You learned a valuable lesson that day about sentimentality. This medal hangs on your wall as a reminder of that.
+
+!examinecertificate
+_!_: You were sent this thing when you gradutated internet elementary school. Hahaha, the internet from then is sooo seven years ago.
+
+!bluemedal
+_!_: You're pretty sure you won this thing in a math competition years ago? That being said, it was your teammates who did all the work.
+
+!bigtrophy
+_!_: This was from that same math competition as the one to the left, except the year later and an individual award instead of a team one. You decided after the first time that you ought to take the subject more seriously. You know, actually try sometimes?
+
+!examineribbons
+_!_: These are all awards you got from various swimming tournaments over the years. You won a lot, and when you didn't win, it was usually a close second.
+_!_: The certificate in the middle is actually one of those participation awards, you know, when you don't actually win anything but they don't want you to feel all that bad about it. The only reason you have it displayed so prominently is that it was on that trip that you met Tony for the first time.
+_!_: Tony! Tony Tony Tony. Suddenly, his name feels so good to say for some reason! You briefly wonder why before chalking it up to a mental fluke.
+
+!hugetrophy
+_!_: This beast of a trophy was actually won jointly, by you and your dad, at a parent-child science trivia contest a few years ago. You dominated the competition, thanks to your dad's freaky psychological and biological knowledge and your coverage of everything else. Good times.
+_!_: Your dad catches you looking at it and gives you a wink.
+
+!examinesheen
+_!_: WINNING
+
 !braddadsprite1
-sad!Brad: Well, this sucks.
-neutral!Brad: But I guess it could be worse.
-neutral!Dadsprite: This conversation is over.
+neutral!Brad: Alright, I'll accept your quest.
+question!Brad: So what's all this about, anyway?
+neutral!Dadsprite: You are aware with my fondness for bananas, correct?
+argh!Brad: Oh, god. Don't remind me.
+sad!Dadsprite: Well, while you were galavanting around below the canopy, I discovered that as it turns out, while I was dead, a party of imps managed to break in to my room and steal my entire hoard of bananas!
+finger!Dadsprite: It is your quest to get them all back.
+disgust!Brad: ...
+disgusttalk!Brad: You actually have a banana hoard.
+argh!Brad: Whyyyyyyyy.
+sad!Dadsprite: Indeed! I treasured each golden piece with my life. But now that I am dead (or was anyway) I am unable to properly protect them, for my duty as your guardian supercedes that now.
+neutral!Dadsprite: It is now your responsibility to take care of them!
+disgust!Brad: Are you actually implying...
+nervous!Brad: ...never mind. I don't really want to know.
+shine!Dadsprite: Excellent! Let's get this show on the road, then! I believe a good place to start would be to return to my room. You know, to look for clues!
+
 !braddadsprite2
+talk!Brad: Okay, so I get all the fruit back. What's in it for me? Do I get to eat one of them every now and then?
+finger!Dadsprite: Actually, if you do that, I would be forced to disembowel you to retrieve the remenents of my bananas. Fruit hoarding is a serious profession!
+panic!Brad: Okay okay okay bad idea not gonna eat the bananas!
+eyebrows!Dadsprite: As a reward for completing this quest, I will begin to help you unlock your powers!
+question!Brad: Wait, what kind of powers are we talking about here? They'd better be pretty good to justify retrieving your piles of peels from across the planet.
+neutral!Dadsprite: We established that you were the Bard of Hope, correct? These will be your powers of Hope.
+talk!Brad: So does that mean I get my powers of Bard later? That seems kinda silly and not all that grammatical.
+neutral!Dadsprite: Mmmmm, no. The Bard is your class, or the kind of hero you will be, and Hope is your aspect, or the domain you will gain control over.
+shine!Dadsprite: As to what either of those mean, I'm afraid my lips are sealed!
+sad!Brad: Aw...
+
+!braddadsprite3
+mad!Brad: IIIIIIIIIIMPS!
+mad!Dadsprite: Confound it, they found the refrigerator!
+mad!Brad: When I get all your bananas back, you're going to do some sort of spritey thing to prevent them from being stolen again, right? 'Cause there is no way I'm getting them back more than once if they get stolen again.
+sad!Dadsprite: Yes, I can do that, but I'm sad to hear that you'd be unwilling to accept duplicate quests from your sprite and/or father.
+neutral!Dadsprite: You will be doing a lot of that, whether you want to or not. Not necissarily from me, but believe me when I say that you'll have your fair share of repeat adventures.
+question!Brad: Really? That seems remarkably stupid.
+finger!Dadsprite: Mark my words, you are going to find yourself saying that a good number of times before you are finished with your journey.
+disgust!Brad: Wow, that is really stupid.
+shine!Dadsprite: See, there you go!
+mad!Brad: ...darn it.
+
+!braddadsprite4
+talk!Brad: Hey, Dad?
+neutral!Dadsprite: Hm?
+talk!Brad: Oh, nothing. I just felt like talking to you for some reason, that's all.
+neutral!Dadsprite: ...alright, then.
+
+!braddadsprite5
+nervous!Brad: uh...
+nervous!Brad: Are you sure it's okay for me to go in your room? I've never been in there in my entire life...
+eyebrows!Dadsprite: Oh, that's not true at all! When you were but a wee child I occasionally brought you in there for various reasons. Mostly just diaper changing, though.
+question!Brad: Why do you always act like you're trying to embarass me in front of my friends even though it's only the two of us here?
+finger!Dadsprite: So that you will someday learn to not leave yourself open to verbal assault like that.
+disgust!Brad: ...
+disgusttalk!Brad: I take it that means that I can actually go in.
+shine!Dadsprite: By all means. Just make sure not to be too shocked by the revelation of my sleeping quarters to your virgin eyes.
+disgust!Brad: I think I can handle that.
+
+!enterroom
+_!_: Enter Dad's room?
+
+!braddadsprite6
+neutral!Dadsprite: Where do you think you're going, Brad?
+panic!Brad: Uh... nowhere!! Nope, not going outside, not at all, nope nope nope!!!
+neutral!Dadsprite: I'm not trying to reprimand you, Brad. I just got done with that outside. I'm just wondering what you're doing.
+neutral!Dadsprite: You seem awfully distracted today!
+sad!Brad: Oh. Uh, sorry.
+disgusttalk!Brad: I guess I am sort of out of it today.
+talk!Brad: Hm, I wonder why!
+shine!Dadsprite: That's my boy.
+
+!braddadspritetest
 talk!Brad: Look at all the words I can say, Dad! It's like I'm being controlled by some sort of sentient entity who enters my dialog through a keyboard! How awesome is that!
 neutral!Dadsprite: Not all that awesome.
 eyebrows!Dadsprite: You have much to learn, son.

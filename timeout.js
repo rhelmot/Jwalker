@@ -24,7 +24,7 @@ g.timeouts = {
 				{
 					if (--g.timeouts.list[i].timeremains <= 0)
 					{
-						g.timeouts.list[i].func(g.timeouts.list[i].timeremains);
+						g.timeouts.list[i].func(0);
 						g.timeouts.list[i] = false;
 					}
 				}

@@ -22,6 +22,8 @@ g.dialog = {
 		var side = 'right';
 		for (var l = 0; l < data.length; l++)
 		{
+			if (data[l] == '')
+				continue;
 			if (data[l].substr(0,1) == '!')
 			{
 				num = data[l].substr(1);
@@ -37,6 +39,16 @@ g.dialog = {
 					linedeg[1] += ': ' + linedeg[j];
 			}
 			linedeg[0] = linedeg[0].split('!');
+			if (typeof g.dialog.prefs[linedeg[0][1]] == 'undefined')
+			{
+				console.log('Error parsing asset '+rec.filename+', line '+l+': speaker '+linedeg[0][1]+' is not defined.');
+				linedeg[0] = ['_','_'];
+			}
+			if (typeof g.dialog.prefs[linedeg[0][1]].states[linedeg[0][0]] == 'undefined')
+			{
+				console.log('Error parsing asset '+rec.filename+', line '+(l+1)+': pose '+linedeg[0][0]+' is not defined for speaker '+linedeg[0][1]+'.');
+				linedeg[0][0] = 'neutral';
+			}
 			if (part == -1 || g.dialog.data[num][part].char != linedeg[0][1])
 			{
 				part++;
@@ -261,23 +273,26 @@ g.query = {
 	},
 	process: function()
 	{
-		if (g.k.frame.up)
+		if (!g.dialog.active)
 		{
-			if (--g.query.curr < 0)
-				g.query.curr = g.query.options.length-1;
-		}
-		if (g.k.frame.down)
-		{
-			if (++g.query.curr >= g.query.options.length)
-				g.query.curr = 0;
-		}
-		if (g.k.frame.space)
-		{
-			g.query.active = false;
-			g.frozen = false;
-			g.k.frame.space = false;
-			if (typeof g.query.callback == 'function')
-				g.query.callback(g.query.curr);
+			if (g.k.frame.up)
+			{
+				if (--g.query.curr < 0)
+					g.query.curr = g.query.options.length-1;
+			}
+			if (g.k.frame.down)
+			{
+				if (++g.query.curr >= g.query.options.length)
+					g.query.curr = 0;
+			}
+			if (g.k.frame.space)
+			{
+				g.query.active = false;
+				g.frozen = false;
+				g.k.frame.space = false;
+				if (typeof g.query.callback == 'function')
+					g.query.callback(g.query.curr);
+			}
 		}
 		if (g.m.click && g.m.x >= g.query.x && g.m.x <= g.query.x+g.query.width && g.m.y >= g.query.y && g.m.y <= g.query.y+g.query.height)
 		{

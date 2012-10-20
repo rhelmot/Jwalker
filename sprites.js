@@ -99,7 +99,18 @@ g.sprites.func = {
 			var inst2 = spr2;
 		var d1 = {x1: inst1.x+inst1.dim.left, x2: inst1.x+inst1.dim.left+inst1.dim.width, y1: inst1.y+inst1.dim.top, y2: inst1.y+inst1.dim.top+inst1.dim.height};
 		var d2 = {x1: inst2.x+inst2.dim.left, x2: inst2.x+inst2.dim.left+inst2.dim.width, y1: inst2.y+inst2.dim.top, y2: inst2.y+inst2.dim.top+inst2.dim.height};
-		return ((((d1.x1 <= d2.x1)&&(d1.x2 >= d2.x1))||((d1.x1 <= d2.x2)&&(d1.x2 >= d2.x2)))&&(((d1.y1 <= d2.y1)&&(d1.y2 >= d2.y1))||((d1.y1 <= d2.y2)&&(d1.y2 >= d2.y2))));
+		var w = d1.x2-d1.x1 + d2.x2-d2.x1;
+		var h = d1.x2-d1.x1 + d2.y2-d2.y1;
+		//return ((d2.x2-d1.x1 <= w)&&(d2.y2-d1.y1 <= h));
+		return ((
+			((d1.x1 >= d2.x1)&&(d1.x1 <= d2.x2)) ||
+			((d1.x2 >= d2.x1)&&(d1.x2 <= d2.x2)) ||
+			((d1.x1 <= d2.x1)&&(d1.x2 >= d2.x2))
+		) && (
+			((d1.y1 >= d2.y1)&&(d1.y1 <= d2.y2)) ||
+			((d1.y2 >= d2.y1)&&(d1.y2 <= d2.y2))|| 
+			((d1.y1 <= d2.y1)&&(d1.y2 >= d2.y2))
+		));
 	},
 	hitgen: function(inst, points, callback) {
 		for (var i in points)
@@ -113,7 +124,7 @@ g.sprites.func = {
 			inst.xspd = 0;
 			for (var i = 0; i <= 25; i++)
 			{
-				if (g.sprites.func.hit(inst, 'right', {x:-i, y:0}) != 0)
+				if (g.sprites.func.hit(inst, 'right', {x:-i, y:0}) != 0)	
 				{
 					inst.x -= i;
 					break;
@@ -190,5 +201,26 @@ g.sprites.func = {
 				}
 			}
 		}
+	},
+	getSlot: function() {
+		for (var i in g.area.areas[g.area.currentarea].sprites)
+		{
+			if (g.area.areas[g.area.currentarea].sprites[i] == null)
+				return i;
+		}
+		return g.area.areas[g.area.currentarea].sprites.length;
 	}
 };
+
+g.sprites.examine = {
+	process: function(inst) {
+		if (g.k.frame.space && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player))
+		{
+			var dthis = inst.dialog;
+			var obj = 'Examine '+inst.object;
+			if (inst.object.substr(0,1) == '!')
+				obj = inst.object.substr(1);
+			g.query.show([obj,'Cancel'],200,200,function(num) {if (num==1) { return; } g.dialog.show(dthis) });
+		}
+	}
+}

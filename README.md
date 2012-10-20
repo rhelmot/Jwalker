@@ -8,7 +8,7 @@ Use instructions
 
 * In an HTML file, have the following: 
     * A canvas: `<canvas id="drawCanvas" width="650" height="450" tabindex="1" style="outline:none" onselectstart="return false;">`
-    * A preloading image with `style="display:none;"` and `id="loadimg`
+    * A preloading image with `style="display:none;"` and `id="loadimg"`
     * A bit of inline JS setting the following paths, relative to the HTML file:
         * `jwRoot`, to the directory the Jwalker sources are kept in
         * `recRoot`, to the directory the game assets are kept in
@@ -69,7 +69,23 @@ The above area all values that should be set in the definition file. Below are a
 
 ### Input
 
+Jwalker condenses user input into two variables, `g.k` and `g.m`.
+
+`g.k` is the keyboard input. It has a property for each key, valid values being `left`, `right`, `up`, `down`, `space`, `jump`, and `accl`. These will be `true` if the user has any key that is mapped to those values pressed. For the time being, if you want to change that mapping, you will have to manually edit the source, found in `jwalker.js`. In additions, `g.k.frame` has all the same properties as `g.k` (sans `frame` of course), except they are only `true` if the key was not pressed during the previous frame.
+
+`g.m` is the mouse input. `g.m.x` and `g.m.y` are the x and y position of the mouse relative to the canvas. `g.m.down` is `true` if the user has any mouse button depressed. `g.m.click` is true if the user has any mouse depressed, but did not during the previous frame.
+
 ### Timeouts
+
+The concept of a timeout in Jwalker is fairly simple. You can set a function to be called after a number of frames elapse, or to be called every frame for a specified number of frames.
+
+To set up a timeout, call `g.timeouts.addtimeout(frames, func [, eachframe])`.
+
+* `eachframe` is a boolean determining if the function should be called each frame until it expires (`true`), or if it should only be called when the number of frames elapses (`false`). Defaults to `false`.
+* `func` is the function to be executed. If the function is to be called continuously, this can take one argument, which will be filled with the number of frames remaining.
+* `frames` is the number of frames the timeout should last. Pretty simple.
+
+For the curious, `g.timeouts.list` is the list of timeouts, and `g.timeouts.process` is the function used to process the timeouts. All this is found in `timeout.js`.
 
 ### Drawing
 
@@ -114,3 +130,7 @@ Default value is `{fading: 6, dialog: 5, ui: 4, prioritysprites: 3, prioritybg: 
 ### Sprites
 
 ### Debug
+
+Call `g.debug` or set `g.debugEnabled` to true to enable debugging. As of now, that just means that a bunch of staistics and data are drawn to the screen.
+
+In case of emergency, you can execute `kill()` to clear the timeout calling `g.tick`. If you really want to restart the loop without reloading the page for some reason, you can call `window.onload()` to this end, but this may have some screwy effects.

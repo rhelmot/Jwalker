@@ -114,7 +114,8 @@ g.loading = {
 						pdata[rndex] = tarr[tmp];
 						rndex++;
 					}
-					eval('g.resources[i].getData = function(x,y) { if (x < 0 || x > '+rec.data.width+' || y < 0 || y > '+rec.data.height+') {return 1;} return g.resources['+i+'].data[x + y*'+rec.data.width+']; }');	//whyyyyy
+					var bits = [rec.offset?(rec.offset.x):('0'), rec.offset?(rec.data.width+rec.offset.x):(rec.data.width), rec.offset?(rec.offset.y):('0'), rec.offset?(rec.data.height+rec.offset.y):(rec.data.height), rec.offset?(rec.offset.x):('0'), rec.offset?(rec.offset.y):('0')];
+					eval('g.resources[i].getData = function(x,y) { if (x < '+bits[0]+' || x > '+bits[1]+' || y < '+bits[2]+' || y > '+bits[3]+') {return 1;} return g.resources['+i+'].data[(x - '+bits[4]+') + (y - '+bits[5]+')*'+rec.data.width+']; }');	//whyyyyy
 					g.resources[i].data = pdata;
 					
 				}

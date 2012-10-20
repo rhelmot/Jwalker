@@ -21,18 +21,37 @@ g.area = {
 		ca.process(ca);
 		for (var i in ca.sprites)
 		{
-			if (i == ca.player)
+			if (ca.sprites[i] == null)
+				continue;
+			if (g.sprites[ca.sprites[i].name] == null)
+			{
+				console.log('Warning: no such sprite "'+ca.sprites[i].name+'". Sprite instance deleted.');
+				ca.sprites[i] = null;
+				continue;
+			}
+			if (i == ca.player && g.sprites[ca.sprites[i].name].process)
 				g.sprites[ca.sprites[i].name].playerprocess(ca.sprites[i]);
-			else
+			else if (g.sprites[ca.sprites[i].name].process)
 				g.sprites[ca.sprites[i].name].process(ca.sprites[i]);
+		}
+		if (!g.frozen)
+		{
+			for (var i in ca.exits)
+			{
+				if (g.sprites.func.hitsprite(ca.player, ca.exits[i]))
+				{
+					ca.exits[i].check(ca.sprites[ca.player]);
+					break;
+				}
+			}
 		}
 	},
 	loadarea: function(num, fade, color, loc) {
 		g.frozen = true;
 		if (!fade || fade == 'none')
 		{
+			g.area.areas[num].onLoad(loc, g.area.currentarea);
 			g.area.currentarea = num;
-			g.area.areas[num].onLoad(loc);
 			g.frozen = false;
 			g.area.areas[num].onActivate();
 		}
