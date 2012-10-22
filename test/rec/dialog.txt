@@ -1,13 +1,5 @@
-!controls0
-_!_: Arrow keys to move, look up, and duck, Z to jump, X to speed up. Spacebar to interact with things.
-_!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
-_!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
-!controls1
-_!_: WASD keys to move, look up, and duck, L to jump, Semicolon to speed up. Spacebar to interact with things.
-_!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
-_!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
-!controls2
-_!_: Use the onscreen keys to move, duck, and look up. Different speed levels are available by pulling the slider different distances. Tap on things to interact with them.
+!controls
+_!_: this should get overwritten
 _!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
 _!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
 
@@ -148,7 +140,7 @@ shine!Dadsprite: By all means. Just make sure not to be too shocked by the revel
 disgust!Brad: I think I can handle that.
 
 !enterroom
-_!_: Enter Dad's room?
+_!_: Enter Dad's room? This leads to the end of the game.
 
 !braddadsprite6
 neutral!Dadsprite: Where do you think you're going, Brad?

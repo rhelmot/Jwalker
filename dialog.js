@@ -242,6 +242,19 @@ g.dialog = {
 		g.c.fillText(text.substr(0, lastlen), left, top);
 		top += 15;
 		text = text.slice(lastlen, text.length);}
+	},
+	notice: function(text, callback) {
+		if (typeof text == 'string')
+			text = [text];
+		for (var i = 0; i < text.length; i++)
+		{
+			text[i] = {
+				frames: [],
+				line: text[i]
+			};
+		}
+		g.dialog.data['_TEMP_'] = [{char:'_',color:'black',lines:text,side:'center'}];
+		g.dialog.show('_TEMP_', callback);
 	}
 };
 g.query = {

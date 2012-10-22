@@ -229,6 +229,7 @@ g.controls.buttons = ['left','right','up','down','space','jump','accl'];
 g.controls.keysets = [
 	{
 		name: 'Arrow Keys/Z/X',
+		description: 'Arrow keys to move, look up, and duck, Z to jump, X to speed up. Spacebar (or click, assuing space would work also) to interact with things.',
 		type: 'keyboard',
 		left: 37,
 		right: 39,
@@ -240,6 +241,7 @@ g.controls.keysets = [
 	},
 	{
 		name: 'Arrow Keys/L/;',
+		description: 'WASD keys to move, look up, and duck, L to jump, Semicolon to speed up. Spacebar (or click, assuming space would work also) to interact with things.',
 		type: 'keyboard',
 		left: 65,
 		right: 68,
@@ -251,6 +253,7 @@ g.controls.keysets = [
 	},
 	{
 		name: 'Touch input',
+		description: 'Use the onscreen keys to jump, duck, and look up. Move around by pulling the slider left and right. Different speed levels are available by pulling the slider different distances. Tap on things to interact with them, assuming your character is in range to do so.',
 		type: 'touch',
 		controls: ['leftright', 'jumpbtn', 'upbtn', 'downbtn'],
 		left: function(ks) {return ks.leftright.current < 2;},
@@ -1210,4 +1213,6 @@ g.gfx.pixels = {
 	0x0000FF: 4,
 	0x00FFFF: 5,
 };
+g.ui.aboutdlg = 'about';
+g.ui.controlsdlg = 'controls';
 birth();

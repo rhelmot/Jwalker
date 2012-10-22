@@ -2,9 +2,11 @@ g.ui = {
 	vollvl: 3,
 	showncontrols: false,
 	controlsframe: 0,
-	volrec: -1,				//SETME
-	optrec: -1,				//SETME
-	controlsrec: -1,		//SETME
+	volrec: -1,				//SETME - asset to use for volume control
+	optrec: -1,				//SETME - asset to use for options button
+	controlsrec: -1,		//SETME - asset to use for controls button
+	aboutdlg: '',			//SETME - dialog to use for 'About' text
+	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description.
 	
 	process: function()
 	{
@@ -18,13 +20,14 @@ g.ui = {
 		{
 			g.query.show(['Save/Load Game...','Control Settings','Debug...','About','Cancel'], 450, 65, function(num) {
 				if (num == 3)
-					g.dialog.show('about');
+					g.dialog.show(g.ui.aboutdlg);
 				else if (num == 2)
 				{
 					g.query.show([(g.debug.enabled?'Disable':'Enable')+' Dev Screen', 'Send Bug Report', 'Cancel'], 450, 65, function(num2) {
 						if (num2 == 0)
 							g.debug.enabled = !g.debug.enabled;
-						
+						else if (num2 == 1)
+							g.dialog.notice('Hahaha, no. This feature doesn\'t work yet.');
 					});
 				}
 
@@ -59,11 +62,11 @@ g.ui = {
 					o[o.length] = 'Cancel';
 					g.query.show(o, 400, 65, function(num) {
 						if (num == 0)
-							g.ui.serialize();
+							g.save.save();
 						else if (g.query.options[num] == 'Cancel')
 							return;
 						else
-							g.ui.deserialize(num-1);
+							g.save.load(num-1);
 					});
 				}
 			});
@@ -72,7 +75,8 @@ g.ui = {
 		{
 			g.ui.showncontrols = true;
 			g.ui.controlsframe = 0;
-			g.dialog.show('controls' + g.controls.keyset);
+			g.dialog.data[g.ui.controlsdlg][0].lines[0].line = g.controls.keysets[g.controls.keyset].description;
+			g.dialog.show(g.ui.controlsdlg);
 		}
 		if (!g.mobile)
 			g.gfx.draw(8,20,10,g.ui.vollvl,g.gfx.layers.ui);
@@ -80,18 +84,38 @@ g.ui = {
 		if (!g.ui.showncontrols)
 			if (++g.ui.controlsframe >= 15) {g.ui.controlsframe = 0;}
 		g.gfx.draw(10, 580, 10, g.ui.controlsframe, g.gfx.layers.ui);
-	},
+	}
+};
+g.save = {
 	serialize: function() {
 		var dsv = [];
 		for (var i in g.resources)
 		{
-			dsv[i] = {data: g.resources[i].data, loaded: g.resources[i].loaded};
-			delete g.resources[i].data;
-			g.resources[i].loaded = false;
+			if (typeof g.resources[i].data == 'object' && g.resources[i].use != 'quiltdata')
+			{
+				dsv[i] = {data: g.resources[i].data, loaded: g.resources[i].loaded};
+				delete g.resources[i].data;
+				g.resources[i].loaded = false;
+			}
+			else
+				dsv[i] = false;
 		}
 		var c = g.c;
 		delete g.c;
 		var svst = JSON.stringify(g, function (key, val) {if (typeof val == 'function') { return val.toString(); } return val;});
+		for (var i in g.resources)
+		{
+			if (dsv[i])
+			{
+				g.resources[i].data = dsv[i].data;
+				g.resources[i].loaded = dsv[i].loaded;
+			}
+		}
+		g.c = c;
+		return svst;
+	},
+	save: function() {
+		var svst = g.save.serialize();
 		var games = JSON.parse(localStorage.getItem('saves'));
 		if (games == null)
 			games = [];
@@ -99,29 +123,43 @@ g.ui = {
 		games[games.length] = g.num + '-' + ts;
 		localStorage.setItem('saves', JSON.stringify(games));
 		localStorage.setItem(ts, svst);
-		for (var i in g.resources)
-		{
-			g.resources[i].data = dsv[i].data;
-			g.resources[i].loaded = dsv[i].loaded;
-		}
-		g.c = c;
 	},
-	deserialize: function(num) {
+	load: function(num) {
 		var games = JSON.parse(localStorage.getItem('saves'));
 		var j = 0;
+		var broken = false;
 		for (var i in games)
 		{
 			var k = games[i].split('-');
 			if (k[0] != g.num)
 				continue;
 			if (j == num)
+			{
+				broken = true;
 				break;
+			}
 			j++;
+		}
+		if (!broken)
+		{
+			console.log('Warning: Invalid save number in g.save.load()');
+			return;
 		}
 		var ts = games[j].split('-')[1];
 		var svst = localStorage.getItem(ts);
-		var sv = JSON.parse(svst);
-		sv = this.refunction(sv);
+		var sv = g.save.deserialize(svst);
+		g.audio.setvol(sv.audio.globalvol);
+		g.audio.play(sv.audio.currentbgm);
+		g = sv;		//god help us all
+		localStorage.removeItem(ts);
+		for (var i = j+1; i < games.length; i++)
+			games[i-1] = games[i];
+		games = games.slice(0, games.length-1);
+		localStorage.setItem('saves', JSON.stringify(games));
+	},
+	deserialize: function(gstr) {
+		var sv = JSON.parse(gstr);
+		sv = g.save.refunction(sv);
 		sv.c = g.c;
 		for (var i in g.resources)
 		{
@@ -131,14 +169,7 @@ g.ui = {
 				sv.resources[i].data = g.resources[i].data;
 			}
 		}
-		g.audio.setvol(sv.audio.globalvol);
-		g.audio.play(sv.audio.currentbgm);
-		g = sv;		//god help us all
-		localStorage.removeItem(ts);
-		for (var i = j+1; i < games.length; i++)
-			games[i-1] = games[i];
-		games = games.slice(0, games.length-1);
-		localStorage.setItem('saves', JSON.stringify(games));
+		return sv;
 	},
 	refunction: function(obj) {
 		for (var i in obj)
