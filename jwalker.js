@@ -9,8 +9,8 @@
 //yes there will be a license some time in the future when I actually care.
 
 var tkeys;
-var tmouse;
-var killcode;
+var tpoints;
+var killcode = -1;
 
 var tload = false;
 
@@ -23,9 +23,9 @@ window.onload = function()
 	}
 	loadSpecs();
 	tkeys = [];
-	tmouse = {x:0,y:0,down:false,click:false,t:[],lt:0};
+	tpoints = {};
 	var can = document.getElementById('drawCanvas');
-	var cantext = can.getContext('2d');
+	g.c = can.getContext('2d');
 	can.onkeydown = capkeydown;
 	can.onkeyup = capkeyup;
 	can.onmousemove = capmousemove;
@@ -34,10 +34,23 @@ window.onload = function()
 	can.addEventListener('touchstart', captouchstart, false);
 	can.addEventListener('touchmove', captouchmove, false);
 	can.addEventListener('touchend', captouchend, false);
-	killcode = setInterval(function() {
-		g.tick(tkeys, tmouse, cantext);
-	}, 16.6667);
+	g.mobile = navigator.userAgent.match(/Android|Blackberry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
+	birth();
 };
+
+function birth() {
+	if (killcode >= 0)
+		return;
+	killcode = setInterval(function() {
+		g.tick(tkeys, tpoints);
+	}, 16.6667);
+}
+function kill() {
+	if (killcode < 0)
+		return;
+	clearInterval(killcode);
+	killcode = -1;
+}
 
 function capkeydown(e) {
 	tkeys[e.keyCode] = true;
@@ -50,36 +63,44 @@ function capkeydown(e) {
 function capkeyup(e) {
 	tkeys[e.keyCode] = false;
 }
-function capmousemove(e) {
-	tmouse.x = e.pageX-e.target.offsetLeft;
-	tmouse.y = e.pageY-e.target.offsetTop;
-}
+
 function capmousedown(e) {
-	tmouse.down = true;
+	tpoints[0] = {x: e.pageX-e.target.offsetLeft, y: e.pageY-e.target.offsetTop, frame: true};
+}
+function capmousemove(e) {
+	if (tpoints[0])
+		tpoints[0] = {x: e.pageX-e.target.offsetLeft, y: e.pageY-e.target.offsetTop, frame: false};
 }
 function capmouseup(e) {
-	tmouse.down = false;
+	tpoints[0] = false;
 }
+
 function captouchstart(e) {
 	e.preventDefault();
-	for (var i in e.changedTouches)
+	for (var i = 0; i < e.changedTouches.length; i++)
 	{
-		tmouse.t[e.changedTouches[i].identifier] = true;
+		var t = e.changedTouches[i];
+		tpoints[t.identifier+1] = {x:t.pageX-e.target.offsetLeft, y:t.pageY-e.target.offsetTop, frame:true};
 	}
 }
 function captouchmove(e) {
 	e.preventDefault();
-	for (var i in e.changedTouches)
+	for (var i = 0; i < e.changedTouches.length; i++)
 	{
-		tmouse.t[e.changedTouches[i].identifier] = true;
+		var t = e.changedTouches[i];
+		tpoints[t.identifier+1] = {x:t.pageX-e.target.offsetLeft, y:t.pageY-e.target.offsetTop, frame:false};
 	}
 }
 function captouchend(e) {
 	e.preventDefault();
-	for (var i in e.changedTouches)
+	for (var i = 0; i < e.changedTouches.length; i++)
 	{
-		tmouse.t[e.changedTouches[i].identifier] = false;
+		tpoints[e.changedTouches[i].identifier+1] = false;
 	}
+}
+
+function acceptlist() {
+	g.list.accept();
 }
 
 function loadscripts(list, abs) {
@@ -97,20 +118,15 @@ function loadscripts(list, abs) {
 loadscripts(['gfx.js','ui.js','timeout.js','loading.js','debug.js','area.js','sprites.js','dialog.js','audio.js','controls.js']);
 loadscripts([srcPath], true);
 
-function kill() {
-	clearInterval(killcode);
-}
-
 var g = {
 	recRoot: recRoot,
 	m: {},
 	frozen: false,
-	tick: function (keys, mouse, context) {
+	tick: function (keys, points) {
 		if (g.debug.enabled)
 			g.tstart = new Date();
-		g.c = context;
 		g.c.clearRect(0,0,650,450);
-		g.controls.process(keys, mouse);
+		g.controls.process(keys, points);
 		if (g.dialog.active)
 			g.dialog.process();
 		if (g.query.active)
@@ -122,9 +138,12 @@ var g = {
 		g.gfx.paint();
 		if (g.debug.enabled)
 			g.debug.process();
+		g.controls.endprocess();
+		g.list.check();
 	},
 	sprites: {},
 	area: {},
 	dialog: {},
-	controls: {}
+	controls: {},
+	gfx: {}
 };

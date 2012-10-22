@@ -5,67 +5,64 @@ g.ui = {
 	
 	process: function()
 	{
-		if (g.m.click)
+		if (!g.mobile && g.controls.istouch(20,10,80,50))
 		{
-			if (20<g.m.x&&g.m.x<80 && 10<g.m.y&&g.m.y<50)
-			{
-				if (++g.ui.vollvl>3)
-					g.ui.vollvl = 0;
-				g.audio.setvol(g.ui.vollvl/3);
-			}
-			else if (530<g.m.x&&g.m.x<561 && 10<g.m.y&&g.m.y<50 && !g.frozen)
-			{
-				//save???
-				//console.log('saving game');
-				g.query.show(['Save/Load Game...','Control Settings','About','Cancel'], 450, 65, function(num) {
-					if (num == 2)
-						g.dialog.show('about');
-					else if (num == 1)
-					{
-						g.query.show(['Arrow keys/Z/X','WASD/L/;','Touch input'], 450, 65, function(num) {
-							g.controls.keyset = num;
-						});
-					}
-					else if (num == 0)
-					{
-						var o = ['Save Game'];
-						var s = JSON.parse(localStorage.getItem('saves'));
-						for (var i in s)
-						{
-							var k = s[i].split('-');
-							if (k[0] != g.num)
-								continue;
-							var d = new Date() - k[1];
-							if (d > 86400000*4)
-								o[o.length] = "Load Game: " + Math.floor(d/86400000) + " days ago";
-							else if (d > 3600000)
-								o[o.length] = "Load Game: " + Math.floor(d/3600000) + " hour"+((d>3600000*2)?"s":"")+" ago";
-							else if (d > 60000)
-								o[o.length] = "Load Game: " + Math.floor(d/60000) + " minute"+((d>60000*2)?"s":"")+" ago";
-							else
-								o[o.length] = "Load Game: " + Math.floor(d/1000) + " second"+((d>2000)?"s":"")+" ago";
-						}
-						o[o.length] = 'Cancel';
-						g.query.show(o, 400, 65, function(num) {
-							if (num == 0)
-								g.ui.serialize();
-							else if (g.query.options[num] == 'Cancel')
-								return;
-							else
-								g.ui.deserialize(num-1);
-						});
-					}
-				});
-			}
-			else if (580<g.m.x&&g.m.x<630 && 10<g.m.y&&g.m.y<50 && !g.frozen)
-			{
-				g.ui.showncontrols = true;
-				g.ui.controlsframe = 0;
-				g.dialog.show('controls');
-			}
-			
+			if (++g.ui.vollvl>3)
+				g.ui.vollvl = 0;
+			g.audio.setvol(g.ui.vollvl/3);
 		}
-		g.gfx.draw(8,20,10,g.ui.vollvl,g.gfx.layers.ui);
+		else if (g.controls.istouch(530,10,561,50) && !g.frozen)
+		{
+			g.query.show(['Save/Load Game...','Control Settings',(g.debug.enabled?'Disable':'Enable')+' Debug Screen','About','Cancel'], 450, 65, function(num) {
+				if (num == 3)
+					g.dialog.show('about');
+				else if (num == 2)
+					g.debug.enabled = !g.debug.enabled;
+				else if (num == 1)
+				{
+					g.query.show(['Arrow keys/Z/X','WASD/L/;','Touch input'], 450, 65, function(num2) {
+						g.controls.keyset = num2;
+					});
+				}
+				else if (num == 0)
+				{
+					var o = ['Save Game'];
+					var s = JSON.parse(localStorage.getItem('saves'));
+					for (var i in s)
+					{
+						var k = s[i].split('-');
+						if (k[0] != g.num)
+							continue;
+						var d = new Date() - k[1];
+						if (d > 86400000*4)
+							o[o.length] = "Load Game: " + Math.floor(d/86400000) + " days ago";
+						else if (d > 3600000)
+							o[o.length] = "Load Game: " + Math.floor(d/3600000) + " hour"+((d>3600000*2)?"s":"")+" ago";
+						else if (d > 60000)
+							o[o.length] = "Load Game: " + Math.floor(d/60000) + " minute"+((d>60000*2)?"s":"")+" ago";
+						else
+							o[o.length] = "Load Game: " + Math.floor(d/1000) + " second"+((d>2000)?"s":"")+" ago";
+					}
+					o[o.length] = 'Cancel';
+					g.query.show(o, 400, 65, function(num) {
+						if (num == 0)
+							g.ui.serialize();
+						else if (g.query.options[num] == 'Cancel')
+							return;
+						else
+							g.ui.deserialize(num-1);
+					});
+				}
+			});
+		}
+		else if (g.controls.istouch(580,10,630,50) && !g.frozen)
+		{
+			g.ui.showncontrols = true;
+			g.ui.controlsframe = 0;
+			g.dialog.show('controls' + g.controls.keyset);
+		}
+		if (!g.mobile)
+			g.gfx.draw(8,20,10,g.ui.vollvl,g.gfx.layers.ui);
 		g.gfx.draw(9, 530, 10, 0, g.gfx.layers.ui);
 		if (!g.ui.showncontrols)
 			if (++g.ui.controlsframe >= 15) {g.ui.controlsframe = 0;}
@@ -139,5 +136,51 @@ g.ui = {
 				eval('obj[i] = ' + obj[i]);
 		}
 		return obj;
+	}
+};
+
+g.list = {
+	list: [],
+	add: function(text, pass, fail) {
+		if (typeof fail != 'function')
+			fail = function() {};
+		g.list.list[g.list.list.length] = {'text':text, 'pass':pass, 'fail':fail};
+	},
+	check: function() {
+		if (g.list.list.length > 0)
+		{
+			for (var i = 0; i < g.list.list.length; i++)
+			{
+				var li = document.createElement('li');
+				var checkbox = document.createElement('input');
+				checkbox.type = 'checkbox';
+				checkbox.id = 'checklist'+i;
+				checkbox.checked = true;
+				var text = document.createTextNode(g.list.list[i].text);
+				li.appendChild(checkbox);
+				li.appendChild(text);
+				document.getElementById('itemlist').appendChild(li);
+			}
+			g.c.globalAlpha = 0.5;
+			g.c.fillStyle = 'black';
+			g.c.fillRect(0,0,650,450);
+			g.c.globalAlpha = 1;
+			document.getElementById('messagediv').style.display = 'block';
+			kill();
+		}
+	},
+	accept: function() {
+		var check;
+		for (var i = 0; check=document.getElementById('checklist'+i); i++)
+		{
+			if (check.checked)
+				g.list.list[i].pass();
+			else
+				g.list.list[i].fail();
+		}
+		g.list.list = [];
+		document.getElementById('messagediv').style.display = 'none';
+		document.getElementById('itemlist').innerHTML = '';
+		birth();
 	}
 };

@@ -162,17 +162,17 @@ function loadSpecs() {
 		filename: 'slider.png',
 		type: 'image',
 		use: 'spritesheet',
-		framex: 104,
-		framey: 23,
+		framex: 208,
+		framey: 46,
 		framewidth: 1,
 		frameheight: 1,
-		size: 0.6
+		size: 0.7
 	},{ //23
 		filename: 'sliderdot.png',
 		type: 'image',
 		use: 'spritesheet',
-		framex: 9,
-		framey: 35,
+		framex: 18,
+		framey: 46,
 		framewidth: 1,
 		frameheight: 1,
 		size: 0.4
@@ -180,11 +180,11 @@ function loadSpecs() {
 		filename: 'jumpbtn.png',
 		type: 'image',
 		use: 'spritesheet',
-		framex: 47,
-		framey: 21,
+		framex: 94,
+		framey: 42,
 		framewidth: 2,
 		frameheight: 1,
-		size: 1.5
+		size: 2
 	}];
 	
 	
@@ -224,7 +224,7 @@ function loadSpecs() {
 		}
 	};
 	
-	function areaprocess(area) {
+	g.areaprocess = function(area) {
 		var sprrec = g.resources[area.background];
 		var player = area.sprites[area.player];
 		if (player.x+player.dim.left+player.dim.width-area.x > 550)
@@ -249,8 +249,8 @@ function loadSpecs() {
 			return;
 		}
 		g.gfx.draw(area.background, 0, 0, {left: area.x, top: area.y, width: 650, height: 450}, g.gfx.layers.bg);
-	}
-	var allrecs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+	};
+	var allrecs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 	g.area.areas = [
 		{	
 			background: 2,
@@ -267,7 +267,7 @@ function loadSpecs() {
 			},
 			process: function(area)
 			{
-				areaprocess(area);
+				g.areaprocess(area);
 				if (area.sprites[area.player].y > 650)
 				{
 					g.area.loadarea(0,'inout','white');
@@ -375,7 +375,7 @@ function loadSpecs() {
 				height: 240 },
 				check: function(player)
 				{
-					if (g.k.frame.space)
+					if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[0].exits[0]))
 					{
 						g.k.frame.space = false;
 						if (g.area.areas[g.area.currentarea].sprites[1].follow)
@@ -409,7 +409,7 @@ function loadSpecs() {
 				g.timeouts.addtimeout(20, function() {	g.area.areas[1].sprites[2].state = 0; g.area.areas[1].sprites[3].state = 0; g.audio.play(17);});
 				g.timeouts.addtimeout(200, function() { g.dialog.show('braddadsprite3'); });
 			},
-			process: areaprocess,
+			process: g.areaprocess,
 			sprites: [
 				{
 					index: 0,
@@ -536,7 +536,7 @@ function loadSpecs() {
 				height: 300 },
 				check: function(player)
 				{
-					if (g.k.frame.space)
+					if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[1].exits[0]))
 					{
 						g.k.frame.space = false;
 						g.query.show(['Enter hallway','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(2, 'inout', 'black'); });
@@ -559,7 +559,7 @@ function loadSpecs() {
 				g.audio.play(1);
 			},
 			onActivate: function() {},
-			process: areaprocess,
+			process: g.areaprocess,
 			sprites: [
 				{
 					index: 0,
@@ -707,7 +707,7 @@ function loadSpecs() {
 					alreadytried: false,
 					check: function(player)
 					{
-						if (g.k.frame.space)
+						if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[2].exits[0]))
 						{
 							g.k.frame.space = false;
 							if (g.area.areas[2].exits[0].alreadytried)
@@ -966,7 +966,7 @@ function loadSpecs() {
 				inst.y = inst.basey;
 				g.sprites.func.updPosBySpd(inst);
 				inst.basey = inst.y;
-				if (g.k.frame.space && g.sprites.func.hitsprite(inst, g.area.areas[g.area.currentarea].player))
+				if (g.sprites.func.hitsprite(inst, g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
 				{
 					var dstemp = inst;
 					if (!inst.follow)
@@ -1115,7 +1115,15 @@ function loadSpecs() {
 			}
 			g.sprites.func.render(inst);
 		}
-	}
+	};
+	g.gfx.pixels = {
+		0x000000: 0,
+		0xFFFFFF: 1,
+		0xFF0000: 2,
+		0x00FF00: 3,
+		0x0000FF: 4,
+		0x00FFFF: 5,
+	};
 }
 
 if (tload)

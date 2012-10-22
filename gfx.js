@@ -1,8 +1,14 @@
+var pxl = {};
+if (g.gfx.pixels)
+	pxl = g.gfx.pixels;
 g.gfx = {
+	pixels: pxl,
 	queue: [],
-	draw: function(recid, x, y, frame, layer, flip) {	//for backgrounds, frame takes the format {left: <xoffset>, top: <yoffset>, width: <width>, height: <height>}
+	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame takes the format {left: <xoffset>, top: <yoffset>, width: <width>, height: <height>}
 		if (typeof flip == 'undefined')
 			flip = {x:false, y:false};
+		if (typeof alpha == 'undefined')
+			alpha = 1;
 		var rec = g.resources[recid];					//flip: {x: true, y: false}
 		if (rec.type != 'image')
 		{
@@ -30,6 +36,7 @@ g.gfx = {
 		frame.y = y;
 		frame.recid = recid;
 		frame.flip = flip;
+		frame.alpha = alpha;
 		g.gfx.queue[layer][g.gfx.queue[layer].length] = frame;
 	},
 	drawfunc: function(func, layer) {
@@ -72,6 +79,7 @@ g.gfx = {
 				g.c.save();
 				g.c.scale(order.flip.x, order.flip.y);
 				g.c.translate(order.flip.xtrans, order.flip.ytrans);
+				g.c.globalAlpha = order.alpha;
 				g.c.drawImage(rec.data, order.left, order.top, order.width, order.height, order.x, order.y, order.width, order.height);
 				g.c.restore();
 			}

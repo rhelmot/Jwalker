@@ -1,31 +1,32 @@
 g.debug = {
-enabled: false,	
+enabled: false,
+finger: -1,
 process: function() {
 	g.debug.enabled = true;
 	g.debug.frames++;
 	g.c.globalAlpha = .5;
 	g.c.fillStyle = 'white';
-	g.c.fillRect(92,85,350,43);
+	g.c.fillRect(92,95,350,23);
 	g.c.fillRect(97,386,162,43);
 	g.c.fillRect(495,50,115,115);
 	g.c.globalAlpha = 1;
-	g.c.moveTo(g.m.x,0);
-	g.c.lineTo(g.m.x,450);
-	g.c.moveTo(0,g.m.y);
-	g.c.lineTo(650,g.m.y);
-	if (g.m.click)
-		g.c.strokeStyle = 'green';
-	else if (g.m.down)
-		g.c.strokeStyle = 'red';
-	else
-		g.c.strokeStyle = 'black';
-	g.c.stroke();
-	g.c.beginPath();
+	if (g.debug.finger >= 0 && !g.p[g.debug.finger])
+		g.debug.finger = -1;
+	if (g.debug.finger < 0)
+	{
+		for (var i in g.p)
+		{
+			if (g.p[i] && !g.p[i].used)
+			{
+				g.debug.finger = i;
+				break;
+			}
+		}
+	}
 	g.c.fillStyle = 'black';
 	g.c.font = 'bold 14px "courier new"';
-	g.c.fillText('Mouse: (' + g.m.x + ', ' + g.m.y + ')', 100,120);
-	var first = true;
 	var out = "Pressed keys: ";
+	var first = true;
 	for (var i in g.k)
 	{
 		if (g.k[i] && i != 'frame')
@@ -42,15 +43,15 @@ process: function() {
 	g.c.fillText('FPS: '+(g.debug.fps).toString(), 100, 400);
 	g.c.fillText('CPU time: '+((d-g.tstart)).toString(), 100, 425);
 	
-	if (g.m.click)
+	if (g.debug.finger >= 0 && g.p[g.debug.finger].frame)
 	{
-		g.debug.rectData.x = g.m.x;
-		g.debug.rectData.y = g.m.y;
+		g.debug.rectData.x = g.p[g.debug.finger].x;
+		g.debug.rectData.y = g.p[g.debug.finger].y;
 	}
-	if (g.m.down)
+	if (g.debug.finger >= 0)
 	{
-		g.debug.rectData.width = g.m.x - g.debug.rectData.x;
-		g.debug.rectData.height = g.m.y - g.debug.rectData.y;
+		g.debug.rectData.width = g.p[g.debug.finger].x - g.debug.rectData.x;
+		g.debug.rectData.height = g.p[g.debug.finger].y - g.debug.rectData.y;
 	}
 	g.c.fillStyle = 'red';
 	g.c.globalAlpha = 0.5;

@@ -14,7 +14,7 @@ g.dialog = {
 	state: '',
 	init: function(rec) {
 		var data = rec.data.split('\r\n');
-		if (data.length == 0)
+		if (data.length == 1)
 			data = rec.data.split('\n');
 		var num;
 		var part = 0;
@@ -70,6 +70,11 @@ g.dialog = {
 	},
 	show: function(num, callback)
 	{
+		if (g.dialog.data[num] == null)
+		{
+			console.log('Warning: no such dialog called "'+num+'".');
+			return;
+		}
 		g.dialog.callback = callback;
 		g.frozen = true;
 		g.dialog.boxcur = 650;
@@ -152,7 +157,7 @@ g.dialog = {
 			if (g.dialog.char != line.line.length)
 				g.dialog.char++;
 			g.dialog.drawsprite(g.dialog.data[g.dialog.num][g.dialog.part].spritesheet, line.frames[g.dialog.spriteframe], g.dialog.data[g.dialog.num][g.dialog.part].side);
-			if (g.k.frame.space || (g.m.click && g.dialog.boxcur<g.m.x&&g.m.x<(g.dialog.boxcur+537) && 170<g.m.y && g.m.y<440)) // advance text!
+			if (g.k.frame.space || g.controls.istouch(g.dialog.boxcur,170,g.dialog.boxcur+537,440)) // advance text!
 			{
 				g.k.frame.space = false;
 				if (line.line.length == g.dialog.char)
@@ -268,7 +273,6 @@ g.query = {
 		g.query.x = x;
 		g.query.y = y;
 		g.query.options = options;
-		g.m.click = false;
 		g.k.frame.space = false;	//prevent false triggering
 	},
 	process: function()
@@ -294,17 +298,17 @@ g.query = {
 					g.query.callback(g.query.curr);
 			}
 		}
-		if (g.m.click && g.m.x >= g.query.x && g.m.x <= g.query.x+g.query.width && g.m.y >= g.query.y && g.m.y <= g.query.y+g.query.height)
+		var pottouch = g.controls.istouchfinger(g.query.x,g.query.y,g.query.x+g.query.width,g.query.y+g.query.height);
+		if (pottouch >= 0)
 		{
-			for (var i in g.query.options)
+			for (var i = 0; i < g.query.options.length; i++)
 			{
-				if (g.m.y >= g.query.y + i*16 && g.m.y <= g.query.y + (i+1)*16)
+				if (g.p[pottouch].y >= g.query.y + i*16 && g.p[pottouch].y <= g.query.y + (i+1)*16)
 				{
 					g.query.active = false;
 					g.frozen = false;
-					g.m.click = false;
 					if (typeof g.query.callback == 'function')
-						g.query.callback(parseInt(i));	//sometimes gives output as string...?
+						g.query.callback(i);
 				}
 			}
 		}

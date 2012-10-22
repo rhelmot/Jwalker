@@ -1,6 +1,6 @@
 g.loading = {
 	active: false,
-	load: function(list) { //0 - load
+	load: function(list) {
 		for (var ii in list)
 		{
 			var i = list[ii];
@@ -17,6 +17,9 @@ g.loading = {
 			else if (g.resources[i].type == 'music')
 			{
 				var a = new Audio();
+				if (g.mobile)
+					a.preload = 'none';
+				//g.loading.hackloadlistener(i);
 				var atypes = {mp3:'audio/mpeg',ogg:'audio/ogg'};
 				var broken = false;
 				for (var j = 0; j < g.resources[i].extensions.length; j++)
@@ -28,13 +31,15 @@ g.loading = {
 						break;
 					}
 				}
-				function temp2(index) {
-					return function() {
-						g.resources[index].loaded = true;
-					};
+				if (!broken)
+				{
+					g.resources[i].type = 'null';
+					g.resources[i].use = 'cantPlayAudioFormat';
+					g.resources[i].loaded = true;
 				}
-				a.addEventListener('canplaythrough', temp2(i), false);
 				g.resources[i].data = a;
+				if (g.mobile)
+					eval('g.list.add("Load '+{bgm:'music track',sfx:'sound effect'}[g.resources[i].use]+': '+g.resources[i].size+' KB", function() {g.resources['+i+'].data.load();}, function() {g.resources['+i+'].type="null"; g.resources['+i+'].use="userRejectedLoad"; g.resources['+i+'].loaded=true;});');
 			}
 			else if (g.resources[i].type == 'text')
 			{
@@ -59,7 +64,11 @@ g.loading = {
 		g.loading.done = false;
 		g.loading.processed = false;
 	},
-	process: function() { //1 - loading
+	hackloadlistener: function(id)
+	{
+		return 'g.resources['+id+'].data.addEventListener("canplaythrough", function() {g.resources['+id+'].loaded = true;}, false);';
+	},
+	process: function() {
 		if (!g.loading.done)
 		{
 			g.c.drawImage(document.getElementById('loadimg'),0,0);
@@ -67,11 +76,12 @@ g.loading = {
 			var loaded = 0;
 			for (var i in g.loading.list)
 			{
-				total += g.resources[i].size;
+				if (g.resources[i].type != 'null')
+					total += g.resources[i].size;
 				if (g.resources[i].type == 'image' && g.resources[i].data.complete) {
 					loaded += g.resources[i].size; g.resources[i].loaded = true; }
-				else if (g.resources[i].type == 'music' && g.resources[i].loaded)
-					loaded += g.resources[i].size;
+				else if (g.resources[i].type == 'music' && (g.resources[i].data.readyState > 3 || g.mobile)) {
+					loaded += g.resources[i].size; g.resources[i].loaded = true;}
 				else if (g.resources[i].type == 'text' && g.resources[i].loaded)
 					loaded += g.resources[i].size;
 			}
@@ -98,20 +108,16 @@ g.loading = {
 					var cdata = cxt.getImageData(0,0,canvas.width, canvas.height).data;
 					var pdata = [];
 					var rndex = 0;
-					var tarr = {
-						0: 0,
-						0xFFFFFF: 1
-					};
 					var tnext = 2;
 					for (var index = 0; index < cdata.length; index+=4)
 					{
 						var tmp = (cdata[index]<<16)+(cdata[index+1]<<8)+cdata[index+2];
-						if (typeof tarr[tmp] == 'undefined')
+						if (typeof g.gfx.pixels[tmp] == 'undefined')
 						{
-							tarr[tmp] = tnext;
+							g.gfx.pixels[tmp] = tnext;
 							tnext++;
 						}
-						pdata[rndex] = tarr[tmp];
+						pdata[rndex] = g.gfx.pixels[tmp];
 						rndex++;
 					}
 					var bits = [rec.offset?(rec.offset.x):('0'), rec.offset?(rec.data.width+rec.offset.x):(rec.data.width), rec.offset?(rec.offset.y):('0'), rec.offset?(rec.data.height+rec.offset.y):(rec.data.height), rec.offset?(rec.offset.x):('0'), rec.offset?(rec.offset.y):('0')];

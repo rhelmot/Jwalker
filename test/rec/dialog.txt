@@ -1,6 +1,19 @@
-!controls
-_!_: Arrow keys/WASD to move, look up, and duck, Z/L to jump, X/Semicolon to speed up. Spacebar to interact with things.
-_!_: Just a little demo of my Jwalker engine! Not sure how much I'll end up doing with this, but it's pretty cool, amirite???
+!controls0
+_!_: Arrow keys to move, look up, and duck, Z to jump, X to speed up. Spacebar to interact with things.
+_!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
+_!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
+!controls1
+_!_: WASD keys to move, look up, and duck, L to jump, Semicolon to speed up. Spacebar to interact with things.
+_!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
+_!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
+!controls2
+_!_: Use the onscreen keys to move, duck, and look up. Different speed levels are available by pulling the slider different distances. Tap on things to interact with them.
+_!_: Get a feel for the controls! The physics engine is pretty versatile and fun to use. If you want a different keyset for the controls, or are using a mobile device, click on the Options button and change your control settings.
+_!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
+
+!about
+_!_: Jwalker engine coded by Andrew Dutcher. Various sprites drawn by Cole Smith, dialog bases drawn by Jade Bock. All else by Andrew.
+_!_: For information about the Jwalker project, visit http://github.com/rhelmot/Jwalker or http://mspaforums.com/showthread.php?50595
 
 !cantenter
 _!_: What do you think you're doing? Can you not read the title up there? You clearly have to accept Dadsprite's quest before doing anything else in this walkaround!

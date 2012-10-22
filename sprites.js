@@ -209,12 +209,18 @@ g.sprites.func = {
 				return i;
 		}
 		return g.area.areas[g.area.currentarea].sprites.length;
+	},
+	isTouched: function(inst, frame) {
+		if (typeof frame != 'boolean')
+			frame = true;
+		var are = g.area.areas[g.area.currentarea];
+		return g.controls.istouch(inst.x+inst.dim.left-are.x,inst.y+inst.dim.top-are.y,inst.x+inst.dim.left+inst.dim.width-are.x,inst.y+inst.dim.top+inst.dim.height-are.y, frame);
 	}
 };
 
 g.sprites.examine = {
 	process: function(inst) {
-		if (g.k.frame.space && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player))
+		if (!g.frozen && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
 		{
 			var dthis = inst.dialog;
 			var obj = 'Examine '+inst.object;
