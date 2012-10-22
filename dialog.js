@@ -1,8 +1,5 @@
-var prf = {};
-if (typeof g.dialog.prefs != 'undefined')
-	prf = g.dialog.prefs;
 g.dialog = {
-	prefs: prf,
+	prefs: {},				//SETME
 	data: {},
 	active: false,
 	spriteframe: 0,

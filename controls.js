@@ -1,87 +1,8 @@
 g.controls = 
 {
-	buttons: ['left','right','up','down','space','jump','accl'],
+	buttons: [],			//SETME
 	keyset: 0,
-	keysets: [
-		{
-			type: 'keyboard',
-			left: 37,
-			right: 39,
-			up: 38,
-			down: 40,
-			space: 32,
-			jump: 90,
-			accl: 88
-		},
-		{
-			type: 'keyboard',
-			left: 65,
-			right: 68,
-			up: 87,
-			down: 83,
-			space: 32,
-			jump: 76,
-			accl: 186
-		},
-		{
-			type: 'touch',
-			controls: ['leftright', 'jumpbtn', 'upbtn', 'downbtn'],
-			left: function(ks) {return ks.leftright.current < 2;},
-			right: function(ks) {return ks.leftright.current > 2;},
-			accl: function(ks) {return ks.leftright.current == 0 || ks.leftright.current == 4;},
-			jump: function(ks) {return ks.jumpbtn.pressed;},
-			up: function(ks) {return ks.upbtn.pressed;},
-			down: function(ks) {return ks.downbtn.pressed;},
-			jumpbtn: {
-				type: 'button',
-				active: false,
-				pressed: false,
-				sprite: 24,
-				startframe: 0,
-				x: 50,
-				y: 375,
-				dim: {left:0,top:0,width:94,height:42}
-			},
-			upbtn: {
-				type: 'button',
-				active: false,
-				pressed: false,
-				sprite: 21,
-				startframe: 0,
-				x: 540,
-				y: 260,
-				dim: {left:0,top:22,width:77,height:35}
-			},
-			downbtn: {
-				type: 'button',
-				active: false,
-				pressed: false,
-				sprite: 21,
-				startframe: 6,
-				x: 540,
-				y: 300,
-				dim: {left:0,top:22,width:77,height:35}
-			},
-			leftright: {
-				type: 'slider',
-				active: false,
-				finger: -1,
-				normal: 2,
-				current: 2,
-				orientation: 'left/right',
-				max: 4,
-				min: 0,
-				inc: 1,
-				dist: 50,
-				snapback: true,
-				tracksprite: 22,
-				dialsprite: 23,
-				x: 400,
-				y: 375
-			}
-			
-		}
-	],
+	keysets: [],			//SETME
 	process: function(keys, points) {
 		g.p = points;
 		var k = {};

@@ -2,6 +2,9 @@ g.ui = {
 	vollvl: 3,
 	showncontrols: false,
 	controlsframe: 0,
+	volrec: -1,				//SETME
+	optrec: -1,				//SETME
+	controlsrec: -1,		//SETME
 	
 	process: function()
 	{
@@ -13,14 +16,24 @@ g.ui = {
 		}
 		else if (g.controls.istouch(530,10,561,50) && !g.frozen)
 		{
-			g.query.show(['Save/Load Game...','Control Settings',(g.debug.enabled?'Disable':'Enable')+' Debug Screen','About','Cancel'], 450, 65, function(num) {
+			g.query.show(['Save/Load Game...','Control Settings','Debug...','About','Cancel'], 450, 65, function(num) {
 				if (num == 3)
 					g.dialog.show('about');
 				else if (num == 2)
-					g.debug.enabled = !g.debug.enabled;
+				{
+					g.query.show([(g.debug.enabled?'Disable':'Enable')+' Dev Screen', 'Send Bug Report', 'Cancel'], 450, 65, function(num2) {
+						if (num2 == 0)
+							g.debug.enabled = !g.debug.enabled;
+						
+					});
+				}
+
 				else if (num == 1)
 				{
-					g.query.show(['Arrow keys/Z/X','WASD/L/;','Touch input'], 450, 65, function(num2) {
+					var keysets = [];
+					for (var i = 0; i < g.controls.keysets.length; i++)
+						keysets[i] = g.controls.keysets[i].name;
+					g.query.show(keysets, 450, 65, function(num2) {
 						g.controls.keyset = num2;
 					});
 				}

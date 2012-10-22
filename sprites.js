@@ -1,4 +1,5 @@
-g.sprites.func = {
+g.sprites = {
+func: {
 	updPosBySpd: function(inst, dox, doy)
 	{
 		if (typeof dox == 'undefined')
@@ -216,9 +217,9 @@ g.sprites.func = {
 		var are = g.area.areas[g.area.currentarea];
 		return g.controls.istouch(inst.x+inst.dim.left-are.x,inst.y+inst.dim.top-are.y,inst.x+inst.dim.left+inst.dim.width-are.x,inst.y+inst.dim.top+inst.dim.height-are.y, frame);
 	}
-};
+},
 
-g.sprites.examine = {
+examine: {
 	process: function(inst) {
 		if (!g.frozen && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
 		{
@@ -230,3 +231,4 @@ g.sprites.examine = {
 		}
 	}
 }
+};

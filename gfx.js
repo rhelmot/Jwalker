@@ -1,8 +1,5 @@
-var pxl = {};
-if (g.gfx.pixels)
-	pxl = g.gfx.pixels;
 g.gfx = {
-	pixels: pxl,
+	pixels: {},				//SETME
 	queue: [],
 	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame takes the format {left: <xoffset>, top: <yoffset>, width: <width>, height: <height>}
 		if (typeof flip == 'undefined')

@@ -1,8 +1,6 @@
-var sav = [];
-if (typeof g.area.areas != 'undefined')
-	sav = g.area.areas;
 g.area = {
 	currentarea: 0,
+	areas: [],			//SETME
 	process: function() {
 		if (g.loading.active)
 		{
@@ -118,6 +116,5 @@ g.area = {
 				}
 			}, true);
 		}
-	},
-	areas: sav
+	}
 };

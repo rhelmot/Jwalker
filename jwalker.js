@@ -8,35 +8,9 @@
 
 //yes there will be a license some time in the future when I actually care.
 
-var tkeys;
-var tpoints;
+var tkeys = [];
+var tpoints = {};	//iPad uses redonk indexes for its touches, so object, not array.
 var killcode = -1;
-
-var tload = false;
-
-window.onload = function()
-{
-	if (typeof finLoad == 'undefined')	//IE will sometimes fire the onload function before everything is actually loaded.
-	{									//screw you, microsoft!
-		tload = true;
-		return;							//tell def file to fire window.onload();
-	}
-	loadSpecs();
-	tkeys = [];
-	tpoints = {};
-	var can = document.getElementById('drawCanvas');
-	g.c = can.getContext('2d');
-	can.onkeydown = capkeydown;
-	can.onkeyup = capkeyup;
-	can.onmousemove = capmousemove;
-	can.onmousedown = capmousedown;
-	can.onmouseup = capmouseup;
-	can.addEventListener('touchstart', captouchstart, false);
-	can.addEventListener('touchmove', captouchmove, false);
-	can.addEventListener('touchend', captouchend, false);
-	g.mobile = navigator.userAgent.match(/Android|Blackberry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
-	birth();
-};
 
 function birth() {
 	if (killcode >= 0)
@@ -99,9 +73,29 @@ function captouchend(e) {
 	}
 }
 
-function acceptlist() {
-	g.list.accept();
-}
+window.onload = function()
+{
+	var deploy = document.getElementById('jwalker-deploy');
+	if (!deploy)
+	{
+		console.log('Error: Malformed webpage; no deployment pad! Canceling load.');
+		return;
+	}
+	document.getElementById('loadimg').style.display = 'none';
+	deploy.innerHTML = '<canvas id="drawCanvas" width="650" height="450" tabindex="1" style="outline:none" onselectstart="return false;">Your browser does not support canvases. You must pick a different one if you would like to view this content. May I recommend Google Chrome?</canvas><div style="display:none;" id="messagediv"><p>Because you are on a mobile device, your browser needs your express permission to do the following actions:</p><p style="text-align:left;"><ul id="itemlist"></ul></p><p><button onClick="g.list.accept();">Accept</button></p></div>';
+	var can = document.getElementById('drawCanvas');
+	g.c = can.getContext('2d');
+	can.onkeydown = capkeydown;
+	can.onkeyup = capkeyup;
+	can.onmousemove = capmousemove;
+	can.onmousedown = capmousedown;
+	can.onmouseup = capmouseup;
+	can.addEventListener('touchstart', captouchstart, false);
+	can.addEventListener('touchmove', captouchmove, false);
+	can.addEventListener('touchend', captouchend, false);
+	g.mobile = navigator.userAgent.match(/Android|Blackberry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
+	loadscripts([srcPath], true);
+};
 
 function loadscripts(list, abs) {
 	if (typeof abs == 'undefined')
@@ -115,8 +109,8 @@ function loadscripts(list, abs) {
 	}
 }
 
-loadscripts(['gfx.js','ui.js','timeout.js','loading.js','debug.js','area.js','sprites.js','dialog.js','audio.js','controls.js']);
-loadscripts([srcPath], true);
+//loadscripts(['gfx.js','ui.js','timeout.js','loading.js','debug.js','area.js','sprites.js','dialog.js','audio.js','controls.js']);
+
 
 var g = {
 	recRoot: recRoot,
