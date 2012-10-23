@@ -14,8 +14,11 @@ g.audio = {
 				return;
 			if (i == -1)
 			{
-				g.resources[g.audio.currentbgm].data.pause();
-				g.resources[g.audio.currentbgm].data.currentTime = 0;
+				if (g.audio.currentbgm >= 0)
+				{
+					g.resources[g.audio.currentbgm].data.pause();
+					g.resources[g.audio.currentbgm].data.currentTime = 0;
+				}
 				return;
 			}
 			g.resources[i].data.volume = g.audio.globalvol;

@@ -1,4 +1,5 @@
 g.loading = {
+	percent: {font: 'bold 14px "courier new"', color: 'black', x:320, y:350},		//SETME - Optional
 	active: false,
 	load: function(list) {
 		for (var ii in list)
@@ -86,13 +87,17 @@ g.loading = {
 					loaded += g.resources[i].size;
 			}
 			var perc = 100*loaded/total;
-			g.c.fillText(Math.floor(perc)+'%',320,400);
+			g.c.fillstyle = g.loading.percent.color;
+			g.c.font = g.loading.percent.font;
+			g.c.fillText(Math.floor(perc)+'%',g.loading.percent.x,g.loading.percent.y);
 			g.loading.done = (total == loaded);
 		}
 		else if (!g.loading.processed)
 		{
 			g.c.drawImage(document.getElementById('loadimg'),0,0);
-			g.c.fillText('100%',320,400);
+			g.c.fillstyle = g.loading.percent.color;
+			g.c.font = g.loading.percent.font;
+			g.c.fillText('100%',g.loading.percent.x,g.loading.percent.y);
 			for (var i in g.loading.list)
 			{
 				var rec = g.resources[i];
@@ -136,7 +141,9 @@ g.loading = {
 		{
 			g.gfx.drawfunc(function() {
 				g.c.drawImage(document.getElementById('loadimg'),0,0);
-				g.c.fillText('100%',320,400);
+				g.c.fillstyle = g.loading.percent.color;
+				g.c.font = g.loading.percent.font;
+				g.c.fillText('100%',g.loading.percent.x,g.loading.percent.y);
 			}, g.gfx.layers.fading);
 		}
 	}

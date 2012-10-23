@@ -86,10 +86,10 @@ g.resources = [
 	filename: 'dadspritesprite.png',
 	type: 'image',
 	use: 'spritesheet',
-	size: 3.45,
+	size: 1.4,
 	framex: 44,
 	framey: 128,
-	framewidth: 1,
+	framewidth: 2,
 	frameheight: 1
 },{ //12
 	filename: 'area2bg.png',
@@ -183,6 +183,24 @@ g.resources = [
 	framewidth: 2,
 	frameheight: 1,
 	size: 2
+},{ //25
+	filename: 'hatthrow.png',
+	type: 'image',
+	use: 'spritesheet',
+	framex: 100,
+	framey: 120,
+	framewidth: 9,
+	frameheight: 1,
+	size: 8.1
+},{ //26
+	filename: 'bachbubble.png',
+	type: 'image',
+	use: 'spritesheet',
+	framex: 30,
+	framey: 36,
+	framewidth: 1,
+	frameheight: 1,
+	size: 0.4
 }];
 
 g.ui.volrec = 8;
@@ -339,7 +357,7 @@ g.areaprocess = function(area) {
 	}
 	g.gfx.draw(area.background, 0, 0, {left: area.x, top: area.y, width: 650, height: 450}, g.gfx.layers.bg);
 };
-var allrecs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+var allrecs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
 g.area.areas = [
 	{	
 		background: 2,
@@ -408,6 +426,7 @@ g.area.areas = [
 			{
 				index: 1,
 				name: 'dadsprite',
+				frame: 0,
 				x: 1050,
 				y: 250,
 				xsub: 0,
@@ -520,6 +539,7 @@ g.area.areas = [
 			{
 				index: 1,
 				name: 'dadsprite',
+				frame: 0,
 				x: 625,
 				y: 250,
 				xsub: 0,
@@ -670,6 +690,7 @@ g.area.areas = [
 			{
 				index: 1,
 				name: 'dadsprite',
+				frame: 0,
 				x: 794,
 				y: 200,
 				xsub: 0,
@@ -825,13 +846,84 @@ g.area.areas = [
 		},
 		onActivate: function() {
 			g.audio.play(20);
+			this.state = 1;
 		},
 		process: function(ca) {
 			g.gfx.draw(19,0,0,{diy:true},g.gfx.layers.bg);
-			
-		}
+			if (this.state > 0)
+			{
+				if (--this.frame < 0)
+				{
+					this.state++;
+					this.frame = [0,10,3,20,3,1,20,20,10,20,10,20,10,20,10,20,10,20,10,20,10,0,60][this.state];
+				}
+			}
+			switch (this.state)
+			{
+				case 0:
+				g.gfx.draw(0,528,314,0,g.gfx.layers.sprites,{x:true,y:false});
+				break;
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				g.gfx.draw(25,500,310,this.state-1,g.gfx.layers.sprites);
+				break;
+				case 5:
+				g.gfx.draw(25,500,310,4,g.gfx.layers.sprites);
+				g.gfx.draw(25,480,322,7,g.gfx.layers.sprites);
+				break;
+				case 6:
+				g.gfx.draw(25,500,310,4,g.gfx.layers.sprites);
+				g.gfx.draw(25,480,320,7,g.gfx.layers.sprites);
+				break;
+				case 7:
+				case 9:
+				case 11:
+				case 13:
+				case 15:
+				case 17:
+				case 19:
+				g.gfx.draw(25,480,320,7,g.gfx.layers.sprites);
+				g.gfx.draw(25,500,310 - [0,4,8,11,14,17,19,21,22,23,24,24,23,22,21,19,17,14,11,8,4,0][this.frame],6,g.gfx.layers.sprites);
+				break;
+				case 8:
+				case 10:
+				case 12:
+				case 14:
+				case 16:
+				case 18:
+				case 20:
+				g.gfx.draw(25,480,320,7,g.gfx.layers.sprites);
+				g.gfx.draw(25,500,310,5,g.gfx.layers.sprites);
+				break;
+				case 21:
+				g.query.show(['This is the end! You can go on to the next page now.'],200,200);
+				g.gfx.draw(25,480,320,7,g.gfx.layers.sprites);
+				g.gfx.draw(25,500,310,8,g.gfx.layers.sprites);
+				g.gfx.draw(26,550,270,0,g.gfx.layers.sprites);
+				break;
+				case 22:
+				g.gfx.draw(25,480,320,7,g.gfx.layers.sprites);
+				g.gfx.draw(25,500,310,8,g.gfx.layers.sprites);
+				if (this.frame > 25)
+					g.gfx.draw(26,550,270,0,g.gfx.layers.sprites);
+				if (this.frame < 10)
+					this.frame = 60;
+			}
+			if (--this.dadframe < 0)
+				this.dadframe = 25;
+			var daf = 1;
+			if (this.state == 0)
+				daf = 0;
+			g.gfx.draw(11,600,280+[0,0,0,1,1,2,2,3,4,5,5,6,6,7,7,7,6,6,5,5,4,3,2,2,1,1][this.dadframe],daf,g.gfx.layers.sprites,{x:true,y:false});
+		},
+		state: 0,
+		frame: 0,
+		dadframe: 0
 	}
 ];
+//g.area.currentarea = 3;
 //pixels: black-0 white-1 red-2 green-3 blue-4 cyan-5
 g.sprites.brad =  {
 	spritesheet: 0,
@@ -1049,7 +1141,6 @@ g.sprites.brad =  {
 g.sprites.dadsprite = {
 	spritesheet: 11,
 	process: function(inst) {
-		inst.frame = 0;
 		if (!g.frozen)
 		{
 			inst.y = inst.basey;

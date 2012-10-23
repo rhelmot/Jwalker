@@ -1,5 +1,14 @@
 g.gfx = {
 	pixels: {},				//SETME
+	layers: {				//SETME - Optional
+		fading: 6,
+		dialog: 5,
+		ui: 4,
+		prioritysprites: 3,
+		prioritybg: 2,
+		sprites: 1,
+		bg: 0	
+	},
 	queue: [],
 	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame takes the format {left: <xoffset>, top: <yoffset>, width: <width>, height: <height>}
 		if (typeof flip == 'undefined')
@@ -82,14 +91,5 @@ g.gfx = {
 			}
 		}
 		g.gfx.queue = [];
-	},
-	layers: {
-		fading: 6,
-		dialog: 5,
-		ui: 4,
-		prioritysprites: 3,
-		prioritybg: 2,
-		sprites: 1,
-		bg: 0	
 	}
 };
