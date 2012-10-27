@@ -2,21 +2,24 @@ g.ui = {
 	vollvl: 3,
 	showncontrols: false,
 	controlsframe: 0,
-	volrec: -1,				//SETME - asset to use for volume control
-	optrec: -1,				//SETME - asset to use for options button
-	controlsrec: -1,		//SETME - asset to use for controls button
+	volrec: 0,				//SETME - asset to use for volume control
+	volrect: {},			//SETME - Rectangle to use for volume active zone and drawing area
+	optrec: 0,				//SETME - asset to use for options button
+	optrect: {},			//SETME - Rectangle to use for options active zone and drawing area
+	controlsrec: 0,			//SETME - asset to use for controls button
+	controlsrect: {},		//SETME - Rectangle to use for controls active zone and drawing area
 	aboutdlg: '',			//SETME - dialog to use for 'About' text
-	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description.
+	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description. (see controls.js)
 	
 	process: function()
 	{
-		if (!g.mobile && g.controls.istouch(20,10,80,50))
+		if (!g.mobile && g.controls.istouch(g.ui.volrect))
 		{
 			if (++g.ui.vollvl>3)
 				g.ui.vollvl = 0;
 			g.audio.setvol(g.ui.vollvl/3);
 		}
-		else if (g.controls.istouch(530,10,561,50) && !g.frozen)
+		else if (g.controls.istouch(g.ui.optrect) && !g.frozen)
 		{
 			g.query.show(['Save/Load Game...','Control Settings','Debug...','About','Cancel'], 450, 65, function(num) {
 				if (num == 3)
@@ -71,7 +74,7 @@ g.ui = {
 				}
 			});
 		}
-		else if (g.controls.istouch(580,10,630,50) && !g.frozen)
+		else if (g.controls.istouch(g.ui.controlsrect) && !g.frozen)
 		{
 			g.ui.showncontrols = true;
 			g.ui.controlsframe = 0;
@@ -79,11 +82,11 @@ g.ui = {
 			g.dialog.show(g.ui.controlsdlg);
 		}
 		if (!g.mobile)
-			g.gfx.draw(8,20,10,g.ui.vollvl,g.gfx.layers.ui);
-		g.gfx.draw(9, 530, 10, 0, g.gfx.layers.ui);
+			g.gfx.draw(g.ui.volrec,g.ui.volrect.x1,g.ui.volrect.y1,g.ui.vollvl,g.gfx.layers.ui);
+		g.gfx.draw(g.ui.optrec, g.ui.optrect.x1, g.ui.optrect.y1, 0, g.gfx.layers.ui);
 		if (!g.ui.showncontrols)
 			if (++g.ui.controlsframe >= 15) {g.ui.controlsframe = 0;}
-		g.gfx.draw(10, 580, 10, g.ui.controlsframe, g.gfx.layers.ui);
+		g.gfx.draw(g.ui.controlsrec, g.ui.controlsrect.x1, g.ui.controlsrect.y1, g.ui.controlsframe, g.gfx.layers.ui);
 	}
 };
 g.save = {

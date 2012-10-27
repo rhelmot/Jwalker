@@ -16,9 +16,14 @@ g.gfx = {
 		if (typeof alpha == 'undefined')
 			alpha = 1;
 		var rec = g.resources[recid];					//flip: {x: true, y: false}
-		if (rec.type != 'image')
+		if (rec && rec.type != 'image')
 		{
-			console.log('Warning: attempting to draw nonimage resource!');
+			console.log('Warning: Attempting to draw nonimage resource #'+recid+'!');
+			return;
+		}
+		if (!rec.loaded)
+		{
+			console.log('Warning: Resource '+rec.filename+' is not loaded in area #'+g.area.currentarea+'!');
 			return;
 		}
 		if (rec.use == 'spritesheet')

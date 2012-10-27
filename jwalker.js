@@ -111,10 +111,55 @@ function loadscripts(list, abs) {
 
 //loadscripts(['gfx.js','ui.js','timeout.js','loading.js','debug.js','area.js','sprites.js','dialog.js','audio.js','controls.js']);
 
+function Rectangle(x1, y1, x2, y2, usesizes) {
+	this.x1 = x1;
+	this.y1 = y1;
+	if (usesizes)
+	{
+		this.width = x2;
+		this.height = y2;
+		this.x2 = x1 + x2;
+		this.y2 = y1 + y2;
+	}
+	else
+	{
+		this.x2 = x2;
+		this.y2 = y2;
+		this.width = x2 - x1;
+		this.height = y2 - y1;
+	}
+	this.hitPoint = function(x,y) {
+		return x >= this.x1 && x <= this.x2 && y >= this.y1 && y <= this.y2;
+	}
+	this.hitRect = function(rect) {
+		var mx = this.width + rect.width;
+		var my = this.height + rect.height;
+		var dx = this.x2 - rect.x1;
+		var dy = this.y2 - rect.y1;
+		return 0 <= dx && dx <= mx && 0 <= dy && dy <= my;
+	}
+	this.translate = function(x,y) {
+		this.x1 += x;
+		this.x2 += x;
+		this.y1 += y;
+		this.y2 += y;
+	}
+	this.moveTo = function(x,y) {
+		this.x1 = x;
+		this.y1 = y;
+		this.x2 = x + this.width;
+		this.y2 = y + this.height;
+	}
+	this.sizeTo = function(w,h) {
+		this.width = w;
+		this.height = h;
+		this.x2 = this.x1 + w;
+		this.y2 = this.y1 + h;
+	}
+}
 
 var g = {
 	recRoot: recRoot,
-	m: {},
 	frozen: false,
 	tick: function (keys, points) {
 		if (g.debug.enabled)
@@ -134,10 +179,5 @@ var g = {
 			g.debug.process();
 		g.controls.endprocess();
 		g.list.check();
-	},
-	sprites: {},
-	area: {},
-	dialog: {},
-	controls: {},
-	gfx: {}
+	}
 };

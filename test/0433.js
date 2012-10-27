@@ -29,7 +29,11 @@ g.resources = [
 },{	//4
 	filename: 'dialogbox.png',
 	type: 'image',
-	use: 'background',
+	use: 'spritesheet',
+	framex: 537,
+	framey: 270,
+	framewidth: 1,
+	frameheight: 1,
 	size: 20.7
 },{	//5
 	filename: 'braddialogout.png',
@@ -206,6 +210,8 @@ g.resources = [
 g.ui.volrec = 8;
 g.ui.optrec = 9;
 g.ui.controlsrec = 10;
+g.dialog.boxrec = 4;
+
 
 g.dialog.prefs = {
 	Brad: {

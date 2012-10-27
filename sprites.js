@@ -6,18 +6,20 @@ func: {
 			var dox = true;
 		if (typeof doy == 'undefined')
 			var doy = true;
+		var fy = 0;
+		var fx = 0;
 		if (dox)
 		{
 			inst.xsub += inst.xspd;
 			while (inst.xsub >= 20)
 			{
 				inst.xsub -= 20;
-				inst.x++;
+				fx++;
 			}
 			while (inst.xsub <= -20)
 			{
 				inst.xsub += 20;
-				inst.x--;
+				fx--;
 			}
 		}
 		if (doy)
@@ -26,14 +28,15 @@ func: {
 			while (inst.ysub >= 20)
 			{
 				inst.ysub -= 20;
-				inst.y++;
+				fy++;
 			}
 			while (inst.ysub <= -20)
 			{
 				inst.ysub += 20;
-				inst.y--;
+				fy--;
 			}
 		}
+		inst.dim.translate(fx,fy);
 	},
 	addGravity: function(inst)
 	{
@@ -48,13 +51,13 @@ func: {
 		
 	},
 	render: function(inst, flip) {
-		g.gfx.draw(g.sprites[inst.name].spritesheet, inst.x-g.area.areas[g.area.currentarea].x, inst.y-g.area.areas[g.area.currentarea].y, inst.frame, g.gfx.layers.sprites, flip);
+		g.gfx.draw(g.sprites[inst.name].spritesheet, inst.dim.x1-g.area.areas[g.area.currentarea].x, inst.dim.y1-g.area.areas[g.area.currentarea].y, inst.frame, g.gfx.layers.sprites, flip);
 	},
 	hit: function(inst, point, offset) {
 		if (typeof offset != 'object')
 			var offset = {x:0,y:0};
-		offset.x += inst.x + inst.dim.left;
-		offset.y += inst.y + inst.dim.top;
+		offset.x += inst.dim.x1 + inst.dim.left;
+		offset.y += inst.dim.y1 + inst.dim.top;
 		switch(point) {
 			case 'center':
 				offset.y += inst.dim.height/2;
@@ -98,7 +101,8 @@ func: {
 			var inst2 = g.area.areas[g.area.currentarea].sprites[spr2];
 		else
 			var inst2 = spr2;
-		var d1 = {x1: inst1.x+inst1.dim.left, x2: inst1.x+inst1.dim.left+inst1.dim.width, y1: inst1.y+inst1.dim.top, y2: inst1.y+inst1.dim.top+inst1.dim.height};
+		return inst1.dim.hitRect(inst2.dim);
+		/*var d1 = {x1: inst1.x+inst1.dim.left, x2: inst1.x+inst1.dim.left+inst1.dim.width, y1: inst1.y+inst1.dim.top, y2: inst1.y+inst1.dim.top+inst1.dim.height};
 		var d2 = {x1: inst2.x+inst2.dim.left, x2: inst2.x+inst2.dim.left+inst2.dim.width, y1: inst2.y+inst2.dim.top, y2: inst2.y+inst2.dim.top+inst2.dim.height};
 		var w = d1.x2-d1.x1 + d2.x2-d2.x1;
 		var h = d1.x2-d1.x1 + d2.y2-d2.y1;
@@ -111,7 +115,7 @@ func: {
 			((d1.y1 >= d2.y1)&&(d1.y1 <= d2.y2)) ||
 			((d1.y2 >= d2.y1)&&(d1.y2 <= d2.y2))|| 
 			((d1.y1 <= d2.y1)&&(d1.y2 >= d2.y2))
-		));
+		));*/
 	},
 	hitgen: function(inst, points, callback) {
 		for (var i in points)

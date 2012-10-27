@@ -19,7 +19,7 @@ g.controls =
 				var con = ks[ks.controls[i]];
 				switch (con.type) {
 					case 'button':
-						con.pressed = g.controls.istouch(con.x+con.dim.left,con.y+con.dim.top,con.x+con.dim.left+con.dim.width,con.y+con.dim.top+con.dim.height,!con.pressed);
+						con.pressed = g.controls.istouch(con.dim,!con.pressed);
 						var frm = con.startframe;
 						if (con.pressed)
 							frm++;
@@ -82,18 +82,18 @@ g.controls =
 			}
 		}
 	},
-	istouch: function(x1,y1,x2,y2,isframe, finger)
+	istouch: function(rect, isframe, finger)
 	{
 		if (typeof isframe != 'boolean')
 			isframe = true;
 		if (!finger)
 			finger = false;
-		var n = g.controls.istouchfinger(x1,y1,x2,y2,isframe,finger);
+		var n = g.controls.istouchfinger(rect, isframe, finger);
 		if (n >= 0)
 			return true;
 		return false;
 	},
-	istouchfinger: function(x1,y1,x2,y2,isframe, finger)
+	istouchfinger: function(rect, isframe, finger)
 	{
 		if (typeof isframe != 'boolean')
 			isframe = true;
@@ -101,7 +101,7 @@ g.controls =
 		{
 			if (finger)
 				i = finger;
-			if (g.p[i] && !g.p[i].used && (!isframe || g.p[i].frame) && g.p[i].x >= x1 && g.p[i].x <= x2 && g.p[i].y >= y1 && g.p[i].y <= y2)
+			if (g.p[i] && !g.p[i].used && (!isframe || g.p[i].frame) && rect.hitPoint(g.p[i].x, g.p[i].y))
 			{
 				g.p[i].used = true;
 				return i;

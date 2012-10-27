@@ -1,5 +1,6 @@
 g.dialog = {
 	prefs: {},				//SETME
+	boxrec: 0,				//SETME
 	data: {},
 	active: false,
 	spriteframe: 0,
@@ -96,7 +97,7 @@ g.dialog = {
 		if (typeof timer == 'undefined') { var timer = 0; }
 		var inc = Math.ceil((g.dialog.boxgoal - g.dialog.boxcur)/(timer+1));
 		g.dialog.boxcur += inc;
-		g.gfx.draw(4, g.dialog.boxcur, 170, {diy: true}, g.gfx.layers.dialog);
+		g.gfx.draw(g.dialog.boxrec, g.dialog.boxcur, 170, {diy: true}, g.gfx.layers.dialog);
 	},
 	process: function() {
 		if (g.dialog.state == 'swap')
