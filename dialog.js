@@ -155,7 +155,7 @@ g.dialog = {
 			if (g.dialog.char != line.line.length)
 				g.dialog.char++;
 			g.dialog.drawsprite(g.dialog.data[g.dialog.num][g.dialog.part].spritesheet, line.frames[g.dialog.spriteframe], g.dialog.data[g.dialog.num][g.dialog.part].side);
-			if (g.k.frame.space || g.controls.istouch(g.dialog.boxcur,170,g.dialog.boxcur+537,440)) // advance text!
+			if (g.k.frame.space || g.controls.istouch(new Rectangle(g.dialog.boxcur,170,g.dialog.boxcur+537,440))) // advance text!
 			{
 				g.k.frame.space = false;
 				if (line.line.length == g.dialog.char)
@@ -309,7 +309,7 @@ g.query = {
 					g.query.callback(g.query.curr);
 			}
 		}
-		var pottouch = g.controls.istouchfinger(g.query.x,g.query.y,g.query.x+g.query.width,g.query.y+g.query.height);
+		var pottouch = g.controls.istouchfinger(new Rectangle(g.query.x,g.query.y,g.query.width,g.query.height, true));
 		if (pottouch >= 0)
 		{
 			for (var i = 0; i < g.query.options.length; i++)

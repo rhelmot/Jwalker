@@ -45,27 +45,21 @@ g.resources = [
 	frameheight: 4,
 	size: 11.6
 },{		//5
-	filename: 'red.png',
+	filename: 'tony.png',
 	type: 'image',
 	use: 'spritesheet',
-	framex: 100,
-	framey: 100,
-	framewidth: 1,
+	framex: 173,
+	framey: 250,
+	framewidth: 6,
 	frameheight: 1,
-	size: 1
-},{		//6
-	filename: 'red.png',
-	type: 'image',
-	use: 'spritesheet',
-	framex: 80,
-	framey: 80,
-	framewidth: 1,
-	frameheight: 1,
-	size: 1
+	size: 12.6
 }
 ];
 
-var allrecs = [0,1,2,3,4,5,6];
+var allrecs = [];
+
+for (var i = 0; i < g.resources.length; i++)
+	allrecs[i] = i;
 
 g.dialog.boxrec = 0;
 g.ui.volrec = 1;
@@ -163,38 +157,103 @@ g.area.areas = [
 		sprites: [
 			{
 				index: 0,
-				name: 'red',
+				name: 'tony',
 				dim: new Rectangle(100,100,100,100,true),
-				sheet: 5
-			},
-			{
-				index: 1,
-				name: 'red',
-				dim: new Rectangle(300,300,80,80,true),
-				sheet: 6
+				xspd: 0,
+				yspd: 0,
+				xsub: 0,
+				ysub: 0,
+				faceleft: false,
+				faceback: false,
+				sheet: 5,
+				frame: 0,
+				frametimer: 0
 			}
 		]
 	}
 ];
 
-g.sprites.red = {
+g.sprites.tony = {
 	process: function(inst) {
-		g.gfx.draw(inst.sheet, inst.dim.x1, inst.dim.y1, 0, 0, {x:false,y:false}, 0.5);
-		if (g.area.areas[g.area.currentarea].sprites[g.area.areas[g.area.currentarea].player].dim.hitRect(inst.dim))
-		{
-			g.gfx.draw(5, 600, 400, 0, 0);
-		}
+		g.gfx.draw(5, inst.dim.x1, inst.dim.y1, 0, 0, {x:false,y:false}, 0.5);
 	},
 	playerprocess: function(inst) {
-		g.gfx.draw(inst.sheet, inst.dim.x1, inst.dim.y1, 0, 0, {x:false,y:false}, 0.5);
-		if (g.k.left)
-			inst.dim.translate(-5,0);
-		else if (g.k.right)
-			inst.dim.translate(5,0);
-		if (g.k.up)
-			inst.dim.translate(0,-5);
-		else if (g.k.down)
-			inst.dim.translate(0,5);
+		if (!g.frozen)
+		{
+			var sign = g.k.left?-1:1;
+			if (g.k.left || g.k.right)
+			{
+				var s = inst.xspd*sign;
+				var c = 0;
+				if (s < -100)
+					c = 30;
+				else if (s < -50)
+					c = 15;
+				else if (s < 0)
+					c = 8;
+				else if (s < 50)
+					c = 7;
+				else if (s < 100)
+					c = 5;
+				inst.xspd += c*sign;
+			}
+			else
+			{
+				if (inst.xspd > 5)
+					inst.xspd -= 5;
+				else if (inst.xspd < -5)
+					inst.xspd += 5;
+				else
+					inst.xspd = 0;
+			}
+			sign = g.k.up?-1:1;
+			if (g.k.up || g.k.down)
+			{
+				var s = inst.yspd*sign;
+				var c = 0;
+				if (s < -80)
+					c = 25;
+				else if (s < -40)
+					c = 10;
+				else if (s < 0)
+					c = 8;
+				else if (s < 40)
+					c = 6;
+				else if (s < 80)
+					c = 4;
+				inst.yspd += c*sign;
+			}
+			else
+			{
+				if (inst.yspd > 5)
+					inst.yspd -= 5;
+				else if (inst.yspd < -5)
+					inst.yspd += 5;
+				else
+					inst.yspd = 0;
+			}
+			if (!(inst.xspd == 0 && inst.yspd == 0))
+			{
+				if (--inst.frametimer < 0)
+				{
+					inst.frametimer = 8;
+					if (++inst.frame > 3)
+						inst.frame = 0;
+				}
+			}
+			else
+			{
+				inst.frame = 0;
+				inst.frametimer = 0;
+			}
+			g.sprites.func.updPosBySpd(inst);
+			if (inst.xspd != 0)
+				inst.faceleft = (inst.xspd < 0);
+			if (inst.yspd != 0)
+				inst.faceback = (inst.yspd < 0);
+		}
+		g.gfx.draw(inst.sheet, inst.dim.x1, inst.dim.y1, [0,1,0,2][inst.frame] + (inst.faceback?3:0), 0, {x:inst.faceleft,y:false});
+		
 		if(g.k.frame.space)
 			g.area.areas[g.area.currentarea].player = inst ^ 1;
 	}

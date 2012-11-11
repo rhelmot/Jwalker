@@ -28,6 +28,17 @@ The base level of gameplay in Jwalker is something called an area. An area is a 
 
 The base level of interactivity in Jwalker is called a sprite. A sprite is essentially two functions: one if the sprite is currently the player, and one for otherwise. In each area is a list of currently active sprites, each of which is called an instance. An instance contains state data such as position, speed, etc. To process each instance, the code for its defining sprite is run.
 
+Data Formats
+------------
+
+### Dialog files
+
+### Dialog preferences
+
+### Control sets
+
+
+
 API
 ---
 
@@ -69,16 +80,6 @@ The above area all values that should be set in the definition file. Below are a
 * `g.loading.active` is a boolean for whether or not the loading process is underway.
 * `g.loading.load(list)` is the function called with a list of resource IDs to load. It starts the loading process for each of those resources not already loaded and sets `g.loading.active` to true.
 * This section is due for an overhaul and will get one when I have time.
-
-### Input
-
-Jwalker condenses user input into two variables, `g.k` and `g.p`.
-
-`g.k` is the keyboard input. It has a property for each key, valid values being `left`, `right`, `up`, `down`, `space`, `jump`, and `accl`. These will be `true` if the user has any key that is mapped to those values pressed. For the time being, if you want to change that mapping, you will have to manually edit the source, found in `jwalker.js`. In additions, `g.k.frame` has all the same properties as `g.k` (sans `frame` of course), except they are only `true` if the key was not pressed during the previous frame.
-
-`g.p` is the pointer input. This can mean either mouse or multitouches on a touch-enabled device. Is an array of objects, each on with properties `x`, `y`, `frame` (is `g.m.x` and `g.m.y` are the x and y position of the mouse relative to the canvas. `g.m.down` is `true` if the user has any mouse button depressed. `g.m.click` is true if the user has any mouse depressed, but did not during the previous frame.
-
-HOWEVER you should not usually have to read from `g.p` manually. See the Controls section.
 
 ### Timeouts
 
@@ -170,12 +171,28 @@ The user interface has a couple of setmes:
 
 ### Controls
 
+There are two types of input recognized by Jwalker, keyboard input (stored in `g.k`) and mouse clicks/touches on multitouch devices. (stored in `g.p`) My school of thought is that there should not be a difference in programming for mobile devices and desktops, so there is no easy way to track mouse motion while not clicked.
+
+All controls are completely flexable and can be defined per-game, using the `g.controls.keysets` and `g.controls.buttons` setme.
+
+In Jwalker, there exists a distinction between a "button" and a "key". A key is a key on the keyboard that the user can press, and a button is a designation for a boolean value for whether or not a key is pressed. The two are linked together with something called a "Keyset", or a linkage between raw user input and the buttons as they will be read in-code. To support mobile devices, a keyset can be a "mobile" type and draw buttons and sliders to the screen that can be interacted with and read from to trigger button presses.
+
+Set `g.controls.buttons` to an array of strings, where each string is the name of the button as it will appear in `g.k`.
+
+Set `keysets` to an array filled with all the different keysets that the user should be able to use. The default control set will be the zeroth one. For the format of a keyset, see the formats section.
+
+To read out button-based input, it's okay to read directly from `g.k`. It will contain a boolean value under the name of each string you set in `g.controls.buttons`, true if the button is pressed, false if it is not.
+
+However, you should never have to read directly from `g.p`. Instead, call `g.controls.istouch` or `g.controls.istouchfinger`. Both take three arguments, `(rect, isframe, finger)` only the first of which is requred. `rect` is the Rectangle that can be interacted with, `isframe` should be true if you only want to capture taps on their first frame, and `finger` is the index of the only finger that the function should bother checking. `istouch` will return `true` or `false` depending on whether or not the area is being pressed, while `istouchfinger` will return the index of the finger it finds touching that spot, `-1` otherwise. Both functions will mark each finger as used after they find it, so that one touch cannot be used for two different items in the same frame.
+
+It should be noted that Jwalker treats the mouse exactly like a touch, and will always be in index zero of `g.p`.
+
 ### Areas
 
 ### Sprites
 
 ### Debug
 
-Call `g.debug` or set `g.debugEnabled` to true to enable debugging. As of now, that just means that a bunch of staistics and data are drawn to the screen.
+Set `g.debug.enabled` to true to enable debugging, or just find the option for it in the menu. As of now, that just means that a bunch of staistics and data are drawn to the screen, and you get to measure dimentions onscreen by drawing rectangles.
 
-In case of emergency, you can execute `kill()` to clear the timeout calling `g.tick`. If you really want to restart the loop without reloading the page for some reason, you can call `window.onload()` to this end, but this may have some screwy effects.
+In case of emergency, you can execute `kill()` to clear the timeout calling `g.tick`. To start it back up again, call `birth()`. It is safe to call either of these functions when they are not applicable.
