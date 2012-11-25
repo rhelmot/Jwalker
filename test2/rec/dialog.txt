@@ -1,0 +1,41 @@
+!about
+:[S] Be the other boy: Thoughtstuck HTML5 walkaround Mark II
+:Jwalker engine by Andrew Dutcher, Dialog bases by Jade Bock, Dialog sprites by Cole Kronman and Andrew Dutcher, background music "Tony's Theme" by Alex Meiburg. All else by Andrew.
+:For information about the Jwalker project, visit http://github.com/rhelmot/Jwalker or http://mspaforums.com/showthread.php?50595
+
+!controls
+:asdf
+:Controls this time around are very simple: move around, look at stuff!
+:In addition, you can flip the room around and get a different view on things by pressing the green 'flip' button in the upper-left, so long as it's actually green.
+:This walkaround actually has a very long plot progression movement, so make sure to play through the end. If you get stuck, look at the map!
+
+!examinebookshelf
+:Gosh, you love READING. BOOKS are one of the few things in your life that are guaranteed to STAY THE SAME, except for the rare occasion when you crack open a volume to discover that it is COMPLETELY DIFFERENT from the last time you looked at it.
+:This BOOKSHELF only contains the selection you have out right now; the available titles are swapped out on a SEMI-WEEKLY BASIS with a SEMI-RANDOM SELECTION from your ARCHIVES.
+:Also here are your aformentioned MAGIC CUE BALL and MEMORABELIA CHEST. You'd need to find a STEPSTOOL if you wanted to get at either of them, but it wouldn't do much good. You've already invested more hours than you're comfortable admitting staring at the ball, and the chest is currently locked, with the KEY hidden away somewhere.
+
+!examinebed
+:Sleeping isn't as much fun as it could be. Your BED, however, makes up for it with its wonderful bedspread design.
+:Gosh. So simple. So sublimely purple.
+
+!examineposters
+:You mentioned you love musical theatre, right? You have posters up from some of your favorite titles up on your walls.
+:Chicago was darned good, even if you only ever saw the movie. :( You especially enjoyed the way the musical numbers sort of happened in their own little reality. An excellent commentary on willing suspencion of disbelief if you asked you.
+:Les Miserables... words cannot describe how much you loved it. You pray that they don't screw up the movie.
+
+!examinegifts
+:It may be your birthday, but you are not allowed to open your presents yet! Your friends have forbidden you from opening them until they are awake to witness your actions. This probably means a couple more hours, but your respect their wishes.
+:Bach's present looks really big! You wonder what could be inside it.
+
+!computerintro
+:This is your COMPUTER. It is currently running a beta version of the PLANES EIGHTFOLD operating system. You still can't believe that that installation went off without a hitch.
+:You were hesitant about upgrading, but reading reviews on the system, specifically its interface, convinced you to try it out. And oh gosh are you satisfied with it. The interface is just so simple to use!
+:You take this as a hesitant proof of concept that sometimes change can be a good thing.
+
+!gina1
+:part 1 of conversation
+:go open present
+
+!gina2
+:part 2 of conversation
+:aftermath

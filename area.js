@@ -2,21 +2,17 @@ g.area = {
 	currentarea: 0,
 	areas: [],			//SETME
 	process: function() {
-		if (g.loading.active)
+		if (g.loading.add(g.area.areas[g.area.currentarea].reclist, function() {
+			g.timeouts.addtimeout(60,function(timer) {
+				g.area.loadarea(g.area.currentarea, 'inout', 'white', 'start');
+				g.timeouts.addtimeout(30,function() { g.loading.active = false; }, false);
+			}, false);
+		}))
 		{
-			g.loading.process();
 			return;
 		}
+		g.area.areas[g.area.currentarea].process(g.area.areas[g.area.currentarea]);
 		var ca = g.area.areas[g.area.currentarea];
-		for (var i in ca.reclist)
-		{
-			if (!g.resources[i].loaded)
-			{
-				g.loading.load(ca.reclist);
-				return;
-			}
-		}
-		ca.process(ca);
 		for (var i in ca.sprites)
 		{
 			if (ca.sprites[i] == null)
@@ -27,6 +23,9 @@ g.area = {
 				ca.sprites[i] = null;
 				continue;
 			}
+			
+			if (g.debug.enabled && ca.sprites[i].dim)
+				ca.sprites[i].dim.translate(ca.sprites[i].x, ca.sprites[i].y).draw();
 			if (i == ca.player && g.sprites[ca.sprites[i].name].process)
 				g.sprites[ca.sprites[i].name].playerprocess(ca.sprites[i]);
 			else if (g.sprites[ca.sprites[i].name].process)

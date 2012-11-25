@@ -30,6 +30,8 @@ g.dialog = {
 				g.dialog.data[num] = [];
 				continue;
 			}
+			if (data[l].substr(0,1) == ':')				//colon at beginning of dialog line is synonym for _!_:
+				data[l] = '_!_: '+data[l].substr(1);
 			var linedeg = data[l].split(': ');
 			if (linedeg.length > 2)
 			{
@@ -97,7 +99,7 @@ g.dialog = {
 		if (typeof timer == 'undefined') { var timer = 0; }
 		var inc = Math.ceil((g.dialog.boxgoal - g.dialog.boxcur)/(timer+1));
 		g.dialog.boxcur += inc;
-		g.gfx.draw(g.dialog.boxrec, g.dialog.boxcur, 170, {diy: true}, g.gfx.layers.dialog);
+		g.gfx.draw(g.dialog.boxrec, g.dialog.boxcur, 170, 0, g.gfx.layers.dialog);
 	},
 	process: function() {
 		if (g.dialog.state == 'swap')
@@ -215,7 +217,7 @@ g.dialog = {
 			left = g.dialog.boxcur + 150;
 		var width = 350;
 		if (part.side == 'center')
-			width = 480;
+			width = 497;
 		var top = 195;
 		g.c.fillStyle = color;
 		g.c.font = "bold 14px 'courier new'";
@@ -306,7 +308,10 @@ g.query = {
 				g.frozen = false;
 				g.k.frame.space = false;
 				if (typeof g.query.callback == 'function')
+				{
 					g.query.callback(g.query.curr);
+					g.query.queue = [];
+				}
 			}
 		}
 		var pottouch = g.controls.istouchfinger(new Rectangle(g.query.x,g.query.y,g.query.width,g.query.height, true));
@@ -319,7 +324,10 @@ g.query = {
 					g.query.active = false;
 					g.frozen = false;
 					if (typeof g.query.callback == 'function')
+					{
 						g.query.callback(i);
+						g.query.queue = [];
+					}
 				}
 			}
 		}
@@ -346,5 +354,18 @@ g.query = {
 			if (g.query.timer < 30)
 				g.c.fillText('>', g.query.x-14, g.query.y + 12 + 16*g.query.curr);
 		}, g.gfx.layers.dialog);
+	},
+	queueoption: function(text, callback) {
+		g.query.queue[g.query.queue.length] = {text:text, callback:callback};
+	},
+	queue: [],
+	clearqueue: function() {
+		if (!g.query.queue.length || g.query.active)
+			return;
+		var lines = [];
+		for (var i in g.query.queue)
+			lines[i] = g.query.queue[i].text;
+		lines[lines.length] = 'Cancel';
+		g.query.show(lines, 250,100, function(num) { if(num==g.query.queue.length) {return;} g.query.queue[num].callback(); });
 	}
 };

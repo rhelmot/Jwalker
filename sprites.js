@@ -36,7 +36,8 @@ func: {
 				fy--;
 			}
 		}
-		inst.dim.translate(fx,fy);
+		inst.x += fx;
+		inst.y += fy;
 	},
 	addGravity: function(inst)
 	{
@@ -56,13 +57,17 @@ func: {
 	hit: function(inst, point, offset) {
 		if (typeof offset != 'object')
 			var offset = {x:0,y:0};
-		offset.x += inst.dim.x1 + inst.dim.left;
-		offset.y += inst.dim.y1 + inst.dim.top;
+		offset.x += inst.dim.x1 + inst.x;
+		offset.y += inst.dim.y1 + inst.y;
 		switch(point) {
 			case 'center':
 				offset.y += inst.dim.height/2;
 			case 'top':
 				offset.x += inst.dim.width/2;
+				break;
+			case 'bottom':
+				offset.x += inst.dim.width/2;
+				offset.y += inst.dim.height;
 				break;
 			case 'bottomright':
 				offset.x += inst.dim.width;
@@ -101,7 +106,7 @@ func: {
 			var inst2 = g.area.areas[g.area.currentarea].sprites[spr2];
 		else
 			var inst2 = spr2;
-		return inst1.dim.hitRect(inst2.dim);
+		return inst1.dim.translate(inst1.x, inst1.y).hitRect(inst2.dim.translate(inst2.x, inst2.y));
 		/*var d1 = {x1: inst1.x+inst1.dim.left, x2: inst1.x+inst1.dim.left+inst1.dim.width, y1: inst1.y+inst1.dim.top, y2: inst1.y+inst1.dim.top+inst1.dim.height};
 		var d2 = {x1: inst2.x+inst2.dim.left, x2: inst2.x+inst2.dim.left+inst2.dim.width, y1: inst2.y+inst2.dim.top, y2: inst2.y+inst2.dim.top+inst2.dim.height};
 		var w = d1.x2-d1.x1 + d2.x2-d2.x1;
@@ -119,7 +124,10 @@ func: {
 	},
 	hitgen: function(inst, points, callback) {
 		for (var i in points)
-			callback(g.sprites.func.hit(inst, points[i]), i, points[i]);
+		{
+			if (callback(g.sprites.func.hit(inst, points[i]), i, points[i]) == 'stop')
+				return 'stopped';
+		}
 	},
 	hitbg: function(inst) {
 		inst.hit = {up:false,down:false,left:false,right:false};
@@ -219,20 +227,26 @@ func: {
 		if (typeof frame != 'boolean')
 			frame = true;
 		var are = g.area.areas[g.area.currentarea];
-		return g.controls.istouch(inst.x+inst.dim.left-are.x,inst.y+inst.dim.top-are.y,inst.x+inst.dim.left+inst.dim.width-are.x,inst.y+inst.dim.top+inst.dim.height-are.y, frame);
+		return g.controls.istouch(inst.dim.translate(inst.x-g.area.areas[g.area.currentarea].x,inst.y-g.area.areas[g.area.currentarea].y), frame);
 	}
 },
-
-examine: {
+area: {
 	process: function(inst) {
 		if (!g.frozen && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
+			g.query.queueoption(inst.option, inst.callback);
+	}
+},
+examine: {
+	process: function(inst) {
+		if (!inst.iprocessed)
 		{
-			var dthis = inst.dialog;
-			var obj = 'Examine '+inst.object;
+			inst.option = 'Examine '+inst.object;
 			if (inst.object.substr(0,1) == '!')
-				obj = inst.object.substr(1);
-			g.query.show([obj,'Cancel'],200,200,function(num) {if (num==1) { return; } g.dialog.show(dthis) });
+				inst.option = inst.object.substr(1);
+			eval('inst.callback = function() {g.dialog.show("'+inst.dialog+'") };');
+			inst.iprocessed = true;
 		}
+		g.sprites.area.process(inst);
 	}
 }
 };

@@ -10,9 +10,12 @@ g.ui = {
 	controlsrect: {},		//SETME - Rectangle to use for controls active zone and drawing area
 	aboutdlg: '',			//SETME - dialog to use for 'About' text
 	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description. (see controls.js)
+	enabled: true,
 	
 	process: function()
 	{
+		if (!g.ui.enabled)
+			return;
 		if (!g.mobile && g.controls.istouch(g.ui.volrect))
 		{
 			if (++g.ui.vollvl>3)
@@ -229,5 +232,6 @@ g.list = {
 		document.getElementById('messagediv').style.display = 'none';
 		document.getElementById('itemlist').innerHTML = '';
 		birth();
+		return false;
 	}
 };

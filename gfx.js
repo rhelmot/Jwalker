@@ -10,21 +10,46 @@ g.gfx = {
 		bg: 0	
 	},
 	queue: [],
-	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame takes the format {left: <xoffset>, top: <yoffset>, width: <width>, height: <height>}
+	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame can be left blank
+		var order = g.gfx.makeorder(recid, x, y, frame, flip, alpha);
+		if (!order)
+			return;
+		if (g.gfx.queue[layer] == null)
+			g.gfx.queue[layer] = [];
+		g.gfx.queue[layer][g.gfx.queue[layer].length] = order;
+	},
+	makeorder: function(recid, x, y, frame, flip, alpha) {
 		if (typeof flip == 'undefined')
 			flip = {x:false, y:false};
 		if (typeof alpha == 'undefined')
 			alpha = 1;
+		else if (alpha <= 0)
+			return false;
 		var rec = g.resources[recid];					//flip: {x: true, y: false}
 		if (rec && rec.type != 'image')
 		{
+			if (rec.type == 'meta' && rec.use == 'quiltdata')
+			{
+				for (var qy = 0; qy < 450 + rec.height; qy += rec.height)
+				{
+					for (var qx = 0; qx < 650 + rec.width; qx += rec.width)
+					{
+						var rx = Math.floor((qx+x)/rec.width);
+						var ry = Math.floor((qy+y)/rec.height);
+						var trec = rec.data[ry][rx];
+						if (typeof trec == 'number')
+							g.gfx.draw(trec, x-(rx*rec.width), y-(ry*rec.height), 0, g.gfx.layers.bg);
+					}
+				}
+				return false;
+			}
 			console.log('Warning: Attempting to draw nonimage resource #'+recid+'!');
-			return;
+			return false;
 		}
 		if (!rec.loaded)
 		{
 			console.log('Warning: Resource '+rec.filename+' is not loaded in area #'+g.area.currentarea+'!');
-			return;
+			return false;
 		}
 		if (rec.use == 'spritesheet')
 		{
@@ -33,22 +58,46 @@ g.gfx = {
 			if (fy >= rec.frameheight)
 			{
 				console.log('Warning: attempting to draw spritesheet frame outside defined range!');
-				return;
+				return false;
 			}
 			frame = {left: rec.framex*fx, top: rec.framey*fy, width: rec.framex, height: rec.framey};
 		}
-		else if (rec.use == 'background' && frame.diy == true)
-			frame = {left:0, top:0, width:rec.data.width, height:rec.data.height};
+		else if (rec.use == 'background')
+		{
+			var dx = 0;
+			var dy = 0;
+			var w = 650;
+			var h = 450;
+			if (x < 0)
+			{
+				dx -= x;
+				w += x;
+				x = 0;
+			}
+			if (y < 0)
+			{
+				dy -= y;
+				h += y;
+				y = 0;
+			}
+			var rw = rec.width;
+			var rh = rec.height;
+			if (x + w > rw)
+				w -= x + w - rw;
+			if (y + h > rh)
+				h -= y + h - rh;
+			frame = {left:x, top:y, width:w, height:h};
+			x = dx;
+			y = dy;
+		}
 		if (x > 650 || y > 450 || x + frame.width <= 0 || y + frame.height <= 0)			//do not draw offscreen
-			return;
-		if (g.gfx.queue[layer] == null)
-			g.gfx.queue[layer] = [];
+			return false;
 		frame.x = x;
 		frame.y = y;
 		frame.recid = recid;
 		frame.flip = flip;
 		frame.alpha = alpha;
-		g.gfx.queue[layer][g.gfx.queue[layer].length] = frame;
+		return frame;
 	},
 	drawfunc: function(func, layer) {
 		if (typeof g.gfx.queue[layer] =='undefined')
@@ -56,6 +105,7 @@ g.gfx = {
 		g.gfx.queue[layer][g.gfx.queue[layer].length] = func;
 	},
 	paint: function() {
+		g.gfx.fbpaint();
 		for (var i in g.gfx.queue)
 		{
 			for (var j in g.gfx.queue[i])
@@ -96,5 +146,33 @@ g.gfx = {
 			}
 		}
 		g.gfx.queue = [];
+	},
+	fbdex: [],
+	fblayer: 1,
+	fbdraw: function(recid, x, y, frame, p, flip, alpha)
+	{
+		var order;
+		if (g.resources[recid].use == 'background')
+		{
+			order = g.gfx.makeorder(recid, g.area.areas[g.area.currentarea].x-x, g.area.areas[g.area.currentarea].y-y, frame, flip, alpha);
+		}
+		else
+			order = g.gfx.makeorder(recid, x-g.area.areas[g.area.currentarea].x, y-g.area.areas[g.area.currentarea].y, frame, flip, alpha);
+		if (order)
+		{
+			order.p = p;
+			g.gfx.fbdex[g.gfx.fbdex.length] = order;
+		}
+	},
+	fbpaint: function() {
+		if (g.gfx.fbdex.length)
+		{
+			g.gfx.fbdex.sort(function(a,b) {return a.p-b.p;});
+			if (!g.gfx.queue[g.gfx.fblayer] || !g.gfx.queue[g.gfx.fblayer].length)
+				g.gfx.queue[g.gfx.fblayer] = g.gfx.fbdex;
+			else
+				g.gfx.queue[g.gfx.fblayer] = g.gfx.fbdex.concat(g.gfx.queue[g.gfx.fblayer]);
+			g.gfx.fbdex = [];
+		}
 	}
 };

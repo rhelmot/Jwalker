@@ -4,7 +4,7 @@ _!_: Get a feel for the controls! The physics engine is pretty versatile and fun
 _!_: If you are stuck, the primary purpose of this walkaround is to accept Dadsprite's quest, and then make your way to his room. Do that!
 
 !about
-_!_: Jwalker engine coded by Andrew Dutcher. Various sprites drawn by Cole Smith, dialog bases drawn by Jade Bock. All else by Andrew.
+_!_: Jwalker engine coded by Andrew Dutcher. Various sprites drawn by Cole Kronman, dialog bases drawn by Jade Bock. All else by Andrew.
 _!_: For information about the Jwalker project, visit http://github.com/rhelmot/Jwalker or http://mspaforums.com/showthread.php?50595
 
 !cantenter

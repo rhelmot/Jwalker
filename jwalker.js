@@ -26,6 +26,10 @@ function kill() {
 	killcode = -1;
 }
 
+function desync(a) {
+	setTimeout(a, 0);
+}
+
 function capkeydown(e) {
 	tkeys[e.keyCode] = true;
 	switch(e.keyCode){			//do not scroll page
@@ -139,10 +143,7 @@ function Rectangle(x1, y1, x2, y2, usesizes) {
 		return 0 <= dx && dx <= mx && 0 <= dy && dy <= my;
 	}
 	this.translate = function(x,y) {
-		this.x1 += x;
-		this.x2 += x;
-		this.y1 += y;
-		this.y2 += y;
+		return new Rectangle(this.x1 + x, this.y1 + y, this.x2 + x, this.y2 + y, false);
 	}
 	this.moveTo = function(x,y) {
 		this.x1 = x;
@@ -156,6 +157,19 @@ function Rectangle(x1, y1, x2, y2, usesizes) {
 		this.x2 = this.x1 + w;
 		this.y2 = this.y1 + h;
 	}
+	this.draw = function() {
+		var othis = this;
+		var done = false;
+		g.gfx.drawfunc(function() {
+			if (done)
+				return;
+			done = true;
+			g.c.fillStyle = 'green';
+			g.c.globalAlpha = .5;
+			g.c.fillRect(othis.x1 - g.area.areas[g.area.currentarea].x, othis.y1 - g.area.areas[g.area.currentarea].y, othis.width, othis.height);
+			g.c.globalAlpha = 1;
+		}, g.gfx.layers.ui);
+	}
 }
 
 var g = {
@@ -165,14 +179,19 @@ var g = {
 		if (g.debug.enabled)
 			g.tstart = new Date();
 		g.c.clearRect(0,0,650,450);
-		g.controls.process(keys, points);
-		if (g.dialog.active)
-			g.dialog.process();
-		if (g.query.active)
-			g.query.process();
-		g.area.process();
 		if (!g.loading.active)
+		{
+			g.controls.process(keys, points);
 			g.ui.process();
+			if (g.dialog.active)
+				g.dialog.process();
+			g.query.clearqueue();
+			if (g.query.active)
+				g.query.process();
+			g.area.process();
+		}
+		else
+			g.loading.work();
 		g.timeouts.process();
 		g.gfx.paint();
 		if (g.debug.enabled)
