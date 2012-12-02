@@ -30,15 +30,19 @@ g.gfx = {
 		{
 			if (rec.type == 'meta' && rec.use == 'quiltdata')
 			{
-				for (var qy = 0; qy < 450 + rec.height; qy += rec.height)
+				for (var qy = 0; qy < 450 + rec.patchy; qy += rec.patchy)
 				{
-					for (var qx = 0; qx < 650 + rec.width; qx += rec.width)
+					for (var qx = 0; qx < 650 + rec.patchx; qx += rec.patchx)
 					{
-						var rx = Math.floor((qx+x)/rec.width);
-						var ry = Math.floor((qy+y)/rec.height);
-						var trec = rec.data[ry][rx];
-						if (typeof trec == 'number')
-							g.gfx.draw(trec, x-(rx*rec.width), y-(ry*rec.height), 0, g.gfx.layers.bg);
+						var rx = Math.floor((qx+x)/rec.patchx);
+						var ry = Math.floor((qy+y)/rec.patchy);
+						var trec = rec.data[ry];
+						if (typeof trec == 'object')
+						{
+							trec = trec[rx];
+							if (typeof trec == 'number')
+								g.gfx.draw(trec, x-(rx*rec.patchx), y-(ry*rec.patchy), 0, g.gfx.layers.bg);
+						}
 					}
 				}
 				return false;
@@ -174,5 +178,10 @@ g.gfx = {
 				g.gfx.queue[g.gfx.fblayer] = g.gfx.fbdex.concat(g.gfx.queue[g.gfx.fblayer]);
 			g.gfx.fbdex = [];
 		}
-	}
+	},
+	setbgcolor: function(color) {
+		g.c.canvas.style.backgroundColor = color;
+		g.gfx.bgcolor = color;
+	},
+	bgcolor: 'white'
 };

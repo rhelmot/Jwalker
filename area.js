@@ -2,7 +2,8 @@ g.area = {
 	currentarea: 0,
 	areas: [],			//SETME
 	process: function() {
-		if (g.loading.add(g.area.areas[g.area.currentarea].reclist, function() {
+		var ca = g.area.areas[g.area.currentarea];
+		if (g.loading.add(ca.reclist, function() {
 			g.timeouts.addtimeout(60,function(timer) {
 				g.area.loadarea(g.area.currentarea, 'inout', 'white', 'start');
 				g.timeouts.addtimeout(30,function() { g.loading.active = false; }, false);
@@ -11,8 +12,6 @@ g.area = {
 		{
 			return;
 		}
-		g.area.areas[g.area.currentarea].process(g.area.areas[g.area.currentarea]);
-		var ca = g.area.areas[g.area.currentarea];
 		for (var i in ca.sprites)
 		{
 			if (ca.sprites[i] == null)
@@ -42,6 +41,7 @@ g.area = {
 				}
 			}
 		}
+		ca.process(ca);
 	},
 	loadarea: function(num, fade, color, loc) {
 		g.frozen = true;

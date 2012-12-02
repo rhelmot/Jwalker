@@ -1,6 +1,6 @@
 !about
 :[S] Be the other boy: Thoughtstuck HTML5 walkaround Mark II
-:Jwalker engine by Andrew Dutcher, Dialog bases by Jade Bock, Dialog sprites by Cole Kronman and Andrew Dutcher, background music "Tony's Theme" by Alex Meiburg. All else by Andrew.
+:Jwalker engine by Andrew Dutcher, Dialog bases by Jade, Dialog sprites by Cole and Andrew Dutcher, Gina's art drawn by Gina, background music "Thought-Stab-Thought" by Alex. All else by Andrew.
 :For information about the Jwalker project, visit http://github.com/rhelmot/Jwalker or http://mspaforums.com/showthread.php?50595
 
 !controls
@@ -23,14 +23,45 @@
 :Chicago was darned good, even if you only ever saw the movie. :( You especially enjoyed the way the musical numbers sort of happened in their own little reality. An excellent commentary on willing suspencion of disbelief if you asked you.
 :Les Miserables... words cannot describe how much you loved it. You pray that they don't screw up the movie.
 
+!examineposters2
+:Book of Mormon was /almost/ too racy for your tastes. Almost. Its beautiful self-parody of broadway musicals in general made up for it though. Also the sheer audacity of brutally mocking a rather sizable religion.
+:As for Doctor Horrible, it would be a vast understatement to say that it was the most amazing thing ever produced by a human mind. You could not possibly love the beautiful songs, tragic storyline, and gorgeous acting and/or actors that make up this internet masterpiece any more than you already do. Oh, if only you could be the supervillan evil genius wannabe with a hopeless romantic interest.
+:Actually, scratch that last bit. You prefer your romantic overtures to be successful, thank you very much.
+
+!examineposters3
+:Rent was actually the first musical you ever saw. Unlike the other shows, they actually ran an Australian production, when you saw with your grandmother way back when she actually kept a car around to get to the city easily. It left a lasting impression on you. You really wish the whole show got more attention, instead of just 'Seasons of Love'.
+:You actually saw Tarzan pretty recently, relatively speaking, on your last trip to the US. You are not ashamed in any way to say that you could not stop crying when Kerchak died. Such a good musical.
+
 !examinegifts
 :It may be your birthday, but you are not allowed to open your presents yet! Your friends have forbidden you from opening them until they are awake to witness your actions. This probably means a couple more hours, but your respect their wishes.
 :Bach's present looks really big! You wonder what could be inside it.
+
+!examinecabinet
+:This is your cabinet. You keep your clothes in it.
+:...
+:Yeah that's all there really is to it. You're dead serious; there's nothing interesting in there.
 
 !computerintro
 :This is your COMPUTER. It is currently running a beta version of the PLANES EIGHTFOLD operating system. You still can't believe that that installation went off without a hitch.
 :You were hesitant about upgrading, but reading reviews on the system, specifically its interface, convinced you to try it out. And oh gosh are you satisfied with it. The interface is just so simple to use!
 :You take this as a hesitant proof of concept that sometimes change can be a good thing.
+:(Click any of the icons to explore the computer, or the power button to leave)
+
+!compnope
+:Er.... how about no? You'd prefer not to delve into the murky technical depths of this machine just yet. Or, for that matter, ever.
+
+!compsentences
+:This is Sentences, a base-functionality word-processor. You use it primarily for work on your shipping projects. You know, the ones you do with Bach on days that aren't your birthday. Remember how that never stopped being a thing?
+
+!comppcintro
+:This is Pesterchum, which you use to talk to your friends. It looks like right now only Gina is awake and active, though. What is it, about 10:00 for her? You find it difficult to keep track of time zones like that.
+:Perhaps you'll talk with her for a bit.
+
+!compieintro
+:This is Internet Explorer.
+:No matter what anyone else tells you, you still like this one. It works, and you get how to use it. That's all there is to it.
+:Right now you have a picture from Gina's DeviantArt account open. You were considering replacing your current desktop background (also drawn by Gina) with this, but changed your mind. You mean, really. Flying bunnies. Seriously.
+:Over in the other tab is some Jailbreak fanfic that Bach sent to you for review. You don't really like Jailbreak, but then again neither does she. The characters just seem so darned usable, you know! Bach tends to alternate between writing legitimately good fiction and self-indulgent fluff. You're pretty sure this is the latter.
 
 !gina1
 :part 1 of conversation

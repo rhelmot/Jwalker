@@ -10,7 +10,7 @@ g.ui = {
 	controlsrect: {},		//SETME - Rectangle to use for controls active zone and drawing area
 	aboutdlg: '',			//SETME - dialog to use for 'About' text
 	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description. (see controls.js)
-	enabled: true,
+	enabled: false,		//ui disabled by default - control graphics will not have loaded!
 	
 	process: function()
 	{
@@ -97,7 +97,7 @@ g.save = {
 		var dsv = [];
 		for (var i in g.resources)
 		{
-			if (typeof g.resources[i].data == 'object' && g.resources[i].use != 'quiltdata')
+			if (typeof g.resources[i].data == 'object' && g.resources[i].type != 'meta')
 			{
 				dsv[i] = {data: g.resources[i].data, loaded: g.resources[i].loaded};
 				delete g.resources[i].data;
@@ -155,7 +155,8 @@ g.save = {
 		var svst = localStorage.getItem(ts);
 		var sv = g.save.deserialize(svst);
 		g.audio.setvol(sv.audio.globalvol);
-		g.audio.play(sv.audio.currentbgm);
+		if (g.resources[sv.audio.currentbgm])
+			g.audio.play(sv.audio.currentbgm);
 		g = sv;		//god help us all
 		localStorage.removeItem(ts);
 		for (var i = j+1; i < games.length; i++)
@@ -167,9 +168,10 @@ g.save = {
 		var sv = JSON.parse(gstr);
 		sv = g.save.refunction(sv);
 		sv.c = g.c;
+		sv.c.canvas.style.backgroundColor = sv.gfx.bgcolor;
 		for (var i in g.resources)
 		{
-			if (g.resources[i].loaded)
+			if (g.resources[i].loaded && g.resources[i].type != 'meta')
 			{
 				sv.resources[i].loaded = true;
 				sv.resources[i].data = g.resources[i].data;

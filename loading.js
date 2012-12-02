@@ -64,6 +64,7 @@ g.loading = {
 		if (!g.loading.processqueue.length && !g.loading.loadqueue.length && !g.loading.failqueue.length && g.loading.processdata===false && g.loading.loaddata.recid===false)
 		{
 			g.loading.processout = 0;
+			g.loading.loaddata = {};
 			if (typeof g.loading.callback == 'function')
 			{
 				g.loading.callback();
@@ -401,6 +402,8 @@ g.loading = {
 		percent = Math.floor(100 * loaded / total);
 		if (total == 0)
 			percent == 100;
+		if (percent.toString() == 'NaN')
+			percent = 100;
 		g.gfx.drawfunc( function() {
 			g.c.drawImage(document.getElementById('loadimg'),0,0);
 			g.c.fillstyle = g.loading.percent.color;

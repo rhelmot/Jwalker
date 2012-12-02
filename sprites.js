@@ -233,7 +233,11 @@ func: {
 area: {
 	process: function(inst) {
 		if (!g.frozen && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
+		{
+			if (!inst.option)
+				return inst.callback();
 			g.query.queueoption(inst.option, inst.callback);
+		}
 	}
 },
 examine: {
