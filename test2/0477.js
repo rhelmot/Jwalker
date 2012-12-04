@@ -313,6 +313,25 @@ g.resources = [
 	framewidth: 1,
 	frameheight: 1,
 	size: 0.2
+},
+{		//69
+	filename: 'hall1/bg.png',
+	type: 'image',
+	use: 'background',
+	size: 36.5
+},
+{		//70
+	filename: 'hall1/hitbox.png',
+	type: 'image',
+	use: 'hitbox',
+	size: 5.8,
+	scale: 2
+},
+{		//71
+	filename: 'hall1/wall.png',
+	type: 'image',
+	use: 'background',
+	size: 2.9
 }
 ];
 
@@ -367,7 +386,7 @@ g.ui.volrect = new Rectangle(20, 10, 50, 40, true);
 g.ui.optrect = new Rectangle(530, 10, 31, 40, true);
 g.ui.controlsrect = new Rectangle(580, 10, 50, 40, true);
 
-g.area.currentarea = 3;
+//g.area.currentarea = 3;
 
 g.gfx.pixels = {
 	0x000000: 0,
@@ -675,7 +694,7 @@ g.area.areas = [
 					if (!g.globalstate.gina1)
 						g.dialog.notice('Nope! You still have more screwing around in here to do before you can proceed! :D');
 					else
-						g.area.loadarea(4, 'inout', 'white', 'door');
+						g.area.loadarea(5, 'inout', 'black', 'door');
 				}
 			}
 		]
@@ -733,7 +752,7 @@ g.area.areas = [
 					if (!g.globalstate.gina1)
 						g.dialog.notice('Nope! You still have more screwing around in here to do before you can proceed! :D');
 					else
-						g.area.loadarea(4, 'inout', 'white', 'door');
+						g.area.loadarea(5, 'inout', 'black', 'door');
 				}
 			},
 			{
@@ -820,7 +839,7 @@ g.area.areas = [
 			}
 		]
 	},
-	{
+	{							//computer
 		process: function(ca)
 		{
 			if (ca.entering)
@@ -1227,6 +1246,51 @@ g.area.areas = [
 				}
 			}
 		]
+	},
+	{						//5 - hallway/stairwell
+		reclist: allrecs,
+		bg: 69,
+		hitbox: 70,
+		player: 0,
+		x: 500,
+		y: 200,
+		ents: {},
+		onLoad: function(ent) {
+			g.area.funcs.doent(g.area.areas[5], ent);
+			g.gfx.setbgcolor('white');
+		},
+		onActivate: function() {},
+		process: function(ca) {
+			g.area.funcs.hswalk(ca);
+		},
+		sprites: [
+			{
+				index: 0,
+				name: 'tony',
+				dim: new Rectangle(30,180,110,53,true),
+				x: 752,
+				y: 350,
+				xspd: 0,
+				yspd: 0,
+				xsub: 0,
+				ysub: 0,
+				faceleft: false,
+				faceback: false,
+				sheet: 5,
+				frame: 0,
+				frametimer: 0
+			}
+		],
+		objects: [
+			{	//stairwellwall
+				recid: 71,
+				x: 835,
+				y: 325,
+				p: 744,
+				a: 0,
+				aopt: 'fadebehind'
+			}
+		],
 	}
 ];
 

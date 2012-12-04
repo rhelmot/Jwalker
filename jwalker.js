@@ -175,6 +175,7 @@ function Rectangle(x1, y1, x2, y2, usesizes) {
 var g = {
 	recRoot: recRoot,
 	frozen: false,
+	k: {frame: {}},
 	tick: function (keys, points) {
 		if (g.debug.enabled)
 			g.tstart = new Date();

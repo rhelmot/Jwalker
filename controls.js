@@ -4,6 +4,8 @@ g.controls =
 	keyset: 0,
 	keysets: [],			//SETME
 	process: function(keys, points) {
+		if (!g.controls.keysets.length)
+			return;
 		g.p = points;
 		var k = {};
 		if (g.controls.keysets[g.controls.keyset].type == 'keyboard')
