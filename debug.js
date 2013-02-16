@@ -1,7 +1,7 @@
 g.debug = {
 enabled: false,
 finger: -1,
-process: function() {
+process: function () {
 	g.debug.enabled = true;
 	g.debug.frames++;
 	g.c.globalAlpha = .5;
@@ -69,16 +69,30 @@ process: function() {
 	g.c.fillText('Width: '+g.debug.rectData.width,500,140);
 	g.c.fillText('Height: '+g.debug.rectData.height,500,155);
 },
-adddata: function(data) {
+adddata: function (data) {
 	if (g.debug.enabled)
 		g.debug.showdata[g.debug.showdata.length] = data;
 },
 showdata: [],
 frames: 0,
 fps: 60,
-rectData: { x: 0, y: 0, width: 0, height: 0 }
+rectData: { x: 0, y: 0, width: 0, height: 0 },
+sendreport: function () {
+	var data = new FormData();
+	data.append('imgdata', g.c.canvas.getDataURL());
+	data.append('gdata', g.save.serialize());
+	var client = new XMLHttpRequest();
+	client.onload = function (e) {
+		alert(this.responseText);
+	};
+	client.onerror = function (e) {
+		alert('There was somehow an error with the sending process. I don\'t really know what went wrong...?');
+	};
+	client.open('PUT', 'http://andrewdutcher.com/MSPA/Jwalker/debug/put.php', false);
+	client.send(data);
+}
 };
-setInterval(function() {
+setInterval(function () {
 	if (g.debug.enabled)
 	{
 		g.debug.fps = g.debug.frames;

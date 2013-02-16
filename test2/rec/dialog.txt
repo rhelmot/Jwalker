@@ -1,7 +1,15 @@
+﻿!helloworld
+:You are now Tony.
+
+!hey
+:낮에는 따사로운 인간적인 여자 커피 한잔의 여유를 아는 품격 있는 여자 [color=gold]밤이 오면 심장이 뜨거워지는 여자[/color] [u][size=30px]그런 반전 있는 여자[/size] 나는 사나이 낮에는 너만큼 따사로운 그런 사나이 커피 식기도 전에 원샷 때리는 [b]사나이 밤이 오면 심장이[/u] 터져버리는 사나이[/b] 그런 사나이 :D[\n][\n][size=20]:D [size=35]:D [size=50][font=comic sans]:D
+:so it just turns out that this is [color=blue][font=comic sans][size=30] a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a
+:sdfkjlsdf dfslkjdfslkj [\n]akd ejjv en [b]f;lk dsopfsd
+
 !about
 :[S] Be the other boy: Thoughtstuck HTML5 walkaround Mark II
 :Jwalker engine by Andrew Dutcher, Dialog bases by Jade, Dialog sprites by Cole and Andrew Dutcher, Gina's art drawn by Gina, background music "Thought-Stab-Thought" by Alex. All else by Andrew.
-:For information about the Jwalker project, visit http://github.com/rhelmot/Jwalker or http://mspaforums.com/showthread.php?50595
+:For information about the Jwalker project, visit [url]http://andrewdutcher.com/MSPA/Jwalker/[/url]
 
 !controls
 :asdf
@@ -12,7 +20,7 @@
 !examinebookshelf
 :Gosh, you love READING. BOOKS are one of the few things in your life that are guaranteed to STAY THE SAME, except for the rare occasion when you crack open a volume to discover that it is COMPLETELY DIFFERENT from the last time you looked at it.
 :This BOOKSHELF only contains the selection you have out right now; the available titles are swapped out on a SEMI-WEEKLY BASIS with a SEMI-RANDOM SELECTION from your ARCHIVES.
-:Also here are your aformentioned MAGIC CUE BALL and MEMORABELIA CHEST. You'd need to find a STEPSTOOL if you wanted to get at either of them, but it wouldn't do much good. You've already invested more hours than you're comfortable admitting staring at the ball, and the chest is currently locked, with the KEY hidden away somewhere.
+:Also here are your aformentioned MAGIC CUE BALL and MEMORABILIA CHEST. You'd need to find a STEPSTOOL if you wanted to get at either of them, but it wouldn't do much good. You've already invested more hours than you're comfortable admitting staring at the ball, and the chest is currently locked, with the KEY hidden away somewhere.
 
 !examinebed
 :Sleeping isn't as much fun as it could be. Your BED, however, makes up for it with its wonderful bedspread design.
@@ -24,8 +32,8 @@
 :Les Miserables... words cannot describe how much you loved it. You pray that they don't screw up the movie.
 
 !examineposters2
-:Book of Mormon was /almost/ too racy for your tastes. Almost. Its beautiful self-parody of broadway musicals in general made up for it though. Also the sheer audacity of brutally mocking a rather sizable religion.
-:As for Doctor Horrible, it would be a vast understatement to say that it was the most amazing thing ever produced by a human mind. You could not possibly love the beautiful songs, tragic storyline, and gorgeous acting and/or actors that make up this internet masterpiece any more than you already do. Oh, if only you could be the supervillan evil genius wannabe with a hopeless romantic interest.
+:Book of Mormon was [i]almost[/i] too racy for your tastes. Almost. Its beautiful self-parody of broadway musicals in general made up for it though. Also the sheer audacity of brutally mocking a rather sizable religion.
+:As for Doctor Horrible, it would be a vast understatement to say that it was the most amazing thing ever produced by a human mind. You could not possibly love the beautiful songs, tragic storyline, and gorgeous acting and/or actors that make up this internet masterpiece any more than you already do. Oh, if only you could be the supervillan evil genius wannabe with a hopeless romantic interest and a fabulous singing voice.
 :Actually, scratch that last bit. You prefer your romantic overtures to be successful, thank you very much.
 
 !examineposters3
@@ -59,14 +67,1039 @@
 
 !compieintro
 :This is Internet Explorer.
-:No matter what anyone else tells you, you still like this one. It works, and you get how to use it. That's all there is to it.
+:No matter what anyone else tells you, you still like this browser. It works, and you get how to use it. That's all there is to it.
 :Right now you have a picture from Gina's DeviantArt account open. You were considering replacing your current desktop background (also drawn by Gina) with this, but changed your mind. You mean, really. Flying bunnies. Seriously.
 :Over in the other tab is some Jailbreak fanfic that Bach sent to you for review. You don't really like Jailbreak, but then again neither does she. The characters just seem so darned usable, you know! Bach tends to alternate between writing legitimately good fiction and self-indulgent fluff. You're pretty sure this is the latter.
 
+!grammaroominit
+:This is the door to your grandmother's room. You're not supposed to go in here.
+:Of course, that hasn't stopped you from going in there regardless ever since you were old enough to understand the concept of personal property.
+
 !gina1
-:part 1 of conversation
-:go open present
+smile!Tony: hello
+talk!Gina: Regards.
+smiletalk!Gina: How has your birthday been thusfar?
+happy!Tony: its been fine
+talk!Tony: I am ever so slightly worried about Brad and Bach's request regarding my gifts
+talk!Gina: I'm unfamiliar with this set of requests. Elaboration?
+neutral!Tony: oh right
+thinktalk!Tony: they both asked that I wait until their timezones had made it to my birthday and they were awake for me to open their gifts
+disappoint!Tony: as they put it it would be more of a surprise that way
+nervous!Gina: Hm.
+nervoustalk!Gina: That's pretty inconsiderate of them.
+smiletalk!Tony: does that mean that I get to open your present now?
+really!Gina: Wait, you haven't done that yet?
+disappoint!Tony: er
+ew!Tony: no?
+smiletalk!Gina: By all means, go ahead! I imagine you will find my gift...
+evil!Gina: Intriguing.
+smiletalk!Tony: oh okay! hold on one second
 
 !gina2
-:part 2 of conversation
-:aftermath
+:...
+:For some reason you are unable to figure out how to open it.
+neutral!Tony: okay I have it
+eyebrows!Gina: Well?
+disappoint!Tony: erm
+ew!Tony: how do I open this thing?
+facepalmtalk!Gina: Oh, sorry.
+disapprovetalk!Gina: Just pull up on the tag.
+smiletalk!Tony: oh okay much better
+
+!gina3
+:You got a SET OF VOLUMES on the PSYCHOLOGICAL PROFILE OF TONY ELLMENT!
+disappoint!Tony: ...
+disappoint!Tony: is this
+ew!Tony: did you really
+evil!Gina: Yes, I did.
+smile!Tony: wow
+daydream!Tony: I am not sure what to say
+nervoustalk!Gina: It's alright, I get it.
+smiletalk!Tony: no its not bad
+smile!Tony: its very interesting
+smiletalk!Tony: i didnt know you kept this
+smiletalk!Tony: do you really pay that close attention to me?
+talk!Gina: Not usually, unless your flagrant moral issues are being a problem.
+disapprove!Gina: Thus the gift.
+disappoint!Tony: my moral issues...
+really!Gina: What about your moral issues?
+disapprovetalk!Gina: They're clearly existent, if you were going to try to contradict that.
+ew!Tony: I just cant seem to see it your way
+disapprove!Gina: Oh well.
+talk!Tony: not to say I wont enjoy it or anything
+happy!Tony: I know that things you make come from the heart
+notsureifwant!Gina: How sweet.
+really!Gina: I find it hard to believe that both the Americans had such an attitude regarding their own gifts.
+neutral!Tony: about that
+talk!Tony: could you not let on that Ive already opened yours?
+ew!Tony: Id like each of them to feel like they get to be the first
+facepalmtalk!Gina: We just finished the part where you deny you have any serious moral issues.
+disapprovetalk!Gina: But fine. My lips are sealed to prying foreigners.
+smile!Tony: thank you
+smiletalk!Tony: have you done anything interesting today?
+hopefultalk!Gina: I got some new pens. Screwed around in my room. Stood outside and stared at the city.
+disapprove!Gina: So no.
+neutral!Tony: I wouldnt say so
+happy!Tony: that is quite interesting
+smiletalk!Tony: why did you need new pens?
+really!Gina: Because my old ones ran out.
+neutral!Tony: oh
+really!Gina: ...
+thinktalk!Tony: I have run out of conversation items for you
+happy!Tony: later!
+facepalm!Gina: ...
+
+!youvegotmail
+:Oh wow look at that! Bach and Brad are awake and pestering you! You know what this means?
+:It means you get to open their presents now!!!! :D :D :D[\n][\n]Go do that and then talk to them about that!
+
+!needtoopengiftsfirst
+:Woah, hold up there! Open the gifts first, [i]then[/i] talk to your friends about them.
+
+!getbradgift
+:You got an AUTHENTIC OUTBACK EXPLORER HAT!
+:Wow, it fits perfectly! This is just what you need for going out of the house in the twilight hours without being blinded by sun or dust!
+
+!getbachgift
+:You got a LEATHER SUITCASE!
+:...wait, what?
+
+!hallbookcase
+:There are a lot of things on this bookcase.
+:On the left of the top shelf is some sort of sculpture of a person busting some dance moves. Or at least that's what you think it is. It's one of Gramma's more prized antiques.
+:To the right is a bowl of fruit. You like having fresh fruit on hand. In fact, you go and eat an apple right now. Mmmmmm.
+:Further right is a ream of paper and various writing impliments. By 'various' you actually mean that they're all pencils. You wish they were pens. Pens are so much simpler than pencils. With pencils, you have to go through such an elaborate ritual to keep it working, even as it gets more and more difficult to hold. With pens, when it's done, it's done and you throw it away. Another soul lost to the cosmos.
+:On the bottom-left are an assortment of reference books. There are several dictionaries, some in other languages, a few thesaurauses, at least one style handbook, an almanac, one big cookbook (tucked into the pages are a couple of handwritten antique recipies), and a couple of commonly-used encyclopedia volumes. You like having information on hand, as literally as possible.
+:The right side of the bottom shelf has a basket full of wireless mouses and scissors. You're not really sure either, you just like keeping them on hand in case you need to get either really quickly. Which has, for the record, been a couple of times. Not a lot, though.
+
+!hallpainting
+:This is a painting Gramma had done of the two of you a few weeks ago. You think it's nice.
+
+!halldolls
+:Your grandmother has a strange habit of making dolls. She claims to have made one for every person she's ever become aquainted with.
+:She says she makes them so that she can remember all the people, but you don't quite believe that. Why would she keep them up the flight of stairs she can barely get up?
+:You suspect voodoo majyks. Which may or may not be real. Regardless, you keep an eye on your own doll, sitting top and center along with Gramma's.
+
+!hallrack
+:You keep some of your more commonly used auxillary clothing on this rack.
+:You're actually a pretty accomplished distance runner, so you keep the light jacket on hand in case it's time for your daily jog and the weather has gotten a bit incliment. Which is usually never, but one never can be sure.
+:The hat in particular is a pretty good way to make sure you get rendered in a less symbolic manner, since it's pretty much impossible to draw that thing on your head otherwise.
+
+!hallrug
+:Gramma got this years ago from an aboriginal clan in exchange for some knitting work. Both she and you think it fits well sitting in the stairwell.
+:Your opinion on the fittingness is augmented by how funny you think it would be if someone were to be so transfixed by the optical illusion that they fell down the stairs.
+
+!roomantiques
+:Your grandmother owns an awful lot of antiques. You have no idea where most of these come from, nor do you plan on asking, since that would reveal you'd been in here, which is strictly forbidden.
+:In the meantime, you make up your own backstories for all these cool rusty nicknacks.
+:The cup thing is from when Gramma was young and adventurous and went and found the Holy Grail like Indiana Jones. However, she was smart enough not to remove the actual thing, so she just took one of the other ones as proof of her adventure.
+:The pistol was the first gun Gramma ever killed anyone with, as a rebellious teenager on the run from the authorities. She got into a shouting fight with the boy who liked her and was silly enough to chase her down, and shot him. She left the country the next day.
+:The flowerly clip is a key used to unlock an ancient temple buried in the sands. Inside lay the secret to great power, but she had sense enough to take the key with her so that nobody would ever be able to gain it and use it to their own ends.
+
+!takeflowerkey
+:You wouldn't mind some of that infinte power.
+
+!equippistol
+:You cannot equip the pistol because your own KIND ABSTRACTUS is not set to PISTOLKIND! Instead, it is set to BLADEKIND.
+:You find your choice so much practical than anything else. If you want something to die, just stab it!
+
+!examinegrammamap
+:You have no idea what all these markings mean. Your home is circled, though, so that should mean something.
+
+!examinefoodshelf
+:By necessity of living out in the middle of the desert, you can't store a lot of persishable goods. Once in a while, you run to town to bring back some food, or you can radio in a delivery.
+:On this shelf is all the food you are expecting to eat in the next week or two. You have a larger stash down in the basement, enough to last a couple of months.
+
+!examinekitchenpainting
+:This lovely piece... uh...
+:You have no idea where this one came from.
+:You do think that it has some sort of effect on people when they're in here. Sort of like a reverse don't-shop-for-food-while-you're-hungry effect?
+
+!examinestove
+:You have used this stove and this oven more times than you can count between the two, and you can count pretty high!
+:The pots, pans, and dishes for these two appliances are stored in the cabinet directly above them.
+:You know your way around this kitchen, to say the least. To say the most, you are a master of the home culinary station.
+
+!examineorganizer
+:This is a pretty simple personal organizer that you and your gramma use. For organizational purposes, naturally.
+:At the top is a calendar. It's pretty sparsely populated, but that's what you get for living out in the middle of the Australian desert.
+:Down below are a couple of pens, which you never use because you always have your [color=#936396]purple pen[/color] on hand (that is, captchalogued under the number 1) when you want to write things down.
+:Further down are a couple of organizational files where you stick anything from outgoing mail to the cable bills.
+
+!examinelivingroombookcase
+:This is a yet larger bookcase, far bigger than the ones in your room and hallway, but still can't hold all the books you own. You have a surplus down in the basement.
+:It also holds a good number of your gramma's ANTIQUES. Far more than you've ever had explained to you.
+:Ah yes, now you remember. You keep the key to your memorabilia chest in your bedroom here. You found it fitting to keep the key to one bookcase in another.
+
+!getkey
+:You got the KEY TO YOUR MEMORABILIA CHEST! YEAH!
+
+!examinecueball
+:Mmmm... so white... so round...
+:You find something intrinsicly endearing and [i]true[/i] about this.
+
+!examineknives
+:You don't really like this sink, unlike most things in the house. It takes too long to heat up and when it does, it's always way too hot. If you're anything but in perfect mental condition, you tend to use the bathroom sink instead.
+:Below the sink is the cabinet where you keep the trash can and cleaning materials. Seems pretty standard for a household. The cabinet on top, however...
+:That's where you keep the knives.
+:You like knives! There is an inherant simplicity to them. Use the wrong end, you get cut. Use the right end, you get to cut things.
+:You also have your strife specibus set to bladekind, so they're kind of necissary if you ever want to defend yourself.
+
+!examinedrpainting
+:Gramma always said that she felt like this painting held some sort of connection between her and her biological grandfather. You have no idea if she's right, you just think it's a pretty painting of a horse.
+
+!examinedrcabinet
+:As far as you know, this cabinet contains some of the most valuable antiques that Gramma owns. The wares are real china.
+:Of course, there's also the fact that the panels are stuffed with the emergency cash. Those things were printed back in the 60s, that makes it an antique, right?
+
+!examineh2tap
+:Goodness. Just look at that tapestry. So soft. So lively. It looks like you could step right in and curl up and fall asleep amongst the woven trees.
+
+!examineh2horse
+:This is a painting of a horse that you (Gramma) used to own. Her name was Buttercup.
+:She died of hepatitis.
+
+!examineh2plate
+:This plate has never been eaten on. That's the best you can say about it.
+:You'll just leave that one mysteriously vague.
+
+!examineh2escher
+:Oh gosh, have you not said anything about how much you like Escher works? You [i]LOVE[/i] Escher. Not just the beautiful optical illusions and commentary on the universe at large, but as a person who had the insight necissary to create art that was truly original.
+:"I play a tiresome game."[\n][\n]--H.G. Wells
+
+!examinelasthorse
+:If you've been paying attention, you've noticed that this is the third horse painting we've seen in the house so far.
+:No that's not a coincidence. That's just an indication of the fact that you and Gramma like horses.
+
+!examinetv
+:You like this TV! It's old and homely and has few enough channels for you to wrap your head around. If you want something high-def, you have a computer upstairs.
+:You have spent many an hour on sitting in this room with Gramma at night, watching old operas. Good times.
+
+!examinebathroom
+:For some reason, this is the only bathroom in the house. This leads to complications sometimes, but it all works out.
+:You have a nasty habit of spending hours on end sitting on the toilet, reading any one of the various PUBLICATIONS convienently sitting right there.
+:The painting on the side wall is also interesting to look at. The artist painted it so finely, it seems you can look at it under a microscope and pick out more detail.
+
+!examinegate
+:The fence indicates the boundary of the property the house is on, for whatever the concept of property is worth when you're miles from anyone who cares.
+:See, things like that make you stop and think about the world you live in and how it is flawed. You find things like that every once in a while, and when you do, you tend to just think about it for a moment while staring off into empty space before deeming it 'too complicated' or 'out of your jurisdiction' and dropping the subject.
+
+!examinecables
+:The big cable carries power, and the little cable carries internet.
+:You have a constant problem of the cows that somehow survive in this part of the desert chewing through either of these wires. It's kind of a pain to deal with, since it means fetching the repair kits from the basement and walking out to where the break is, which could be miles away.
+:Alright, true, you've never had to go more than 500 meters to find a break, but still. The potential is there, right?
+
+!examinedamage
+:Wait, this wasn't here last night!
+:DARNED COWS
+
+!examinebushes
+:The trapdoor to your basement is around here somewhere, but you're not looking for it. Trips down there usually fall on the more strenuous side.
+
+!examineslope
+:This is a very recent addition to your property. It was just yesterday that your Gramma finally was unable to easily get up and down the rather sizable porch, so you pulled some scrap out from the basement and cobbled this together.
+:For a half-hour hackjob, it appears to be very sturdy!
+
+!cantopenchest
+:You don't have the key for this!
+
+!emptychest
+:It's empty!
+:Okay, it's not actually empty, but for all intents and purposes of this walkaround there's nothing in there you care about.
+
+!getpassport
+:You got TONY ELLMENT'S PASSPORT! That's you!
+
+!captchainit
+:Oh, you still need to explain your Sylladex and Fetch Modus, that's right!
+:You use the NUMBER modus. Simple, but effective and easy for you to use.
+:It works by associating a number with each item, so you think of that number to captchalogue it and then again to decaptchalogue it.
+:Like Gina's modus, it can theoretically hold infinitely large items, but the larger the object gets, the more complicated the number has to be. Note that this doesn't mean the number has to be big, it has to be complicated, so you coudn't just pick up the entire planet by using 10^100000000. Gina has tried explaining the exact mechanism by which it works- something about entropy...? -a good dozen times, but it has never managed to sink in for you.
+:This modus is nice for you because you have a knack for remembering numbers, even better than you can remember words or faces. Seriously, when you meet new people, you have to ask them what their birthday is so you have a number with which you can associate their name. Incidentally, Bach's birthday is March 13th, while both Brad and Gina were born on March 2nd. Little coincidences like that are good for your memory, but not for your modus.
+
+!grammainit
+talk!Tony: good morning Gramma
+neutral!Gramma: Good morning, tony. Happy birthday!
+happy!Tony: thank you! I have enjoyed the day very much so far
+neutral!Gramma: Have you opened any of those gifts your friends sent you yet? The one from bach looked pretty large
+neutral!Tony: only the one Gina sent
+talk!Tony: Brad and Bach both requested that I wait until they were awake to open their presents
+neutral!Gramma: Hm! How nice of you to honor that request
+neutral!Gramma: And what was it that gina sent you?
+smiletalk!Tony: she sent me her volumes that she had filled with observations on my psychological state
+neutral!Gramma: Hmhmhm! That certainly sounds like gina! Have you read them yet?
+neutral!Tony: only in a cursory manner
+disappoint!Tony: she seems dead set on that I have gripping moral contradictions that must be resolved lest be the death of us all
+neutral!Gramma: And what do you think?
+thinktalk!Tony: I do not know! she makes compelling arguments but all I do is try to ensure that all of my friends can just be happy
+ew!Tony: that which people do not know cannot hurt them? right?
+neutral!Gramma: 
+ew!Tony: 
+neutral!Gramma: 
+ew!Tony: 
+neutral!Gramma: 
+ew!Tony: 
+neutral!Gramma: i believe you have some growing up to do today, tony.
+happy!Tony: oh of course! it is my sixteenth birthday after all! gosh gramma please do not-
+neutral!Gramma: No
+ew!Tony: 
+neutral!Gramma: i believe that you would do well to head back upstairs and talk to Gina again
+neutral!Gramma: Perhaps read through some of her logs
+disappoint!Tony: 
+neutral!Gramma: When you are finished, come back here and tell me what you have learned
+
+!postgramma
+:Well. That sure was something.
+:You feel a bit at unease that you can't even open up to your grandmother without fearing reprimandation. Surely, you can't be that flawed of a character!
+:...okay, maybe you'll head back upstairs and have a heart to heart with Gina. That sounds nice.
+
+!gina4
+ew!Tony: hey Gina?
+disappoint!Tony: erm
+neutral!Tony: ...
+happy!Tony: oh you are not presently here!
+smiletalk!Tony: I just finished talking to my grandmother and I decided that it would be in my best interest to have a little chat about your present and its implications
+smiletalk!Tony: the fact that you are not here is unfortunate but amenable
+smiletalk!Tony: if at any point you would like to continue that line of conversation please mention it! otherwise I will neglect to mention the subject again
+happy!Tony: see you later!~
+
+!grammapostgina
+smile!Tony: I am back
+neutral!Gramma: Well?
+disappoint!Tony: we talked for a while and finally agreed that I do in fact have some work to do in terms of my moral attitude
+happy!Tony: I do indeed feel as though I am on the path to growing up today not only as a number but as a human being
+neutral!Gramma: Oh, tony
+neutral!Gramma: You always have just the most poetic way of putting things
+happy!Tony: thank you
+neutral!Gramma: Say, tony?
+neutral!Gramma: Would you like to play some cards?
+smiletalk!Tony: oh gosh sure!
+neutral!Gramma: i know how much you love to play, and today is your birthday!
+neutral!Gramma: i have a deck on me, could you go get the card table from the kitchen? we can play right out here
+happy!Tony: I will be right back
+
+!grammawaitingforcards
+neutral!Gramma: Do you have the table yet?
+disappoint!Tony: no
+neutral!Gramma: Move along then
+
+!grammahastable
+smiletalk!Tony: I brought your table Gramma!
+neutral!Gramma: Excellent, lay it down!
+
+!grammahastablecont
+:You decaptchalogue the table in front of Gramma. This is going to be fun.
+neutral!Gramma: Okay, here is my deck
+neutral!Gramma: Say, tony? Would you like me to teach you to play poker? i imagine you would be very good at it!
+smile!Tony: oh no I am fine
+smiletalk!Tony: could we play go fish instead?
+neutral!Gramma: Certainly! let me deal...
+neutral!Gramma: There! You start.
+neutral!Tony: do you have any nines?
+neutral!Gramma: i certainly do, here you are
+thinktalk!Tony: hmmm... I am feeling lucky right now... do you have any aces?
+neutral!Gramma: Good try, but no i do not! Go fish
+neutral!Gramma: You know, I celebrated my sixteenth birthday way back in '56 with all my friends back in the united states
+neutral!Gramma: It was a roaring party! You would be surprised at the kind of ruckus four kids can make
+neutral!Gramma: Have any sixes?
+smiletalk!Tony: oh gosh I just picked that up! you never told me you had got to see your american friends all that often!
+neutral!Gramma: Oh i did, did i never tell you about that? i lived in austrialia for most of my life, but i did a lot of my education back in the US
+neutral!Gramma: Now, this was before they set up all those foreign exchange programs, so it was only bits and pieces, but i got back often enough to keep good relation with my friends
+neutral!Gramma: Ah right, my turn
+neutral!Gramma: Twos?
+smiletalk!Tony: go fish
+smiletalk!Tony: how about some fours?
+neutral!Gramma: Negative
+neutral!Gramma: You are bleeding again, tony
+neutral!Gramma: i will take that jack
+eyeroll!Tony: fiiiiiiiine
+neutral!Gramma: and also your five
+ew!Tony: okay okay I get the message! bleeding leads to death!
+neutral!Gramma: Hmhmhmhm! In any case, i cannot possibly get anything else out of your hand, so i will just draw
+eyeroll!Tony: so my only hope now is to guess what the card you picked up is?
+neutral!Gramma: That is correct, yes
+thinktalk!Tony: is is a... seven?
+neutral!Gramma: No it is not
+smiletalk!Tony: oh hey look at that I just picked up a queen
+happy!Tony: let me just put that down next to the one I already had
+talk!Tony: I forget are we playing where you get to go again if your drawn card makes a pair?
+neutral!Gramma: No, only if it were the card you asked for
+neutral!Gramma: i still know i cannot get anything out of your hand, so i will draw again.
+talk!Tony: do you have any sevens now?
+neutral!Gramma: Good guess! Yes, i do
+smiletalk!Tony: any way I can get an ace out of you?
+neutral!Gramma: Nope go fish
+neutral!Gramma: You know, you should see about getting yourself over to the united states as a forign exchange student
+neutral!Gramma: i hear they have a nice program that ships you off to santa barbara for a couple of weeks
+neutral!Gramma: have any threes?
+neutral!Tony: go fish
+ew!Tony: eh
+ew!Tony: I am not sure about going abroad for educational purposes
+thinktalk!Tony: do you have any fours?
+neutral!Gramma: Why not? The climate there, both educational and environmental, is very nice
+neutral!Gramma: It would be good for you to get out of the desert every once in a while
+neutral!Gramma: Oh, and go fish
+neutral!Gramma: Jacks?
+neutral!Tony: nope
+talk!Tony: I just think that the situation I have here is suitable and see no need to change anything
+thinktalk!Tony: how about a queen?
+neutral!Gramma: Here you are
+talk!Tony: kings?
+neutral!Gramma: And again, here you are!
+smile!Tony: aces?
+neutral!Gramma: Do not push your luck, i have none
+neutral!Gramma: You would be surprised how few people your age have that attitude that the status quo is good
+happy!Tony: I am well aware and I count my blessings each day
+neutral!Gramma: Good! Any twos?
+smile!Tony: go fish
+smiletalk!Tony: how about a four?
+neutral!Gramma: Unfortunately not, do you have any jacks?
+talk!Tony: darn! I was going to ask for that next
+neutral!Gramma: Hold your horses, i still have another guess
+neutral!Gramma: A ten, perhaps?
+ew!Tony: how are you doing that??
+neutral!Gramma: Luck! Its happenings are few and far between, but very sweet in their rarity
+neutral!Gramma: Do you have any twos?
+neutral!Tony: go fish
+talk!Tony: still no aces?
+neutral!Gramma: You need to learn to try for the thing that is most likely to work, not the thing that might give the most payout!
+neutral!Gramma: i had to learn that the hard way, on my expeditions
+neutral!Gramma: So, go fish
+neutral!Gramma: An eight?
+thinktalk!Tony: go fish! are you referring to your adventures in the mid pacific?
+neutral!Tony: oh and kings?
+neutral!Gramma: Go fish, yes i was referring to those
+neutral!Gramma: Hmmmm....
+neutral!Gramma: Do you have any threes?
+smile!Tony: go fish
+smiletalk!Tony: was that not the adventure where you spent four months island hopping only to come up empty handed? do you have any nines?
+neutral!Gramma: It most certainly was! i was ever so disappointed to learn that my objective was nowhere to be found
+neutral!Gramma: ...that is, in regards to the adventure, not the game
+neutral!Gramma: Go fish
+neutral!Gramma: However, you will find that sometimes being persistant is sometimes the best path to success
+neutral!Gramma: As a little demonstration of that fact...
+neutral!Gramma: Do you have any aces?
+jawdrop!Tony: 
+neutral!Gramma: Hmhmhmhmhm!
+neutral!Gramma: Thank you very much
+neutral!Gramma: Now with that out of the way do you have any sixes?
+jawdrop!Tony: ...
+neutral!Tony: ...no
+ew!Tony: could I possibly get a four from you?
+neutral!Gramma: Yes you can
+thinktalk!Tony: any nines now?
+neutral!Gramma: Go fish, do you have any twos?
+neutral!Tony: I do not
+disappoint!Tony: hey Gramma?
+neutral!Gramma: Hmhm?
+talk!Tony: what do you think happens after you die?
+neutral!Gramma: Hmhm.
+neutral!Gramma: i think i could answer that question better if you asked me for a card
+happy!Tony: Gramma this is go fish not tarot
+smile!Tony: fours?
+neutral!Gramma: Go fish
+neutral!Gramma: Hmmmmmm....
+neutral!Gramma: Sevens.
+talk!Tony: go fish but you are avoiding the question
+neutral!Tony: twos?
+neutral!Gramma: Yes, i have one of those
+neutral!Gramma: The problem really lies in deciding whether or not it matters
+neutral!Gramma: If i am dead and gone, what do i care of you?
+disappoint!Tony: that seems like a cop out answer
+talk!Tony: it does not really matter what you care of me the question is what do you want to happen to yourself?
+neutral!Tony: kings
+neutral!Gramma: Go fish
+neutral!Gramma: Everything i have ever seen in my life had pointed toward that there is indeed something special planned for us after death
+neutral!Gramma: Sixes
+neutral!Gramma: It just seems fitting
+neutral!Tony: go fish
+talk!Tony: to me it seems as if there is something inherantly special about a human life
+smile!Tony: I agree with you when you say that it seems fitting for there to be a special destination for us
+smiletalk!Tony: life seems too unique and special to be discarded by nature
+smile!Tony: eights
+neutral!Gramma: Yes, take it
+neutral!Gramma: Are you talking about rebirth?
+happy!Tony: mhm!
+smiletalk!Tony: I believe there is always another chance
+smile!Tony: fours
+neutral!Gramma: Yes, take that too
+smile!Tony: fives
+neutral!Gramma: Go fish
+smiletalk!Tony: oh hey got what I asked for!
+smile!Tony: nines
+neutral!Gramma: Go fish for real this time!
+neutral!Gramma: Threes
+neutral!Gramma: tony?
+neutral!Tony: go fish
+neutral!Tony: yes Gramma?
+neutral!Gramma: We have been avoiding the topic for as long as i remember
+neutral!Tony: kings
+neutral!Gramma: Go fish
+neutral!Gramma: But
+neutral!Gramma: Today seems like as good a day as any else to bring it up
+neutral!Gramma: Nines
+neutral!Gramma: What are you going to do when i die?
+neutral!Tony: well take my nine
+disappoint!Tony: hm
+neutral!Gramma: Sevens
+neutral!Tony: go fish
+disappoint!Tony: I would probably just go on with my life
+thinktalk!Tony: I mean you have raised me to be almost entirly self-sufficient
+neutral!Tony: kings
+ew!Tony: is that too disrespectful?
+neutral!Gramma: King, yes, disrespect, no
+neutral!Gramma: That is indeed the end to which i raised you
+neutral!Gramma: In fact it ought to be the end to which all parents raise their children
+neutral!Tony: tens
+happy!Tony: gosh thanks!
+disappoint!Tony: but...
+ew!Tony: if you do not mind me asking
+ew!Tony: what do you want to happen after you die?
+neutral!Gramma: Go fish
+neutral!Gramma: Well, i did just say that i was looking forward to you carrying on on your own
+neutral!Gramma: Threes
+neutral!Tony: take it
+neutral!Gramma: Sixes
+neutral!Tony: go fish
+ew!Tony: no actually
+ew!Tony: I meant what you wanted done with your body
+disappoint!Tony: tens
+ew!Tony: you have made it clear you are not going to let any doctors at you so it seems that one day I will have to do something about that
+neutral!Gramma: Ah
+neutral!Gramma: Go fish
+neutral!Gramma: Sevens
+neutral!Tony: go fish
+neutral!Tony: twos
+neutral!Gramma: Mhm
+neutral!Gramma: Cremation seems fitting
+smiletalk!Tony: oh good I was hoping you would say that
+smile!Tony: aces
+neutral!Gramma: Go fish!
+neutral!Gramma: And why would that be?
+neutral!Gramma: Eights
+smiletalk!Tony: oh it just seems so much easier than any alternative
+happy!Tony: the ground here is inhospitable to gravedigging and I am not an embalmer
+smile!Tony: go fish and sevens
+neutral!Gramma: Mhm!
+neutral!Gramma: So you have given the situation some thought
+smile!Tony: yes I have
+smile!Tony: tens
+neutral!Gramma: Mhmhm!
+neutral!Gramma: And no i do not have your ace
+disappoint!Tony: aw
+neutral!Gramma: We are almost done with this game
+neutral!Tony: it looks like I am going to win
+neutral!Gramma: How do you say that?
+thinktalk!Tony: well look at our stacks of cards
+talk!Tony: mine is significantly higher
+neutral!Gramma: Mhmhmhm! Let us finish then
+neutral!Gramma: Eights
+neutral!Tony: here you go
+neutral!Gramma: Sixes
+neutral!Tony: go fish
+neutral!Gramma: Got what I asked for!
+neutral!Gramma: And i am out.
+thinktalk!Tony: so wait
+ew!Tony: the one card left in the deck is my ace?
+neutral!Gramma: Mhmhmhhm!
+neutral!Gramma: Fifteen point bonus to me for first out
+neutral!Gramma: So let us count
+disappoint!Tony: ...
+neutral!Gramma: ...
+smile!Tony: 95 points
+neutral!Gramma: Also 95 points
+jawdrop!Tony: what!
+neutral!Gramma: Mhmhmhmhmhmhmhm!
+neutral!Gramma: See, the deck has 190 points in total split evenly at 95
+neutral!Gramma: And it just so happens that the bonus for first out is the same amount as that last ace that nobody got
+jawdrop!Tony: ...
+neutral!Gramma: See, sometimes you cannot assume that you have won, even when the odds seem stacked in your favor
+jawdrop!Tony: 
+smiletalk!Tony: wow Gramma that is a wonderful coincidence!
+neutral!Gramma: Mhmhmhmhm!
+neutral!Gramma: Actually, no
+neutral!Gramma: Never trust a deck you did not see shuffled yourself~
+jawdrop!Tony: ...you stacked the deck?
+neutral!Gramma: Mhmhmhmhmhmhm!
+neutral!Gramma: And i dare say it worked
+thinktalk!Tony: wait wait wait
+thinktalk!Tony: how do you stack a deck for go fish?
+talk!Tony: there are so many different paths the game can take now that I think about it
+neutral!Gramma: Oh it is simpler than that
+neutral!Gramma: Aside from placing the ace at the bottom i only needed to be able to get ahead at the start
+neutral!Gramma: Life lesson number two, it is far easier to fall behind than to get ahead
+neutral!Gramma: So no you were not actually bleeding at the start~
+neutral!Gramma: Mhmhmhmhm!
+jawdrop!Tony: ...
+smiletalk!Tony: well played Gramma
+smile!Tony: well played
+
+!grammawaitingforset2
+talk!Tony: Gramma? I cannot seem to find anything to do
+disappoint!Tony: it is awfully boring for some reason
+neutral!Gramma: Try talking to your friends! They always have something fun to say
+happy!Tony: ah thank you
+
+!grammagiftdiscussion
+neutral!Gramma: Ah tony you are back!
+happy!Tony: yes I am Gramma!
+smiletalk!Tony: I have also finished opening my birthday presents
+neutral!Gramma: Really? Last i checked both brad and bach lived in time zones that would make it prohibitively early to be awake right now
+neutral!Gramma: Have you disregarded their requests to wait for them to open your gifts?
+jawdrop!Tony: oh no no no!
+talk!Tony: they are awake and were indeed very happy with my reactions to their gifts
+neutral!Gramma: Marvelous!
+neutral!Gramma: So pray tell: what did they get you?
+thinktalk!Tony: from Brad an outback adventurer hat
+smiletalk!Tony: and from Bach a very nice suitcase
+happy!Tony: I appreciate the two very much
+neutral!Gramma: It sounds as if they are of the impression that your desired career path is one of an adventurer
+neutral!Gramma: Have you been working to impress this upon them?
+daydream!Tony: well not actively working but the impression was indeed a thing that was
+neutral!Gramma: Mhmhmhmhm!
+neutral!Gramma: As a matter of fact i too have a birthday present for you
+colond!Tony: !
+neutral!Gramma: Mmmmmm.... would you mind fetching it for me?
+neutral!Gramma: It is in an envelope in the bottom pocket of the organizer in the dining room
+smile!Tony: on it!
+
+!grammawaitingforenvelope
+thinktalk!Tony: I am sorry but where did you say the gift was?
+neutral!Gramma: In an envelope in the bottom pocket of the organizer in the dining room
+happy!Tony: ah gotcha
+
+!grammaenvelope1
+smile!Tony: here is the envelope
+
+!grammaenvelope2
+:You decaptchalogue the envelope on the table, looking at your grandmother expectantly.
+neutral!Gramma: How about you take a look inside?
+neutral!Gramma: i am sure you will enjoy it~
+smile!Tony: alright
+
+!grammaenvelope3
+:You got an AIRPLANE TICKET!
+disappoint!Tony: one flight... arequipa, peru... september 20... wait what?
+wat!Tony: Gramma this ticket is dated for tomorrow!
+neutral!Gramma: Mhmhmhmhm!
+neutral!Gramma: Yes tony that ticket is for tomorrow
+neutral!Gramma: Tomorrow morning you will be picked up by a good friend of mine
+neutral!Gramma: He will take you to the city where you will spend the day gathering supplies for yourself
+neutral!Gramma: That evening, you will board a plane headed for peru, where you will adventure to your heart's content!
+neutral!Gramma: All on a blank check from me.
+colond!Tony: !!!
+colond!Tony: ohmygoshohmygoshohmygoshohmygosh!!
+colond!Tony: oh my gosh Gramma! thank you so so so much!!
+neutral!Gramma: Mhmhmhm! You are welcome!
+daydream!Tony: oh gosh when I get to peru I can backpack through the andes up north to brazil and then I can spend a while mucking around in the amazon and I could get all the way into populated Brazil!
+neutral!Gramma: Mhmhm! And that's not all! Your blank check extends for as long as you want it to, so long as you wire me to say where you want to go!
+colond!Tony: ohmygoshohmygoshohmygoshohmygosh!!
+smiletalk!Tony: so... you are basically letting me go? to see the world?
+neutral!Gramma: Mhm! That was the intention!
+neutral!Gramma: When you finish in south america I thought you might like to go see brad, him being in the neighborhood
+colond!Tony: oh wow that is true! 
+happy!Tony: gosh it has been forever since I last saw him!
+smiletalk!Tony: Gramma thank you so much for this!
+jawdrop!Tony: oh gosh I completely forgot!
+talk!Tony: I discussed thank you notes with Brad but never actually delivered any formal thankings to anyone!
+smiletalk!Tony: hold on a minute I need to go thank Brad for the hat and tell him the news!
+neutral!Gramma: Mhmhmhmhm! See you in a moment~
+
+!grammapassport1
+neutral!Gramma: Well?
+disappoint!Tony: I was not able to get ahold of Brad
+neutral!Gramma: That is unfortunate
+neutral!Gramma: In any case you do need to begin your preparations for your journey!
+neutral!Gramma: You should be able to get everything you need tomorrow afternoon
+neutral!Gramma: However you will need to bring your passport with you
+neutral!Tony: ah right
+talk!Tony: it has been quite a while since I went abroad
+thinktalk!Tony: shoot! where do I keep my passport again?
+neutral!Gramma: If i recall correctly you have it stored in your memorabilia chest in your room
+happy!Tony: ah yes that is it!
+neutral!Gramma: Go grab that, will you?
+
+!grammapassport2
+disappoint!Tony: erm
+ew!Tony: what am I supposed to be doing again?
+neutral!Gramma: Retrieving your passport from your memorabilia chest in your room
+neutral!Gramma: Are you sure you should be leaving on a solo expedition to south america if you cannot remember to fetch a passport from a box?
+talk!Tony: oh no no no! I will be right on it!
+
+!grammapassport3
+colond!Tony: I have my passport!
+
+!grammapassport3-2
+:You decaptchalogue the passport.
+talk!Tony: gosh that took a lot longer than it should have
+neutral!Gramma: I do say! What was that, half an hour?
+thinktalk!Tony: gosh! first I had to find a stool to get on to reach the top of my bookcase and when I did the chest was locked so I had to find the key and that took forever!
+neutral!Gramma: Ah
+neutral!Gramma: Good display of problem solving then!
+neutral!Gramma: You will need it in the coming years
+happy!Tony: thank you!
+smiletalk!Tony: is there anything else I ought to do before tomorrow morning to prepare?
+neutral!Gramma: i believe not! You can go do whatever you want to for the rest of the day!
+
+!grammaend
+smiletalk!Tony: are you sure there is nothing for me to do until tomorrow?
+neutral!Gramma: Mhm! Just maintain your current existance until then and everything will be fine!
+colond!Tony: awesome!
+
+
+
+!brad1
+smile!Brad: Hey, bro! 
+smiletalk!Brad: Today's your birthday, right? 
+smile!Brad: Happy birthday! 
+neutral!Brad: ... 
+reallytalk!Brad: Hello? Is this thing on? 
+really!Brad: Huh. I guess you're not around. Probably doing birthday things. 
+smile!Brad: Have fun with that! 
+smile!Tony: oh, hi Brad! 
+happy!Tony: I am having a great birthday! 
+smiletalk!Tony: I got the present you sent me 
+happy!Tony: I love it! it is probably going to be very useful to me 
+smile!Brad: Ah, there you are. 
+smiletalk!Brad: Glad you think so! I spent hours and hours trying to find the perfect gift for you. 
+talk!Brad: Don't take it the wrong way, but you're kind of hard to shop for. 
+happy!Tony: oh, it is fine 
+thinktalk!Tony: I understand my tastes are a bit... 
+disappoint!Tony: strange 
+talk!Tony: society these days does not exactly cater to people like me 
+smiletalk!Brad: Yep. You're the outlier. Always have; always will be. 
+daydream!Tony: yes 
+smiletalk!Brad: What else did you get for your birthday? 
+smile!Tony: I still have unopened packages from the other two 
+eyeroll!Tony: both of them claim that their present will be better than either of the others 
+snootytalk!Brad: Ha! They can't both be right 
+smiletalk!Brad: I'm not going to try to make that claim. I'm sure that one of them has bested me in some manner. 
+talk!Tony: no, I will have to disagree with you 
+happy!Tony: something tells me that your present will be the best today 
+colond!Brad: :) 
+thinktalk!Tony: what are you doing up right now? is it not quite early for your time zone? 
+talk!Brad: Eh. I couldn't sleep last night. That, and I'm gearing up to play a game with EE. 
+smile!Brad: Ever heard of Sburb? 
+thinktalk!Tony: I do not believe so 
+smiletalk!Brad: It's supposed to be this groundbreaking new game. Nobody knows what it's gonna be like, and everyone's all hush hush with the reviews. 
+snooty!Brad: My copy arrives in the mail soon. 
+eyeroll!Tony: sounds absolutely wonderful 
+really!Brad: Sarcasm much? 
+thinktalk!Tony: you are taking the word of a number of unknown people many probably with their own interests in mind on whether or not to play a game? 
+neutral!Brad: I'm taking EE's word for it. 
+smile!Brad: I trust her. 
+smiletalk!Brad: She's strange all right, but I trust her. 
+disappoint!Tony: okay then 
+smile!Tony: go get your game. have fun with it! 
+daydream!Brad: Ha. I know all too well that EE will make sure of that. 
+happy!Tony: ha indeed 
+smile!Tony: bye for now! 
+smile!Brad: See you later!
+
+!brad2
+smile!Tony: Brad? 
+neutral!Brad: Hm? 
+talk!Brad: Sorry to keep you waiting. 
+happy!Tony: oh, it is okay 
+smiletalk!Tony: I just wanted to ask you 
+thinktalk!Tony: do you think it is worth writing out formal thank you notes to friends that I can just say thank you to? 
+neutral!Brad: Hm. 
+talk!Brad: Did you mail them presents for their birthdays? 
+neutral!Tony: yes I did 
+talk!Tony: we all agreed to exchange gifts a little more than half a year ago 
+colond!Brad: Ah, right. 
+smiletalk!Brad: Then no, I think you're fine just thanking them in person. 
+daydream!Brad: If over the internet qualifies as 'in person', that is. 
+happy!Tony: I just thought that the sentimental gesture might be nice 
+smile!Brad: Yeah, you and your sentimental gestures! 
+ew!Tony: so many people think the future is a much better place to be than the past 
+disappoint!Tony: I cannot see how they can imagine that 
+ew!Tony: do you understand? 
+smile!Brad: Not a lot of people appreciate your nostalgic disposition. 
+smiletalk!Brad: I think you're doing a wonderful thing with your old-timey-wimey nature and you're doing fine. 
+snootytalk!Brad: So, secondary birthday present from me: you haven't made any seriously wrong life choices yet! 
+happy!Tony: thank you for that! 
+snooty!Brad: You're doing fine, kid. 
+talk!Tony: you do not get to call me kid now that we are the same age again! 
+snootytalk!Brad: We're never the same age. Our lifespans have always been and will always be removed from each other. 
+disappoint!Tony: true 
+smiletalk!Tony: humans are so silly for not making fractional ages common in speech
+smiletalk!Brad: You don't need to look at that if you want proof we are all silly, silly creatures. :P 
+happy!Tony: no we do not 
+smile!Tony: anyway thanks for the advice 
+smiletalk!Tony: I am going to deliver my thanks for the presents now! 
+colond!Brad: Good luck with that!
+
+!brad3
+thinktalk!Tony: hello Brad? 
+smile!Brad: Oh, hi! 
+smiletalk!Brad: What brings you to call upon me? 
+happy!Tony: oh nothing much 
+talk!Tony: you see I just finished delivering thanks for my birthday presents
+smiletalk!Tony: but I realized after doing so that I had never thanked you in the time I spend asking you about thanking people 
+reallytalk!Brad: You didn't? 
+reallytalk!Brad: Lemme check my logs... 
+disappoint!Tony: no I did not 
+smiletalk!Brad: Huh, you're right! 
+glare!Tony: we already established that fact 
+neutral!Tony: so here I am to say 
+smile!Tony: thank you Brad! 
+smile!Brad: You're welcome!
+smiletalk!Tony: in addition I am pleased to announce that i was correct in my presumption that your gift would be the best 
+disapprovetalk!Brad: Really? 
+really!Brad: Color me surprised. 
+wat!Tony: why? you gave me a very nice gift 
+talk!Brad: It's just... I find it hard to believe neither of the girls found something better than I did. 
+disapprovetalk!Brad: PI probably turned it into a competition in her head to beat the others in whose gift was the best. 
+neutral!Brad: And EE... 
+airquotes!Brad: I'm sure she put everything she had into her present. What with her... 'thing'. 
+neutral!Tony: Brad 
+deadpan!Tony: you are the one turning everything into a competition, not PI 
+deadpan!Tony: and I assure you EE has no thing, enclosed in single quotes or otherwise 
+disapprove!Brad: ...fine. 
+disapprovetalk!Brad: I disagree with you on both of those counts, but that doesn't change anything. 
+smiletalk!Brad: Besides, it's your birthday, not mine. I already had my 24 hours of being unchallengedly correct.
+talk!Tony: I would prefer that we did not start bending definitions of what is true and what is not just because someone was born on a day named the same as the current one 
+daydream!Brad: That's a nice philosophy. 
+smiletalk!Brad: I'd like to adhere to it, but I'm sort of addicted to being right. 
+smile!Tony: how do you ever deal with PI? 
+smile!Brad: Heh. Not sure. I have my little victories here and there. 
+daydream!Brad: Like this morning! 
+deadpan!Tony: call it a guess, but I do not think you actually won anything from that victory 
+neutral!Brad: ? 
+talk!Tony: PI does not believe anything unless she knows it to be a fact that she can defend to the end 
+thinktalk!Tony: whatever you won against her can only have been something she did not particularly care about 
+disapprove!Brad: Ugh.
+disapprovetalk!Brad: Well, there goes the plug on my tub full of self-fulfillment. 
+disappoint!Tony: I am sorry... 
+smiletalk!Brad: No, it's okay. I shouldn't be fuller of myself than my water level will allow. 
+smile!Tony: that metaphor does not work
+smiletalk!Tony: so anyway!
+happy!Tony: I have something important to tell you!
+
+!brad3-2
+:There is a large explosion in the distance!
+neutral!Tony: oh 
+neutral!Brad: Hm? 
+talk!Tony: there was a large explosion in the distance 
+thinktalk!Tony: probably another meteor 
+shock!Brad: What?? 
+reallytalk!Brad: Since when are meteor strikes a common occurrance? 
+thinktalk!Tony: since a few weeks ago 
+nervous!Brad: I really don't pay attention to the news...
+neutral!Tony: [url]http://goo.gl/Gaj2t[/url]
+talk!Tony: they started out small, but they are getting larger 
+thinktalk!Tony: they all seem to target houses at random and the government cannot seem to stop them 
+talk!Brad: How have I not heard of this yet??? 
+wat!Tony: you just told me you do not pay attention to the news
+shock!Brad: Oh, shoot!!! 
+ew!Tony: what? 
+nervous!Brad: Shoot shoot shoot
+nervous!Brad: Uh 
+nervoustalk!Brad: See, the game I'm playing with EE... It has a built in countdown timer and it's pretty close to zero for me, and I can't help but think maybe that means meteor impact??
+shoot!Brad: Aargh!
+neutral!Tony: how about you check the sky? 
+nervous!Brad: Oh, right.
+neutral!Brad: Hm...
+flipout!Brad: AAAARGKJLGKGGBKJLGL
+flipout!Brad: METEOR
+flipout!Brad: TEN O'CLOCK
+flipout!Brad: GOT TO GO BYE THANKS FOR THE THANKS YOU'RE A GREAT FRIEND IF I NEVER SEE YOU AGAIN
+ew!Tony: wait, Brad!
+
+!brad4
+talk!Tony: hello Brad?
+ew!Tony: are you there?
+thinktalk!Tony: Bach pestered me in a hurry asking me to talk to you
+thinktalk!Tony: I did not get much more out of her before she left
+talk!Tony: I hope she wants this because she knows you are alive
+disappoint!Tony: as opposed to she does not know because you died in the meteor strike
+neutral!Tony: I certainly hope you survived
+ew!Tony: Brad?
+neutral!Brad: Sorry, I'm here.
+colond!Tony: ah hello
+nervoustalk!Brad: Hey, sorry for keeping you waiting.
+wat!Tony: what ended up happening with the meteor?
+nervous!Brad: AFAIK, it hit.
+smiletalk!Brad: Luckily for me, the game provided a means to get the heck out of there before then.
+talk!Brad: It involved opening a rather difficult-to-open box.
+deadpan!Brad: Let's just leave it at that.
+thinktalk!Tony: where are you now?
+neutral!Brad: I'm not entirely sure.
+talk!Brad: My entire house got sent along with me to the top of what appears to be a really big tree amongst an ocean of trees. There look to be a bunch of really big eggs sitting on the canopy too.
+talk!Tony: you sound a little strange
+ew!Tony: are you okay Brad?
+nervoustalk!Brad: That's the other thing. My dad was on the roof during the strike
+uhoh!Brad: and
+shoot!Brad: eurgh
+ew!Tony: did he get left behind?
+nervous!Brad: No, worse.
+uhoh!Brad: He
+flipout!Brad: He fell off the roof and landed in my cacti garden and he's dead now!!!!
+ew!Tony: oh
+disappoint!Tony: I am sorry Brad that is really really awful
+disapprove!Brad: The only reason I'm talking to anyone right now is that there's a really loud voice in my head that's telling me to talk to you guys.
+talk!Brad: Probably part of the game. He seems to know me, too.
+neutral!Tony: strange
+disappoint!Tony: but still really sad
+thinktalk!Tony: what are you going to do with
+ew!Tony: you know
+nervous!Brad: Not sure.
+nervoustalk!Brad: I'd like to give my father a decent burial.
+smiletalk!Brad: He deserves at least that much, even if all his relatives and friends can't be there from the funeral.
+nervoustalk!Brad: Plus I want to make up for being such a jerk to him when he was alive.
+deadpan!Brad: But, you know, sea of trees.
+neutral!Brad: I should probably get going.
+disapprovetalk!Brad: Got to let PI know that I'm okay since Bach probably gave her just as much background upon which to pester me as she gave to you.
+ew!Tony: but are you okay Brad?
+nervous!Brad: I sure hope so.
+
+!bach1
+colond!Bach: tony!!!~!!!~!
+happy!Bach: happy birthday!!!  5%DD
+talk!Bach: i got up really really early this morning  b/c i knew youre like fifteen hours ahead of me and by the time id normally get up...........
+hehehe!Bach: ...itd already be tomorrow for you!!!!!!! <3333
+daydreamtalk!Bach: so ill just wait around here until you get back to your computer from whatever AWESOME birthday stuff youre doing!!!!!!
+neutral!Bach: ................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+colond!Tony: oh hi Bach!
+happy!Tony: yes it is indeed my birthday and I have been doing birthday things!
+excited!Bach: tony there you are!!!!!! <3<3<#
+smiletalk!Tony: in fact I just opened your present!
+awesome!Bach: weeeeeeeell????
+neutral!Tony: um
+wat!Tony: permit me to ask-- a suitcase?
+happy!Bach: oh man not just any suitcase!!!!
+talk!Bach: i know how much you want to travel when you get older so youre going to need one heck of a suitcase for all that adventure!!
+smile!Tony: oh
+jawdrop!Tony: oh!
+colond!Tony: oooh!!
+smiletalk!Tony: gosh Bach that is perfect! you are absolutely right this is something I definitely need if I am to follow through on that vision
+colond!Bach: oh thats not all!!
+talk!Bach: tell me, what do you think the padding is made from?
+thinktalk!Tony: hm.... leather?
+talk!Bach: well yeah but what kind of leather??
+disappoint!Tony: um
+talk!Tony: I do not know?
+happy!Bach: australian crocadile leather!!!
+smile!Tony: ah
+happy!Tony: fitting
+hehehe!Bach: heheheheheh!!!!!
+talk!Bach: no but seriously! the suitcase is totally awesome!!!
+smiletalk!Tony: care to provide an overview of some of the more radical features?
+daydream!Bach: well! for starters its got great balance!!
+neutral!Bach: try rolling it around!!!! j^i
+jawdrop!Tony: oh gosh you are right!
+smiletalk!Tony: I feel like Fred Astaire with this thing!
+happy!Tony: heh i am sorry that was a bit of an [url=http://www.youtube.com/watch?v=8rxRCSI7ZXY#t=118s]obscure reference
+hehehe!Bach: hehe no i get it!!!!
+excited!Bach: knowing things like that is kind of a prerequisite for being friends with you!!!!! <3
+talk!Bach: speaking of friends what else did you get today???
+daydream!Tony: I do not know actually! yours was the first I opened today
+smile!Tony: but somehow I imagine that your gift will be the best today!
+eeee!Bach: eeeeeEEEEEEEEEE!!!!!!!! 4$^(t) @B> <33333333
+daydreamtalk!Bach: well dont let me hold you up!!!! go go go!!
+talk!Bach: ill pester you back in a few minutes!!!!
+smile!Tony: alright, see you!
+
+!bach2
+colond!Bach: hey hey hey hey hey hey tony!!!
+colond!Bach: so...... about those other presents!?! O/I
+smiletalk!Tony: oh right those!
+thinktalk!Tony: from Gina I got her set of journals from her apparently constant attempts to psychoanalyze me
+smiletalk!Tony: and from Brad I got a hat! it is totally rugged and australian!
+excited!Bach: hahaha that is sooo totally brad and gina!!!!!
+smiletalk!Tony: I think it is funny how both you and Brad gave me gifts that had components australian in origin
+daydreamtalk!Bach: weeeell I would say that ginas does too
+happy!Bach: in the sense that you are a component of it!!! 2@2
+smile!Tony: heh. I can see it now...
+daydream!Tony: me adventuring through the rugged outback
+daydream!Tony: surviving only through the contents of my suitcase and the hat on my head
+wat!Tony: and... er... the occasional introspection provided by a psychological logbook?
+hehehe!Bach: hahahaha!!!
+smile!Tony: in any case the syncronization between your gift and that of Brad is uncanny
+happy!Tony: indeed they are something of an item!
+talk!Bach: awwww yeah hatXsuitcase OTP
+smiletalk!Tony: alright I will take this one exception to the my-ships-only birthday rule
+smile!Tony: just for this
+colond!Tony: oh hey look I can extend the suitcase handle and place the hat on top
+excited!Bach: *swoons~!!~*
+happy!Tony: ahaha look at that I can just put the hat inside the suitcase!
+serioustalk!Bach: woah there tony keep it PG!
+daydream!Tony: ha
+neutral!Bach: now with that out of the way....... were you right?????
+wat!Tony: what? right about what now?
+daydreamtalk!Bach: hehehe you said earlier that you thought my present was going to be the best!!
+deadpan!Tony: oh
+daydream!Tony: yes indeed I was right!
+happy!Tony: in terms of utility and appeal you have the other two beat!
+excited!Bach: wow thats amazing tony!!!!! <3<3<3
+daydreamtalk!Bach: i look forward to hearing you expound upon that to no end in your formal thank you message~!!~
+happy!Bach: c ya later!!!! 8Hd <3
+:Oh, shoot! Thank you notes! You had totally forgotten that those were a thing that was generally considered to be necissary in the situation of people giving you gifts.
+:You don't like writing notes like that. It means you have to dredge around in the depths of your mind and figure out how you actually think about something.
+:You decide to ask Brad for guidance on the subject.
+
+!bachinterlude
+smiletalk!Tony: hey Bach!
+nervoustalk!Bach: oh man tony sorry nows not a good time!!!! 9u8
+wat!Tony: eh?
+serioustalk!Bach: im playing sburb with brad right now and oh my gaaaaawd it is fun but its also sooooo hard!!!!!!
+happy!Tony: oh gotcha!
+
+!bach3
+nervous!Bach: uh hey tony?
+nervoustalk!Bach: can i get you to do something really really quick???
+argh!Bach: its really important!!!!! c77c
+talk!Tony: yes what is it?
+colond!Bach: oh god good youre here!
+serioustalk!Bach: i need you to talk to brad right now!!!
+thinktalk!Tony: ah okay I just finished talking to him a couple of minutes ago
+disappoint!Tony: he seemed rather distressed
+ew!Tony: something to do with a meteor
+nervoustalk!Bach: what? no this is different!!!!!!
+bigargh!Bach: just.... aaaaaeslksad!!!!! just go!!!
+
+!bach4
+nervous!Bach: hey tony??
+nervoustalk!Bach: you back yet?
+argh!Bach: aaaaaa not you toooooooo
+serioustalk!Bach: i need either you or gina to play sburb with me or else i will be hit by a giant space meteor!!
+hmmm!Bach: or at least brad says
+argh!Bach: the part about playing sburb!!!! not the part about the meteor i know thats going to happen because of my houses silly technology stuff
+bigargh!Bach: aaaaaaaaeegenfdg
+talk!Tony: oh gosh Bach! are you still there?
+ew!Tony: ...Bach?
+
+!gina5
+nervous!Gina: Hello?
+smile!Tony: hello
+neutral!Gina: I have a question.
+happy!Tony: I will probably have an answer
+talk!Gina: You did at one or more points mention that you had heard or witnessed a number of decent-sized meteor impacts, right?
+neutral!Tony: yes I did
+smiletalk!Tony: that could not have possibly be the question right?
+facepalm!Gina: No, it wasn't. Merely background.
+nervoustalk!Gina: The rest of the background is that as far as I know, Paris just got its first of these meteors. Now, a building is demolished, and I fear that somebody is dead.
+disappoint!Tony: I do not live close enough to any other dwellings to observe meteors destroying buildings
+neutral!Tony: but carry on
+hopeful!Gina: Essentially, I want to know what you know about them.
+thinktalk!Tony: well the gist of it is summed up here
+neutral!Tony: [url]http://goo.gl/Gaj2t[/url]
+disapprovetalk!Gina: I think you have somehow managed to find the single worst source of journalism on the face of the earth. I offer my congratulations alongside a ticket to internet school.
+happy!Tony: ha
+nervoustalk!Gina: So this has been going on for weeks now?
+really!Gina: Surely I would have encountered mention of it elsewhere from conversations with you.
+thinktalk!Tony: that is strange. I was under the impression that it was a worldwide phenomenon
+disapprove!Gina: Strange is an understatement.
+talk!Tony: maybe this is actually the apocalypse
+smiletalk!Tony: perhaps we are all going to die
+neutral!Tony: we are in fact approaching the end of the mayan calendar
+smiletalk!Gina: Only 94 days until we can all forget that the Maya people existed.
+disapprove!Gina: I eagerly await that day.
+happy!Tony: less if we all die before then
+really!Gina: ...
+thinktalk!Tony: I suppose the bottom line is that my experience regarding these meteors cannot help you if our situations are so different
+disapprove!Gina: It appears that way.
+nervous!Gina: Oh well.
+happy!Tony: talk to you later
+neutral!Gina: Good bye.

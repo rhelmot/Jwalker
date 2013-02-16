@@ -3,7 +3,7 @@ g.controls =
 	buttons: [],			//SETME
 	keyset: 0,
 	keysets: [],			//SETME
-	process: function(keys, points) {
+	process: function (keys, points) {
 		if (!g.controls.keysets.length)
 			return;
 		g.p = points;
@@ -50,8 +50,8 @@ g.controls =
 						}
 						else
 						{
-							con.finger = g.controls.istouchfinger(con.x+(con.dist*con.current)-15,con.y,con.x+(con.dist*con.current)+33,con.y+80);
-							con.active = con.finger >= 0;							
+							con.finger = g.controls.istouchfinger(new Rectangle(con.x+(con.dist*con.current)-15,con.y,48,80,true));
+							con.active = con.finger >= 0;
 						}
 						g.gfx.draw(con.tracksprite, con.x, con.y, 0, g.gfx.layers.ui, {x:false,y:false}, con.active?1:0.75);
 						g.gfx.draw(con.dialsprite, con.x+(con.dist*con.current), con.y, 0, g.gfx.layers.ui, {x:false,y:false}, con.active?1:0.75);
@@ -74,7 +74,7 @@ g.controls =
 		g.k = k;
 		g.k.frame = f;
 	},
-	endprocess: function() {
+	endprocess: function () {
 		for (var i in g.p)
 		{
 			if (typeof g.p[i] == 'object')
@@ -84,18 +84,16 @@ g.controls =
 			}
 		}
 	},
-	istouch: function(rect, isframe, finger)
+	istouch: function (rect, isframe, finger)
 	{
 		if (typeof isframe != 'boolean')
 			isframe = true;
 		if (!finger)
 			finger = false;
 		var n = g.controls.istouchfinger(rect, isframe, finger);
-		if (n >= 0)
-			return true;
-		return false;
+		return n >= 0;
 	},
-	istouchfinger: function(rect, isframe, finger)
+	istouchfinger: function (rect, isframe, finger)
 	{
 		if (typeof isframe != 'boolean')
 			isframe = true;

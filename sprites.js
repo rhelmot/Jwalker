@@ -1,11 +1,9 @@
 g.sprites = {
 func: {
-	updPosBySpd: function(inst, dox, doy)
+	updPosBySpd: function (inst, dox, doy)
 	{
-		if (typeof dox == 'undefined')
-			var dox = true;
-		if (typeof doy == 'undefined')
-			var doy = true;
+		if (typeof dox == 'undefined') dox = true;
+		if (typeof doy == 'undefined') doy = true;
 		var fy = 0;
 		var fx = 0;
 		if (dox)
@@ -39,7 +37,7 @@ func: {
 		inst.x += fx;
 		inst.y += fy;
 	},
-	addGravity: function(inst)
+	addGravity: function (inst)
 	{
 		if (inst.yspd > 500)	//terminal velocity
 			return;
@@ -51,12 +49,11 @@ func: {
 			inst.yspd += 12;
 		
 	},
-	render: function(inst, flip) {
-		g.gfx.draw(g.sprites[inst.name].spritesheet, inst.dim.x1-g.area.areas[g.area.currentarea].x, inst.dim.y1-g.area.areas[g.area.currentarea].y, inst.frame, g.gfx.layers.sprites, flip);
+	render: function (inst, flip) {
+		g.gfx.draw(g.sprites[inst.name].spritesheet, inst.x-g.area.areas[g.area.currentarea].x, inst.y-g.area.areas[g.area.currentarea].y, inst.frame, g.gfx.layers.sprites, flip);
 	},
-	hit: function(inst, point, offset) {
-		if (typeof offset != 'object')
-			var offset = {x:0,y:0};
+	hit: function (inst, point, offset) {
+		if (typeof offset != 'object') offset = {x:0,y:0};
 		offset.x += inst.dim.x1 + inst.x;
 		offset.y += inst.dim.y1 + inst.y;
 		switch(point) {
@@ -90,14 +87,9 @@ func: {
 				offset.y += inst.dim.height - 20;
 				break;
 		}
-		if (g.resources[g.area.areas[g.area.currentarea].hitbox].type != 'image' || g.resources[g.area.areas[g.area.currentarea].hitbox].use != 'hitbox')
-		{
-			console.log('Warning: attempting to use asset without type:image/hitbox as hitbox!');
-			return;
-		}
-		return g.resources[g.area.areas[g.area.currentarea].hitbox].getData(offset.x,offset.y);
+		return getHitboxData(g.area.areas[g.area.currentarea].hitbox, offset.x, offset.y);
 	},
-	hitsprite: function(spr1, spr2) {
+	hitsprite: function (spr1, spr2) {
 		if (typeof spr1 == 'number')
 			var inst1 = g.area.areas[g.area.currentarea].sprites[spr1];
 		else
@@ -122,108 +114,23 @@ func: {
 			((d1.y1 <= d2.y1)&&(d1.y2 >= d2.y2))
 		));*/
 	},
-	hitgen: function(inst, points, callback) {
+	hitgen: function (inst, points, callback) {
 		for (var i in points)
 		{
 			if (callback(g.sprites.func.hit(inst, points[i]), i, points[i]) == 'stop')
 				return 'stopped';
 		}
 	},
-	hitbg: function(inst) {
-		inst.hit = {up:false,down:false,left:false,right:false};
-		if (inst.xspd >= 0 && g.sprites.func.hit(inst, 'right') == 0)
-		{
-			inst.hit.right = true;
-			inst.xspd = 0;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'right', {x:-i, y:0}) != 0)	
-				{
-					inst.x -= i;
-					break;
-				}
-			}
-		}
-		if (inst.xspd >= 0 && g.sprites.func.hit(inst, 'rightbottom') == 0)
-		{
-			inst.hit.right = true;
-			inst.xspd = 0;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'rightbottom', {x:-i, y:0}) != 0)
-				{
-					inst.x -= i;
-					break;
-				}
-			}
-		}
-		if (inst.xspd <= 0 && g.sprites.func.hit(inst, 'left') == 0)
-		{
-			inst.hit.left = true;
-			inst.xspd = 0;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'left', {x:i, y:0}) != 0)
-				{
-					inst.x += i;
-					break;
-				}
-			}
-		}
-		if (inst.xspd <= 0 && g.sprites.func.hit(inst, 'leftbottom') == 0)
-		{
-			inst.hit.left = true;
-			inst.xspd = 0;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'leftbottom', {x:i, y:0}) != 0)
-				{
-					inst.x += i;
-					break;
-				}
-			}
-		}
-		if (inst.yspd <= 0 && g.sprites.func.hit(inst,'top') == 0)
-		{
-			inst.hit.up = true;
-			inst.yspd = 20;
-		}
-		if (inst.yspd >= 0 && g.sprites.func.hit(inst, 'bottomleft') == 0)
-		{
-			inst.hit.down = true;
-			inst.yspd = 70;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'bottomleft', {x:0, y:-i-1}) != 0)
-				{
-					inst.y -= i;
-					break;
-				}
-			}
-		}
-		if (inst.yspd >= 0 && g.sprites.func.hit(inst, 'bottomright') == 0)
-		{
-			inst.hit.down = true;
-			inst.yspd = 70;
-			for (var i = 0; i <= 25; i++)
-			{
-				if (g.sprites.func.hit(inst, 'bottomright', {x:0, y:-i-1}) != 0)
-				{
-					inst.y -= i;
-					break;
-				}
-			}
-		}
-	},
-	getSlot: function() {
-		for (var i in g.area.areas[g.area.currentarea].sprites)
-		{
-			if (g.area.areas[g.area.currentarea].sprites[i] == null)
+	getSlot: function (a) {
+		if (typeof a === 'undefined')
+			a = g.area.currentarea;
+		for (var i = 0; i < g.area.areas[a].sprites.length; i++) {
+			if (g.area.areas[g.area.currentarea].sprites[i] === null)
 				return i;
 		}
-		return g.area.areas[g.area.currentarea].sprites.length;
+		return g.area.areas[a].sprites.length;
 	},
-	isTouched: function(inst, frame) {
+	isTouched: function (inst, frame) {
 		if (typeof frame != 'boolean')
 			frame = true;
 		var are = g.area.areas[g.area.currentarea];
@@ -231,7 +138,7 @@ func: {
 	}
 },
 area: {
-	process: function(inst) {
+	process: function (inst) {
 		if (!g.frozen && g.sprites.func.hitsprite(inst,g.area.areas[g.area.currentarea].player) && (g.k.frame.space || g.sprites.func.isTouched(inst)))
 		{
 			if (!inst.option)
@@ -241,13 +148,13 @@ area: {
 	}
 },
 examine: {
-	process: function(inst) {
+	process: function (inst) {
 		if (!inst.iprocessed)
 		{
 			inst.option = 'Examine '+inst.object;
 			if (inst.object.substr(0,1) == '!')
 				inst.option = inst.object.substr(1);
-			eval('inst.callback = function() {g.dialog.show("'+inst.dialog+'") };');
+			eval('inst.callback = function () {g.dialog.show("'+inst.dialog+'") };');
 			inst.iprocessed = true;
 		}
 		g.sprites.area.process(inst);

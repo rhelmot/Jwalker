@@ -10,7 +10,7 @@ g.gfx = {
 		bg: 0	
 	},
 	queue: [],
-	draw: function(recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame can be left blank
+	draw: function (recid, x, y, frame, layer, flip, alpha) {	//for backgrounds, frame can be left blank
 		var order = g.gfx.makeorder(recid, x, y, frame, flip, alpha);
 		if (!order)
 			return;
@@ -18,7 +18,7 @@ g.gfx = {
 			g.gfx.queue[layer] = [];
 		g.gfx.queue[layer][g.gfx.queue[layer].length] = order;
 	},
-	makeorder: function(recid, x, y, frame, flip, alpha) {
+	makeorder: function (recid, x, y, frame, flip, alpha) {
 		if (typeof flip == 'undefined')
 			flip = {x:false, y:false};
 		if (typeof alpha == 'undefined')
@@ -103,12 +103,12 @@ g.gfx = {
 		frame.alpha = alpha;
 		return frame;
 	},
-	drawfunc: function(func, layer) {
+	drawfunc: function (func, layer) {
 		if (typeof g.gfx.queue[layer] =='undefined')
 			g.gfx.queue[layer] = [];
 		g.gfx.queue[layer][g.gfx.queue[layer].length] = func;
 	},
-	paint: function() {
+	paint: function () {
 		g.gfx.fbpaint();
 		for (var i in g.gfx.queue)
 		{
@@ -153,13 +153,11 @@ g.gfx = {
 	},
 	fbdex: [],
 	fblayer: 1,
-	fbdraw: function(recid, x, y, frame, p, flip, alpha)
+	fbdraw: function (recid, x, y, frame, p, flip, alpha)
 	{
 		var order;
 		if (g.resources[recid].use == 'background')
-		{
 			order = g.gfx.makeorder(recid, g.area.areas[g.area.currentarea].x-x, g.area.areas[g.area.currentarea].y-y, frame, flip, alpha);
-		}
 		else
 			order = g.gfx.makeorder(recid, x-g.area.areas[g.area.currentarea].x, y-g.area.areas[g.area.currentarea].y, frame, flip, alpha);
 		if (order)
@@ -168,10 +166,10 @@ g.gfx = {
 			g.gfx.fbdex[g.gfx.fbdex.length] = order;
 		}
 	},
-	fbpaint: function() {
+	fbpaint: function () {
 		if (g.gfx.fbdex.length)
 		{
-			g.gfx.fbdex.sort(function(a,b) {return a.p-b.p;});
+			g.gfx.fbdex.sort(function (a,b) {return a.p-b.p;});
 			if (!g.gfx.queue[g.gfx.fblayer] || !g.gfx.queue[g.gfx.fblayer].length)
 				g.gfx.queue[g.gfx.fblayer] = g.gfx.fbdex;
 			else
@@ -179,9 +177,13 @@ g.gfx = {
 			g.gfx.fbdex = [];
 		}
 	},
-	setbgcolor: function(color) {
+	setbgcolor: function (color) {
 		g.c.canvas.style.backgroundColor = color;
 		g.gfx.bgcolor = color;
 	},
-	bgcolor: 'white'
+	bgcolor: 'white',
+	settextstyle: function (style) {		//you'll have to handle underline/strikethrough on your own...
+		g.c.fillStyle = style.color;
+		g.c.font = (style.italics?'italic ':'')+(style.bold?'bold ':'')+style.size+' '+((style.font.indexOf(' ')==-1)?style.font:('"'+style.font+'"'));
+	}
 };

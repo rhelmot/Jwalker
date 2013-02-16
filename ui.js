@@ -12,7 +12,7 @@ g.ui = {
 	controlsdlg: '',		//SETME - dialog to use for 'Controls' text. KEEP IN MIND: first line will be overwritten with controls description. (see controls.js)
 	enabled: false,		//ui disabled by default - control graphics will not have loaded!
 	
-	process: function()
+	process: function ()
 	{
 		if (!g.ui.enabled)
 			return;
@@ -24,12 +24,12 @@ g.ui = {
 		}
 		else if (g.controls.istouch(g.ui.optrect) && !g.frozen)
 		{
-			g.query.show(['Save/Load Game...','Control Settings','Debug...','About','Cancel'], 450, 65, function(num) {
+			g.query.show(['Save/Load Game...','Control Settings','Debug...','About','Cancel'], 450, 65, function (num) {
 				if (num == 3)
 					g.dialog.show(g.ui.aboutdlg);
 				else if (num == 2)
 				{
-					g.query.show([(g.debug.enabled?'Disable':'Enable')+' Dev Screen', 'Send Bug Report', 'Cancel'], 450, 65, function(num2) {
+					g.query.show([(g.debug.enabled?'Disable':'Enable')+' Dev Screen', 'Send Bug Report', 'Cancel'], 450, 65, function (num2) {
 						if (num2 == 0)
 							g.debug.enabled = !g.debug.enabled;
 						else if (num2 == 1)
@@ -42,7 +42,7 @@ g.ui = {
 					var keysets = [];
 					for (var i = 0; i < g.controls.keysets.length; i++)
 						keysets[i] = g.controls.keysets[i].name;
-					g.query.show(keysets, 450, 65, function(num2) {
+					g.query.show(keysets, 450, 65, function (num2) {
 						g.controls.keyset = num2;
 					});
 				}
@@ -53,7 +53,7 @@ g.ui = {
 					for (var i in s)
 					{
 						var k = s[i].split('-');
-						if (k[0] != g.num)
+						if (k[0] != g.meta.num)
 							continue;
 						var d = new Date() - k[1];
 						if (d > 86400000*4)
@@ -66,7 +66,7 @@ g.ui = {
 							o[o.length] = "Load Game: " + Math.floor(d/1000) + " second"+((d>2000)?"s":"")+" ago";
 					}
 					o[o.length] = 'Cancel';
-					g.query.show(o, 400, 65, function(num) {
+					g.query.show(o, 400, 65, function (num) {
 						if (num == 0)
 							g.save.save();
 						else if (g.query.options[num] == 'Cancel')
@@ -93,51 +93,66 @@ g.ui = {
 	}
 };
 g.save = {
-	serialize: function() {
-		var dsv = [];
-		for (var i in g.resources)
+	serialize: function () {
+		/*function objectref(obj, path) {
+			if (typeof obj != 'object' || 
+			var arr = path.split('.');
+			if (arr.length == 1)
+				return obj[path];
+			var n = arr.shift();
+			return objectref(obj[n], arr.join('.'));
+		}*/
+		var dsv = {recdata:[]};
+		for (var i = 0; i < g.resources.length; i++)
 		{
 			if (typeof g.resources[i].data == 'object' && g.resources[i].type != 'meta')
 			{
-				dsv[i] = {data: g.resources[i].data, loaded: g.resources[i].loaded};
+				dsv.recdata[i] = {data: g.resources[i].data, loaded: g.resources[i].loaded};
 				delete g.resources[i].data;
 				g.resources[i].loaded = false;
 			}
 			else
-				dsv[i] = false;
+				dsv.recdata[i] = false;
 		}
-		var c = g.c;
+		dsv.c = g.c;
 		delete g.c;
+		dsv.ddat = g.dialog.data;
+		delete g.dialog.data;
+		dsv.debug = g.debug;
+		delete g.debug;
 		var svst = JSON.stringify(g, function (key, val) {if (typeof val == 'function') { return val.toString(); } return val;});
-		for (var i in g.resources)
+		//svst = svst.replace(/\\t/g,'').replace(/\\r/g,'');		//so much whitespace o_o
+		for (var i = 0; i < g.resources.length; i++)
 		{
-			if (dsv[i])
+			if (dsv.recdata[i])
 			{
-				g.resources[i].data = dsv[i].data;
-				g.resources[i].loaded = dsv[i].loaded;
+				g.resources[i].data = dsv.recdata[i].data;
+				g.resources[i].loaded = dsv.recdata[i].loaded;
 			}
 		}
-		g.c = c;
+		g.c = dsv.c;
+		g.dialog.data = dsv.ddat;
+		g.debug = dsv.debug;
 		return svst;
 	},
-	save: function() {
+	save: function () {
 		var svst = g.save.serialize();
 		var games = JSON.parse(localStorage.getItem('saves'));
 		if (games == null)
 			games = [];
 		var ts = Date.parse(new Date());
-		games[games.length] = g.num + '-' + ts;
+		games[games.length] = g.meta.num + '-' + ts;
 		localStorage.setItem('saves', JSON.stringify(games));
 		localStorage.setItem(ts, svst);
 	},
-	load: function(num) {
+	load: function (num) {
 		var games = JSON.parse(localStorage.getItem('saves'));
 		var j = 0;
 		var broken = false;
 		for (var i in games)
 		{
 			var k = games[i].split('-');
-			if (k[0] != g.num)
+			if (k[0] != g.meta.num)
 				continue;
 			if (j == num)
 			{
@@ -164,10 +179,12 @@ g.save = {
 		games = games.slice(0, games.length-1);
 		localStorage.setItem('saves', JSON.stringify(games));
 	},
-	deserialize: function(gstr) {
+	deserialize: function (gstr) {
 		var sv = JSON.parse(gstr);
-		sv = g.save.refunction(sv);
+		sv = g.save.refunction (sv);
 		sv.c = g.c;
+		sv.dialog.data = g.dialog.data;
+		sv.debug = g.debug;
 		sv.c.canvas.style.backgroundColor = sv.gfx.bgcolor;
 		for (var i in g.resources)
 		{
@@ -179,11 +196,20 @@ g.save = {
 		}
 		return sv;
 	},
-	refunction: function(obj) {
+	refunction: function (obj) {
 		for (var i in obj)
 		{
-			if (typeof obj[i] == 'object')
-				obj[i] = this.refunction(obj[i]);
+			if (typeof obj[i] == 'object' && obj[i] != null)
+			{
+				obj[i] = g.save.refunction (obj[i]);
+				switch (obj[i].jwalkerClassName) {
+					case 'Rectangle':
+						obj[i] = new Rectangle(obj[i].x1, obj[i].y1, obj[i].x2, obj[i].y2);
+						break;
+					default:
+						break;
+				}
+			}
 			else if (typeof obj[i] == 'string' && obj[i].substr(0,8) == 'function')
 				eval('obj[i] = ' + obj[i]);
 		}
@@ -193,12 +219,12 @@ g.save = {
 
 g.list = {
 	list: [],
-	add: function(text, pass, fail) {
+	add: function (text, pass, fail) {
 		if (typeof fail != 'function')
-			fail = function() {};
+			fail = function () {};
 		g.list.list[g.list.list.length] = {'text':text, 'pass':pass, 'fail':fail};
 	},
-	check: function() {
+	check: function () {
 		if (g.list.list.length > 0)
 		{
 			for (var i = 0; i < g.list.list.length; i++)
@@ -221,7 +247,7 @@ g.list = {
 			kill();
 		}
 	},
-	accept: function() {
+	accept: function () {
 		var check;
 		for (var i = 0; check=document.getElementById('checklist'+i); i++)
 		{

@@ -1,5 +1,5 @@
 g.timeouts = {
-	addtimeout: function(frames, func, meanwhile)
+	addtimeout: function (frames, func, meanwhile)
 	{
 		if (typeof meanwhile == 'undefined')
 			meanwhile = false;
@@ -8,7 +8,7 @@ g.timeouts = {
 		g.timeouts.list[i] = {timeremains: frames, 'func': func, runduringcount: meanwhile};
 	},
 	list: [],
-	process: function() {
+	process: function () {
 		for (var i in g.timeouts.list)
 		{
 			if (g.timeouts.list[i])
@@ -37,7 +37,7 @@ timeouts: [
 	{
 		timeremains: 5,
 		runduringcount: false,
-		func: function(timer)
+		func: function (timer)
 		{
 			//blah
 		}

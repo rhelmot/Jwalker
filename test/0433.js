@@ -212,6 +212,12 @@ g.ui.optrec = 9;
 g.ui.controlsrec = 10;
 g.dialog.boxrec = 4;
 
+g.ui.controlsdlg = 'controls';
+g.ui.aboutdlg = 'about';
+
+g.ui.volrect = new Rectangle(20, 10, 50, 40, true);
+g.ui.optrect = new Rectangle(530, 10, 31, 40, true);
+g.ui.controlsrect = new Rectangle(580, 10, 50, 40, true);
 
 g.dialog.prefs = {
 	Brad: {
@@ -294,7 +300,7 @@ g.controls.keysets = [
 			startframe: 0,
 			x: 50,
 			y: 375,
-			dim: {left:0,top:0,width:94,height:42}
+			dim: new Rectangle(50, 375, 94, 42, true)
 		},
 		upbtn: {
 			type: 'button',
@@ -304,7 +310,7 @@ g.controls.keysets = [
 			startframe: 0,
 			x: 540,
 			y: 260,
-			dim: {left:0,top:22,width:77,height:35}
+			dim: new Rectangle(540,282,77,25,true)
 		},
 		downbtn: {
 			type: 'button',
@@ -314,7 +320,7 @@ g.controls.keysets = [
 			startframe: 6,
 			x: 540,
 			y: 300,
-			dim: {left:0,top:22,width:77,height:35}
+			dim: new Rectangle(540,322,77,25,true)
 		},
 		leftright: {
 			type: 'slider',
@@ -340,14 +346,14 @@ g.controls.keysets = [
 g.areaprocess = function(area) {
 	var sprrec = g.resources[area.background];
 	var player = area.sprites[area.player];
-	if (player.x+player.dim.left+player.dim.width-area.x > 550)
-		area.x = player.x+player.dim.left+player.dim.width - 550;
-	else if (player.x+player.dim.left-area.x < 100)
-		area.x = player.x+player.dim.left - 100;
-	if (player.y+player.dim.top+player.dim.height-area.y > 350)
-		area.y = player.y+player.dim.top+player.dim.height - 350;
-	else if (player.y+player.dim.top-area.y < 100)
-		area.y = player.y+player.dim.top - 100;
+	if (player.x+player.dim.x2-area.x > 550)
+		area.x = player.x+player.dim.x2 - 550;
+	else if (player.x+player.dim.x1-area.x < 100)
+		area.x = player.x+player.dim.x1 - 100;
+	if (player.y+player.dim.y2-area.y > 350)
+		area.y = player.y+player.dim.y2 - 350;
+	else if (player.y+player.dim.y1-area.y < 100)
+		area.y = player.y+player.dim.y1 - 100;
 	if (area.x < 0)
 		area.x = 0;
 	else if (area.x > (sprrec.data.width - 650))
@@ -361,7 +367,7 @@ g.areaprocess = function(area) {
 		console.log('warning: attempting to draw resources without type:image/background as background');
 		return;
 	}
-	g.gfx.draw(area.background, 0, 0, {left: area.x, top: area.y, width: 650, height: 450}, g.gfx.layers.bg);
+	g.gfx.draw(area.background, area.x, area.y, 0, g.gfx.layers.bg);
 };
 var allrecs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26];
 g.area.areas = [
@@ -374,6 +380,7 @@ g.area.areas = [
 		reclist: allrecs,
 		onLoad: function(entrance, from) {
 			g.audio.play(1);
+			g.ui.enabled = true;
 		},
 		onActivate: function() {
 			
@@ -400,7 +407,7 @@ g.area.areas = [
 						climbtimer: 0,
 						frametimer: 0,
 						fauxframe: 0,
-						dim: {left:20, width:26, top:0, height:114}
+						dim: new Rectangle(20, 0, 26, 114, true)
 					};
 					g.area.areas[0].sprites[1].x = 1050;
 					g.area.areas[0].sprites[1].y = 250;
@@ -427,7 +434,7 @@ g.area.areas = [
 				climbtimer: 0,
 				frametimer: 0,
 				fauxframe: 0,
-				dim: {left:20, width:26, top:0, height:114}
+				dim: new Rectangle(20, 0, 26, 114, true)
 			},
 			{
 				index: 1,
@@ -446,15 +453,13 @@ g.area.areas = [
 				spdtimer: 0,
 				follow: false,
 				faceleft: true,
-				dim: {left:0, width:60, top:0, height:128}
+				dim: new Rectangle(60,128)
 			},
 			{
 				name: 'examine',
 				x:606,
 				y:300,
-				dim: {left:0,top:0,
-				width:212,
-				height:100},
+				dim: new Rectangle(212,100),
 				object: 'cacti',
 				dialog: 'examinecacti'
 			},
@@ -462,9 +467,7 @@ g.area.areas = [
 				name: 'examine',
 				x:736,
 				y:0,
-				dim: {left:0,top:0,
-				width:70,
-				height:68},
+				dim: new Rectangle(70,68),
 				object: 'chimney',
 				dialog: 'examinechimney'
 			},
@@ -472,38 +475,23 @@ g.area.areas = [
 				name: 'examine',
 				x:854,
 				y:31,
-				dim: {left:0,top:0,
-				width:153,
-				height:45},
+				dim: new Rectangle(153,45),
 				object: 'hole in roof',
 				dialog: 'examinehole'
-			}
-			
-		],
-		exits: [
-		{
-			x: 900,
-			y: 180,
-			dim: {left:0,top:0,
-			width: 250,
-			height: 240 },
-			check: function(player)
-			{
-				if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[0].exits[0]))
-				{
-					g.k.frame.space = false;
-					if (g.area.areas[g.area.currentarea].sprites[1].follow)
-					{
-						g.query.show(['Enter house','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(1, 'inout', 'black'); });
-					}
-					else
-					{
-						g.dialog.show('cantenter');
-					}
-				}
 			},
-			enterat: 0
-		}
+			{
+				name: 'area',
+				x: 900,
+				y: 180,
+				dim: new Rectangle(250,240),
+				callback: function()
+				{
+					if (g.area.areas[0].sprites[1].follow)
+						g.query.show(['Enter house','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(1, 'inout', 'black'); });
+					else
+						g.dialog.show('cantenter');
+				}
+			}
 		]
 	},
 	{						//area 2 - kitchen/living room
@@ -540,7 +528,7 @@ g.area.areas = [
 				climbtimer: 0,
 				frametimer: 0,
 				fauxframe: 0,
-				dim: {left:20, width:26, top:0, height:114}
+				dim: new Rectangle(20,0,26,114,true)
 			},
 			{
 				index: 1,
@@ -559,7 +547,7 @@ g.area.areas = [
 				spdtimer: 0,
 				follow: true,
 				faceleft: false,
-				dim: {left:0, width:60, top:0, height:128}
+				dim: new Rectangle(60,128)
 			},
 			{
 				index: 2,
@@ -595,9 +583,7 @@ g.area.areas = [
 				name: 'examine',
 				x:0,
 				y:97,
-				dim: {left:0,top:0,
-				width:50,
-				height:333},
+				dim: new Rectangle(50,333),
 				object: 'television',
 				dialog: 'examinetv'
 			},
@@ -605,9 +591,7 @@ g.area.areas = [
 				name: 'examine',
 				x:113,
 				y:284,
-				dim: {left:0,top:0,
-				width:251,
-				height:121},
+				dim: new Rectangle(251,121),
 				object: 'hole in wall/floor',
 				dialog: 'examinefloorhole'
 			},
@@ -615,9 +599,7 @@ g.area.areas = [
 				name: 'examine',
 				x:350,
 				y:250,
-				dim: {left:0,top:0,
-				width:125,
-				height:164},
+				dim: new Rectangle(125,164),
 				object: 'couch',
 				dialog: 'examinecouch'
 			},
@@ -625,9 +607,7 @@ g.area.areas = [
 				name: 'examine',
 				x:867,
 				y:339,
-				dim: {left:0,top:0,
-				width:300,
-				height:95},
+				dim: new Rectangle(300,95),
 				object: 'bananas',
 				dialog: 'examinebananas'
 			},
@@ -635,30 +615,21 @@ g.area.areas = [
 				name: 'examine',
 				x:842,
 				y:68,
-				dim: {left:0,top:0,
-				width:221,
-				height:153},
+				dim: new Rectangle(221,153),
 				object: 'freezer',
 				dialog: 'examinefreezer'
-			}
-		],
-		exits: [
-		{
-			x: 490,
-			y: 110,
-			dim: {left:0,top:0,
-			width: 261,
-			height: 300 },
-			check: function(player)
-			{
-				if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[1].exits[0]))
-				{
-					g.k.frame.space = false;
-					g.query.show(['Enter hallway','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(2, 'inout', 'black'); });
-				}
 			},
-			enterat: 0
-		}
+			{
+				name: 'area',
+				x: 490,
+				y: 110,
+				dim: new Rectangle(261,300),
+				option: 'Enter Hallway',
+				callback: function()
+				{
+					g.area.loadarea(2, 'inout', 'black');
+				}
+			}
 		]
 		
 	},
@@ -691,7 +662,7 @@ g.area.areas = [
 				climbtimer: 0,
 				frametimer: 0,
 				fauxframe: 0,
-				dim: {left:20, width:26, top:0, height:114}
+				dim: new Rectangle(20,0,26,114,true)
 			},
 			{
 				index: 1,
@@ -710,15 +681,13 @@ g.area.areas = [
 				spdtimer: 0,
 				follow: true,
 				faceleft: true,
-				dim: {left:0, width:60, top:0, height:128}
+				dim: new Rectangle(60,128)
 			},
 			{
 				name: 'examine',
 				x:117,
 				y:115,
-				dim: {left:0,top:0,
-				width:60,
-				height:219},
+				dim: new Rectangle(60,219),
 				object: 'trophy',
 				dialog: 'startrophy'
 			},
@@ -726,9 +695,7 @@ g.area.areas = [
 				name: 'examine',
 				x:196,
 				y:119,
-				dim: {left:0,top:0,
-				width:124,
-				height:250},
+				dim: new Rectangle(124,250),
 				object: '!Enter bedroom',
 				dialog: 'enterbedroom'
 			},
@@ -736,9 +703,7 @@ g.area.areas = [
 				name: 'examine',
 				x:346,
 				y:180,
-				dim: {left:0,top:0,
-				width:58,
-				height:187},
+				dim: new Rectangle(58,187),
 				object: 'medal',
 				dialog: 'redmedal'
 			},
@@ -746,9 +711,7 @@ g.area.areas = [
 				name: 'examine',
 				x:448,
 				y:175,
-				dim: {left:0,top:0,
-				width:80,
-				height:200},
+				dim: new Rectangle(80,200),
 				object: 'certificate',
 				dialog: 'examinecertificate'
 			},
@@ -756,9 +719,7 @@ g.area.areas = [
 				name: 'examine',
 				x:582,
 				y:170,
-				dim: {left:0,top:0,
-				width:58,
-				height:196},
+				dim: new Rectangle(58,196),
 				object: 'medal',
 				dialog: 'bluemedal'
 			},
@@ -766,9 +727,7 @@ g.area.areas = [
 				name: 'examine',
 				x:667,
 				y:113,
-				dim: {left:0,top:0,
-				width:83,
-				height:258},
+				dim: new Rectangle(83,258),
 				object: 'big trophy',
 				dialog: 'bigtrophy'
 			},
@@ -776,9 +735,7 @@ g.area.areas = [
 				name: 'examine',
 				x:767,
 				y:127,
-				dim: {left:0,top:0,
-				width:252,
-				height:243},
+				dim: new Rectangle(252,243),
 				object: 'ribbons',
 				dialog: 'examineribbons'
 			},
@@ -786,9 +743,7 @@ g.area.areas = [
 				name: 'examine',
 				x:1090,
 				y:88,
-				dim: {left:0,top:0,
-				width:88,
-				height:287},
+				dim: new Rectangle(88,287),
 				object: 'huge trophy',
 				dialog: 'hugetrophy'
 			},
@@ -796,9 +751,7 @@ g.area.areas = [
 				name: 'examine',
 				x:1210,
 				y:116,
-				dim: {left:0,top:0,
-				width:174,
-				height:256},
+				dim: new Rectangle(174,256),
 				object: 'Charlie Sheen',
 				dialog: 'examinesheen'
 			},
@@ -806,42 +759,32 @@ g.area.areas = [
 				name: 'examine',
 				x:1406,
 				y:40,
-				dim: {left:0,top:0,
-				width:54,
-				height:360},
+				dim: new Rectangle(54,360),
 				object: '!Exit',
 				dialog: 'braddadsprite6'
-			}
-		],
-		exits: [
+			},
 			{
+				name: 'area',
 				x: 0,
 				y: 50,
-				dim: {left:0,top:0,
-				width: 50,
-				height: 350 },
+				dim: new Rectangle(50,350),
 				alreadytried: false,
-				check: function(player)
+				callback: function()
 				{
-					if (g.k.frame.space || g.sprites.func.isTouched(g.area.areas[2].exits[0]))
-					{
-						g.k.frame.space = false;
-						if (g.area.areas[2].exits[0].alreadytried)
-							g.query.show(['Enter Dad\'s room','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(3, 'inout', 'black'); });
-						else {
-							g.area.areas[2].exits[0].alreadytried = true;
-							g.dialog.show('braddadsprite5', function() { 
-								g.dialog.show('enterroom', function() { 
-									g.query.show(['Yes','No'],200,200,function(num) {
-										if (num==0)
-											g.area.loadarea(3, 'inout', 'black');
-									});
+					if (g.area.areas[2].sprites[12].alreadytried)
+						g.query.show(['Enter Dad\'s room','Cancel'],200,200,function(num) { if (num == 1) {return;} g.area.loadarea(3, 'inout', 'black'); });
+					else {
+						g.dialog.show('braddadsprite5', function() { 
+							g.area.areas[2].sprites[12].alreadytried = true;
+							g.dialog.show('enterroom', function() { 
+								g.query.show(['Yes','No'],200,200,function(num) {
+									if (num==0)
+										g.area.loadarea(3, 'inout', 'black');
 								});
 							});
-						}
+						});
 					}
-				},
-				enterat: 0
+				}
 			}
 		]
 	},

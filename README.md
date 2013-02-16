@@ -3,6 +3,11 @@ Jwalker
 
 A flexible platform for Homestuck Games in HTML5/Javascript. Coded by Andrew Dutcher (http://andrewdutcher.com), primarily for Thoughtstuck (http://andrewdutcher.com/MSPA/)
 
+FAIR WARNING
+------------
+
+These instructions represent a version of Jwalker several versions old and very much has changed. Quite a bit is still accurate, so they can be useful, but if you want to get something to work, I'd recommend examining the tests' code, looking at one of their deployments on Thoughtstuck, and just asking me. I'm pretty sure I've littered a few methods of getting at me around.
+
 Use instructions
 ----------------
 
